@@ -129,6 +129,17 @@ These are examples of what you'll find when you follow the playbook above. Every
 | **King Street Corridor Plan** | https://www.hampton.gov/515/King-Street | Master plan for the N King St corridor — acknowledges need for revitalization. |
 | **Brownfields** | https://www.hampton.gov/2107/Brownfields | EPA-funded brownfield assessments covering 100+ acres in Hampton. |
 
+### Elizabeth City, NC (Pasquotank County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Pasquotank County Parcel Search** | https://www.pasquotankcountync.org/tcs | Property assessments searchable by address, owner, or parcel number. |
+| **Pasquotank County GIS** | https://www.arcgis.com/apps/Viewer/index.html?appid=7155a34043534443aaaa3fed8f8a492e | Interactive parcel map with boundaries and property data. |
+| **Pasquotank Delinquent Taxes** | https://www.pasquotankcountync.org/delinquent-taxes | Tax lien notices listing delinquent property owners and parcel numbers. |
+| **Elizabeth City Code Enforcement** | https://elizabethcitync.gov/index.asp?SEC=653B1CA7-43A7-4675-B83B-40840B293FB5 | Report nuisance properties, code violations, complaint process. |
+| **Elizabeth City Code of Ordinances** | https://codelibrary.amlegal.com/codes/elizabethcity/latest/elizabeth_nc/0-0-0-2 | Full municipal code including minimum housing standards (Ch. 150). |
+| **NC DPS (State)** | https://www.ncdps.gov/ | State-level press releases on nuisance abatement cases (e.g., Whistling Pines Motel). |
+
 ---
 
 ## Tips for Agents

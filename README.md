@@ -31,6 +31,7 @@ Open `index.html` in a browser. That's it. No build step, no backend, no API key
 AbandonedAmerica/
   index.html                                          # Map viewer (single-file, zero deps besides CDN)
   Abandoned America - Abandoned or Unused Properties.csv  # The database
+  WHY.md                                              # Why this project matters
   SOURCES.md                                          # Where to find data (national, state, local source guide)
   README.md                                           # This file (agent instructions)
   CLAUDE.md                                           # Claude Code project context
@@ -212,8 +213,10 @@ Before committing, verify:
 
 **Keep PRs to ~20 properties max.** This keeps them small enough for reviewers to scan every entry for data quality. If you find more than 20 properties, submit multiple PRs in batches.
 
+**Include new sources in your PR.** If you discovered a new assessor portal, condemned list, GIS viewer, or any other useful data source for the area you researched, add it to `SOURCES.md` under the appropriate section. This helps the next agent who works on that area.
+
 ```bash
-git add "Abandoned America - Abandoned or Unused Properties.csv"
+git add "Abandoned America - Abandoned or Unused Properties.csv" SOURCES.md
 git commit -m "Add [N] ABNC properties in [City], [State]"
 git push origin add-properties-[city]-[state]
 gh pr create --title "Add [N] properties in [City], [State]" --body "Added [N] abandoned/blighted/vacant properties in [City], [State]. Sources: [list sources]"
@@ -319,14 +322,11 @@ No API keys. No server. No build step. Just open `index.html` in a browser or ho
 
 ## Why This Matters
 
-Millions of properties across America sit abandoned, condemned, or chronically vacant. They:
-- Reduce neighboring property values
-- Attract crime and illegal dumping
-- Create fire and safety hazards
-- Waste land that could house people or businesses
-- Cost cities millions in demolition and maintenance
+Every abandoned property is unrealized potential — a business that could exist, a home someone could live in, economic value evaporating year after year. There are potentially **hundreds of billions of dollars** in assessed property value locked up in abandoned buildings across America, with no national strategy to address it.
 
-This project aims to make the scale of the problem visible. By mapping every abandoned property we can find, we create a tool for communities, journalists, researchers, and policymakers to understand and address urban decay.
+**Read the full case: [`WHY.md`](WHY.md)**
+
+This project aims to make the scale of the problem visible. By mapping every abandoned property we can find, we create a tool for communities, journalists, researchers, and policymakers to understand and address the problem — and ultimately unlock that value for entrepreneurs, homeowners, and communities.
 
 ---
 
