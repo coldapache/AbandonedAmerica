@@ -675,9 +675,8 @@ function renderSidebar() {
   let props = getStatusFiltered();
   props = getSearchFiltered(props);
 
-  // If on map tab, filter to viewport
-  const mapTab = document.querySelector('[data-tab="map"]');
-  if (syncToViewport && mapTab.classList.contains('active')) {
+  // Always filter to map viewport so sidebar stays in sync
+  if (syncToViewport) {
     const bounds = map.getBounds().pad(0.05);
     props = props.filter(p => bounds.contains([parseFloat(p.lat), parseFloat(p.lon)]));
   }
@@ -774,13 +773,8 @@ map.on('moveend zoomend', () => {
   debounce = setTimeout(() => {
     const filtered = getFiltered();
     renderMarkers(filtered);
-    // Only re-render sidebar when map tab is active, so clicking a property
-    // doesn't wipe the sidebar list by re-filtering to the new viewport
-    const mapTab = document.querySelector('[data-tab="map"]');
-    if (mapTab.classList.contains('active')) {
-      renderSidebar();
-      renderTable(filtered);
-    }
+    renderSidebar();
+    renderTable(filtered);
   }, 120);
 });
 
