@@ -129,7 +129,7 @@ address,lat,lon,city,state,zip,type,status,owner,assessment,link
 - `state`: 2-letter uppercase state abbreviation.
 - `zip`: 5-digit ZIP code, valid for state.
 - `type`: MUST be one of: COMMERCIAL, COMMERCIAL OFFICE, HOSPITALITY, INDUSTRIAL, INSTITUTIONAL, MIXED USE, RESIDENTIAL, RESTAURANT, RETAIL, WAREHOUSE
-- `status`: MUST be one of: ABANDONED, CHRONICALLY VACANT, CONDEMNED, DEMOLISHED, PERMANENTLY CLOSED, PROBABLY VACANT, VACANT
+- `status`: MUST be one of: ABANDONED, CHRONICALLY VACANT, CONDEMNED, DEMOLISHED, PROBABLY VACANT, VACANT
 - `owner`: Uppercase. From official records only. Leave empty if unknown.
 - `assessment`: Format $X,XXX,XXX. From tax records only. Leave empty if unknown.
 - `link`: Google Maps URL starting with https://www.google.com/maps
@@ -149,7 +149,7 @@ import csv
 After adding, run validation:
 ```python
 import csv
-VALID_STATUS = {'ABANDONED','CHRONICALLY VACANT','CONDEMNED','DEMOLISHED','PERMANENTLY CLOSED','PROBABLY VACANT','VACANT'}
+VALID_STATUS = {'ABANDONED','CHRONICALLY VACANT','CONDEMNED','DEMOLISHED','PROBABLY VACANT','VACANT'}
 VALID_TYPE = {'COMMERCIAL','COMMERCIAL OFFICE','HOSPITALITY','INDUSTRIAL','INSTITUTIONAL','MIXED USE','RESIDENTIAL','RESTAURANT','RETAIL','WAREHOUSE'}
 
 with open('Abandoned America - Abandoned or Unused Properties.csv') as f:
@@ -190,6 +190,14 @@ gh pr create --title "Add [N] properties in [City], [State]" --body "..."
 - **Local news** often covers "worst abandoned buildings" or demolition plans.
 - **Zillow/Redfin** sometimes show long-listed properties that are likely vacant.
 - Start with downtown/central areas - abandonment tends to cluster there.
+
+## What does NOT count as ABNC
+
+- A business closing (on Yelp, Google, etc.) does NOT mean the building is abandoned. Yelp/Google "CLOSED" status tracks businesses, not buildings.
+- A new tenant can move into the same building within weeks of a closure. The BUILDING must be verifiably vacant and unused.
+- Signs of a truly vacant building: empty storefront, no signage, boarded windows, overgrown lot, empty parking lot, no vehicles, no activity.
+- Yelp closures are a LEAD, not evidence. Use them to identify candidates, then visually verify via Google Maps/Street View that the building itself is vacant.
+- Every property MUST be visually verified via Google Maps/Street View before adding. If you cannot confirm the building is actually vacant, do not add it.
 
 ## Important constraints
 

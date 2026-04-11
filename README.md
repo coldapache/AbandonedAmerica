@@ -83,7 +83,6 @@ The entire database is a single CSV file. Every row is one property. The columns
 | `CHRONICALLY VACANT` | Has been empty for an extended period (1+ years). No signs of returning to use. |
 | `CONDEMNED` | Officially condemned by local government. Cannot be legally occupied. |
 | `DEMOLISHED` | Structure has been torn down. May be an empty lot. |
-| `PERMANENTLY CLOSED` | Business permanently closed. Building may still be structurally sound. |
 | `PROBABLY VACANT` | Appears vacant based on visual/web evidence, but not confirmed through official records. |
 | `VACANT` | Currently unoccupied. Structurally sound. No active business or residents. |
 
@@ -98,6 +97,7 @@ The entire database is a single CSV file. Every row is one property. The columns
 - **Use the minus sign (`-`) for negative longitude.** Not an en-dash or em-dash.
 - **Owner names in uppercase** when sourced from official records.
 - **Include source URLs whenever possible** so others can verify the data.
+- **Business closure ≠ building abandonment.** A business marked "CLOSED" on Yelp or Google does not qualify. The physical building must be verifiably vacant and unused. Visual verification via Google Maps/Street View is required for every property.
 
 ---
 

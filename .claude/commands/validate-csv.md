@@ -13,7 +13,7 @@ Read `Abandoned America - Abandoned or Unused Properties.csv` and parse it with 
 For every row, check:
 
 - **Required fields present**: address, lat, lon, city, state, zip, type, status, link
-- **Status is valid enum**: ABANDONED, CHRONICALLY VACANT, CONDEMNED, DEMOLISHED, PERMANENTLY CLOSED, PROBABLY VACANT, VACANT
+- **Status is valid enum**: ABANDONED, CHRONICALLY VACANT, CONDEMNED, DEMOLISHED, PROBABLY VACANT, VACANT
 - **Type is valid enum**: COMMERCIAL, COMMERCIAL OFFICE, HOSPITALITY, INDUSTRIAL, INSTITUTIONAL, MIXED USE, RESIDENTIAL, RESTAURANT, RETAIL, WAREHOUSE
 - **Latitude is valid**: parseable as float, range 24.0 to 49.5
 - **Longitude is valid**: parseable as float, range -125.0 to -66.5, uses minus sign not en-dash
