@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abandoned America</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+<style>
+:root {
+  --bg: #f2f3f5;
+  --surface: #ffffff;
+  --surface2: #f7f8fa;
+  --surface3: #ecedf0;
+  --border: #d0d3da;
+  --border-light: #e2e4e9;
+  --text: #111827;
+  --text-mid: #374151;
+  --text-dim: #6b7280;
+  --accent: #c0392b;
+  --accent-hover: #a93226;
+  --accent-bg: rgba(192,57,43,0.08);
+  --abandoned: #dc2626;
+  --condemned: #ea580c;
+  --vacant: #b45309;
+  --demolished: #6b7280;
+  --closed: #7c3aed;
+  --chronic: #db2777;
+  --probably: #2563eb;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ===== LAYOUT ===== */
+#app {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  grid-template-rows: 54px 1fr;
+  height: 100vh;
+}
+
+/* ===== HEADER ===== */
+#header {
+  grid-column: 1 / -1;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left { display: flex; align-items: baseline; gap: 12px; }
+
+#header h1 {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  white-space: nowrap;
+}
+
+.header-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+#stats-bar { display: flex; gap: 18px; font-size: 11px; }
+.stat { color: var(--text-dim); }
+.stat-value { color: var(--text); font-weight: 700; margin-left: 3px; }
+
+/* ===== SIDEBAR ===== */
+#sidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#search-box { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+
+#search-input {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+}
+#search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-bg); }
+#search-input::placeholder { color: var(--text-dim); }
+
+#filters {
+  padding: 6px 12px 8px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.filter-btn {
+  padding: 3px 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-dim);
+  font-size: 9px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.filter-btn:hover { border-color: var(--text-dim); color: var(--text); }
+.filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+#list-count {
+  padding: 7px 12px;
+  font-size: 10px;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+#property-list { flex: 1; overflow-y: auto; }
+#property-list::-webkit-scrollbar { width: 5px; }
+#property-list::-webkit-scrollbar-track { background: transparent; }
+#property-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+.property-item {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: background 0.1s;
+  border-left: 3px solid transparent;
+}
+.property-item:hover { background: var(--surface2); }
+.property-item.active { background: var(--accent-bg); border-left-color: var(--accent); }
+
+.property-item .addr {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 3px;
+}
+.property-item .meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  line-height: 14px;
+}
+.badge-ABANDONED { background: var(--abandoned); color: #fff; }
+.badge-CONDEMNED { background: var(--condemned); color: #fff; }
+.badge-VACANT { background: var(--vacant); color: #fff; }
+.badge-DEMOLISHED { background: var(--demolished); color: #fff; }
+.badge-PERMANENTLY_CLOSED { background: var(--closed); color: #fff; }
+.badge-CHRONICALLY_VACANT { background: var(--chronic); color: #fff; }
+.badge-PROBABLY_VACANT { background: var(--probably); color: #fff; }
+
+.type-tag { color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.3px; }
+.value-tag { color: var(--text-mid); font-weight: 600; }
+
+/* Info button */
+.info-btn {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text-dim); font-size: 14px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; flex-shrink: 0;
+}
+.info-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Guide modal */
+#guide-overlay {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.4); align-items: center; justify-content: center;
+}
+#guide-overlay.visible { display: flex; }
+
+#guide-modal {
+  background: var(--surface); border-radius: 12px;
+  max-width: 640px; width: 90%; max-height: 80vh;
+  overflow-y: auto; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  position: relative;
+}
+#guide-modal h2 { font-size: 20px; margin-bottom: 6px; color: var(--accent); }
+#guide-modal .subtitle { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
+#guide-modal h3 { font-size: 14px; margin: 18px 0 8px; color: var(--text); }
+#guide-modal p, #guide-modal li { font-size: 13px; line-height: 1.7; color: var(--text-mid); }
+#guide-modal ul { padding-left: 20px; margin: 6px 0; }
+#guide-modal li { margin: 4px 0; }
+#guide-modal b { color: var(--text); }
+#guide-modal code { background: var(--surface2); padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+
+.guide-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 28px; height: 28px; border: none; background: var(--surface2);
+  border-radius: 50%; font-size: 16px; cursor: pointer; color: var(--text-dim);
+  display: flex; align-items: center; justify-content: center;
+}
+.guide-close:hover { background: var(--surface3); color: var(--text); }
+
+/* ===== MAIN PANEL ===== */
+#main-panel { display: flex; flex-direction: column; overflow: hidden; background: var(--bg); }
+
+#tab-bar {
+  display: flex;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.tab {
+  padding: 12px 24px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  user-select: none;
+}
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab.disabled { opacity: 0.3; cursor: default; }
+
+.tab-content { display: none; flex: 1; position: relative; overflow: hidden; }
+.tab-content.active { display: flex; flex-direction: column; }
+
+#map { flex: 1; }
+
+#viewport-warning {
+  position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1000;
+  background: var(--surface); border: 1px solid var(--accent); border-radius: 6px;
+  padding: 6px 14px; font-size: 11px; color: var(--accent); display: none;
+  pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Legend */
+#legend {
+  position: absolute; bottom: 16px; right: 12px; z-index: 1000;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  padding: 10px 14px; font-size: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+#legend h4 { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 6px; }
+.legend-row { display: flex; align-items: center; gap: 7px; margin: 3px 0; color: var(--text-mid); font-weight: 500; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.15); }
+
+/* Map marker labels */
+.marker-label {
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 9px;
+  font-weight: 700;
+  font-family: 'Inter', -apple-system, sans-serif;
+  white-space: nowrap;
+  color: #333;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  letter-spacing: 0.2px;
+}
+
+/* ===== PROPERTY VIEW ===== */
+#property-view { display: flex; flex-direction: column; height: 100%; }
+
+#property-view .empty-state {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  color: var(--text-dim); font-size: 14px; text-align: center; padding: 40px; line-height: 1.8;
+}
+
+#streetview-container {
+  flex: 3; position: relative; min-height: 0;
+  background: var(--surface3); border-bottom: 1px solid var(--border);
+}
+#streetview-container iframe { width: 100%; height: 100%; border: none; }
+#streetview-overlay {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface2); color: var(--text-dim); font-size: 13px;
+}
+
+#property-detail {
+  flex: 0 0 auto;
+  background: var(--surface);
+  padding: 20px 24px;
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+#property-detail h2 { font-size: 17px; font-weight: 700; margin-bottom: 14px; line-height: 1.3; }
+
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px 16px; }
+.detail-field { display: flex; flex-direction: column; gap: 3px; }
+.detail-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); }
+.detail-value { font-size: 13px; color: var(--text); font-weight: 500; }
+
+.detail-actions {
+  display: flex; gap: 8px; margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+}
+
+.btn {
+  padding: 8px 16px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  cursor: pointer; text-decoration: none; text-transform: uppercase;
+  letter-spacing: 0.5px; transition: all 0.15s; border: none;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-ghost { background: var(--surface2); color: var(--text-mid); border: 1px solid var(--border); }
+.btn-ghost:hover { border-color: var(--text-dim); color: var(--text); }
+
+/* Popup */
+.leaflet-popup-content-wrapper {
+  background: #fff !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12) !important;
+  font-family: 'Inter', -apple-system, sans-serif !important;
+}
+.leaflet-popup-tip { background: #fff !important; }
+.leaflet-popup-content { margin: 12px 16px !important; font-size: 13px !important; line-height: 1.6 !important; }
+
+.popup-title { font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--text); }
+.popup-meta { color: var(--text-mid); margin: 3px 0; font-size: 13px; }
+.popup-meta b { color: var(--text); font-weight: 600; }
+.popup-btn {
+  display: inline-block; margin-top: 10px; padding: 6px 14px;
+  background: var(--accent); color: #fff; border-radius: 5px;
+  text-decoration: none; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.popup-btn:hover { background: var(--accent-hover); }
+
+/* Cluster */
+.marker-cluster-small { background: rgba(220,38,38,0.15); }
+.marker-cluster-small div { background: rgba(220,38,38,0.8); color: #fff; }
+.marker-cluster-medium { background: rgba(234,88,12,0.15); }
+.marker-cluster-medium div { background: rgba(234,88,12,0.8); color: #fff; }
+.marker-cluster-large { background: rgba(124,58,237,0.15); }
+.marker-cluster-large div { background: rgba(124,58,237,0.8); color: #fff; }
+.marker-cluster div { font-family: inherit; font-weight: 700; font-size: 12px; }
+
+@media (max-width: 900px) {
+  #app { grid-template-columns: 1fr; }
+  #sidebar { display: none; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="header">
+    <div class="header-left">
+      <button class="info-btn" onclick="toggleGuide()" title="How to contribute">?</button>
+      <h1>ABANDONED AMERICA</h1>
+      <span class="header-sub">A database for abandoned, blighted, and non-contributing properties</span>
+    </div>
+    <div id="stats-bar">
+      <div class="stat">Properties<span class="stat-value" id="stat-total">-</span></div>
+      <div class="stat">Cities<span class="stat-value" id="stat-cities">-</span></div>
+      <div class="stat">States<span class="stat-value" id="stat-states">-</span></div>
+      <div class="stat">Assessed<span class="stat-value" id="stat-value">-</span></div>
+    </div>
+  </div>
+
+  <div id="sidebar">
+    <div id="search-box">
+      <input type="text" id="search-input" placeholder="Search address, city, owner, type..." />
+    </div>
+    <div id="filters"></div>
+    <div id="list-count">Loading data...</div>
+    <div id="property-list"></div>
+  </div>
+
+  <div id="main-panel">
+    <div id="tab-bar">
+      <div class="tab active" data-tab="map">Map Overview</div>
+      <div class="tab disabled" data-tab="property" id="property-tab">Property View</div>
+    </div>
+
+    <div class="tab-content active" id="tab-map">
+      <div id="map"></div>
+      <div id="viewport-warning">Zoom in to see all markers</div>
+      <div id="legend">
+        <h4>Property Status</h4>
+        <div class="legend-row"><div class="legend-dot" style="background:var(--abandoned)"></div>Abandoned</div>
+        <div class="legend-row"><div class="legend-dot" style="background:var(--condemned)"></div>Condemned</div>
+        <div class="legend-row"><div class="legend-dot" style="background:var(--vacant)"></div>Vacant</div>
+        <div class="legend-row"><div class="legend-dot" style="background:var(--demolished)"></div>Demolished</div>
+        <div class="legend-row"><div class="legend-dot" style="background:var(--closed)"></div>Perm. Closed</div>
+        <div class="legend-row"><div class="legend-dot" style="background:var(--chronic)"></div>Chronic Vacant</div>
+        <div class="legend-row"><div class="legend-dot" style="background:var(--probably)"></div>Prob. Vacant</div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-property">
+      <div id="property-view">
+        <div class="empty-state" id="property-empty">Select a property from the sidebar or click a marker on the map</div>
+        <div id="streetview-container" style="display:none">
+          <div id="streetview-overlay">Loading Street View...</div>
+          <iframe id="streetview-iframe" allow="accelerometer; gyroscope"></iframe>
+        </div>
+        <div id="property-detail" style="display:none"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Guide Modal -->
+<div id="guide-overlay" onclick="if(event.target===this)toggleGuide()">
+  <div id="guide-modal">
+    <button class="guide-close" onclick="toggleGuide()">&times;</button>
+    <h2>How to Contribute</h2>
+    <p class="subtitle">Help build the national database of abandoned and blighted properties</p>
+
+    <h3>For Humans</h3>
+    <p>You know your city. You drive past that boarded-up building every day. Here's how to add it:</p>
+    <ul>
+      <li><b>Open Google Maps</b> and find the property. Right-click to get the coordinates. Copy the URL (Street View preferred).</li>
+      <li><b>Look up the property records</b> on your county assessor's website. Search "[your county] property tax records" to find the owner and assessed value.</li>
+      <li><b>Check if it's already in the database</b> by searching the sidebar on this page.</li>
+      <li><b>Fork the repo</b> on GitHub, add a row to the CSV, and open a pull request.</li>
+    </ul>
+
+    <h3>For AI Agents (Claude Code, Codex, etc.)</h3>
+    <p>Clone the repo and use the built-in slash commands:</p>
+    <ul>
+      <li><code>/hunt-properties Detroit, MI</code> - Search for and add abandoned properties in an area</li>
+      <li><code>/verify-property all</code> - Visually verify existing properties via Google Maps</li>
+      <li><code>/repair-data</code> - Fill in missing owner, assessment, and source data</li>
+      <li><code>/validate-csv</code> - Run a full data quality check</li>
+    </ul>
+
+    <h3>What Counts as ABNC?</h3>
+    <p>Abandoned, blighted, and non-contributing properties include:</p>
+    <ul>
+      <li>Buildings that have been <b>empty for a long time</b> with no signs of returning to use</li>
+      <li>Properties that are <b>visibly deteriorating</b> (boarded windows, collapsed roof, overgrown)</li>
+      <li>Officially <b>condemned</b> by local government</li>
+      <li>Businesses that <b>permanently closed</b> and the building sits empty</li>
+      <li>Structures that have been <b>demolished</b>, leaving empty lots</li>
+    </ul>
+    <p>If you're unsure, look for the signs: no lights, no cars, no maintenance, weeds growing through the parking lot, weathered "For Sale" signs, faded signage. You know it when you see it.</p>
+
+    <h3>Data Sources</h3>
+    <ul>
+      <li><b>County assessor/tax records</b> - owner names, assessed values</li>
+      <li><b>City code enforcement</b> - condemned and blighted property lists</li>
+      <li><b>Google Maps Street View</b> - visual confirmation</li>
+      <li><b>Local news</b> - articles about blight, demolitions, abandoned buildings</li>
+      <li><b>Your own eyes</b> - if you live there, you know where the abandoned buildings are</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function toggleGuide() {
+  document.getElementById('guide-overlay').classList.toggle('visible');
+}
+
+const MAX_MARKERS_IN_VIEW = 500;
+const STATUS_COLORS = {
+  'ABANDONED':'#dc2626','CONDEMNED':'#ea580c','VACANT':'#b45309',
+  'DEMOLISHED':'#6b7280','PERMANENTLY CLOSED':'#7c3aed',
+  'CHRONICALLY VACANT':'#db2777','PROBABLY VACANT':'#2563eb',
+};
+
+const badgeClass = s => 'badge badge-' + s.replace(/\s+/g, '_');
+const shortStatus = s => ({ 'PERMANENTLY CLOSED':'CLOSED', 'CHRONICALLY VACANT':'CHR. VACANT', 'PROBABLY VACANT':'PROB. VACANT' }[s] || s);
+
+let allProperties = [], activeFilters = new Set(), selectedProperty = null;
+let map, clusterGroup, labelLayer;
+let syncToViewport = true; // sidebar syncs to map viewport
+
+window.__propByAddr = {};
+
+// ===== MAP =====
+map = L.map('map', { zoomControl: true, preferCanvas: true }).setView([39.5, -98.35], 4);
+
+const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution:'&copy; CartoDB', maxZoom:19 });
+const streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution:'&copy; OpenStreetMap', maxZoom:19 });
+const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution:'&copy; Esri', maxZoom:19 });
+
+light.addTo(map);
+L.control.layers({ 'Light': light, 'Streets': streets, 'Satellite': satellite }, null, { position: 'topright' }).addTo(map);
+
+clusterGroup = L.markerClusterGroup({
+  maxClusterRadius: 45, spiderfyOnMaxZoom: true, showCoverageOnHover: false,
+  disableClusteringAtZoom: 16, chunkedLoading: true,
+  iconCreateFunction: cluster => {
+    const c = cluster.getChildCount();
+    const size = c > 50 ? 'large' : c > 10 ? 'medium' : 'small';
+    return L.divIcon({ html:'<div>'+c+'</div>', className:'marker-cluster marker-cluster-'+size, iconSize:L.point(36,36) });
+  }
+});
+map.addLayer(clusterGroup);
+labelLayer = L.layerGroup().addTo(map);
+
+// ===== TABS =====
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    if (tab.classList.contains('disabled')) return;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    if (tab.dataset.tab === 'map') setTimeout(() => map.invalidateSize(), 50);
+  });
+});
+
+// ===== LOAD CSV =====
+Papa.parse('Abandoned America - Abandoned or Unused Properties.csv', {
+  download: true, header: true, skipEmptyLines: true,
+  complete: results => {
+    allProperties = results.data.filter(r => {
+      const lat = parseFloat(r.lat), lon = parseFloat(r.lon);
+      return !isNaN(lat) && !isNaN(lon) && lat >= 24 && lat <= 50 && lon >= -126 && lon <= -66;
+    });
+    allProperties.forEach(p => { window.__propByAddr[p.address] = p; });
+    buildFilters();
+    renderMarkers(allProperties);
+    renderSidebar();
+    updateStats();
+  }
+});
+
+// ===== FILTERS =====
+function buildFilters() {
+  const statuses = [...new Set(allProperties.map(p => p.status))].sort();
+  const el = document.getElementById('filters');
+  const allBtn = mkBtn('All','__all__',true);
+  allBtn.onclick = () => { activeFilters.clear(); el.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); allBtn.classList.add('active'); onFilterChange(); };
+  el.appendChild(allBtn);
+  statuses.forEach(s => {
+    const btn = mkBtn(s,s,false);
+    btn.onclick = () => {
+      el.querySelector('[data-status="__all__"]').classList.remove('active');
+      if(activeFilters.has(s)){activeFilters.delete(s);btn.classList.remove('active');}
+      else{activeFilters.add(s);btn.classList.add('active');}
+      if(!activeFilters.size) el.querySelector('[data-status="__all__"]').classList.add('active');
+      onFilterChange();
+    };
+    el.appendChild(btn);
+  });
+}
+function mkBtn(l,s,a){const b=document.createElement('button');b.className='filter-btn'+(a?' active':'');b.textContent=l;b.dataset.status=s;return b;}
+
+function onFilterChange() {
+  renderMarkers(getStatusFiltered());
+  renderSidebar();
+}
+
+function getStatusFiltered() {
+  if (!activeFilters.size) return allProperties;
+  return allProperties.filter(p => activeFilters.has(p.status));
+}
+
+function getSearchFiltered(props) {
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  if (!q) return props;
+  return props.filter(p =>
+    (p.address||'').toLowerCase().includes(q) || (p.city||'').toLowerCase().includes(q) ||
+    (p.owner||'').toLowerCase().includes(q) || (p.type||'').toLowerCase().includes(q) || (p.zip||'').includes(q)
+  );
+}
+
+// ===== SIDEBAR (syncs to map viewport) =====
+function renderSidebar() {
+  let props = getStatusFiltered();
+  props = getSearchFiltered(props);
+
+  // If on map tab, filter to viewport
+  const mapTab = document.querySelector('[data-tab="map"]');
+  if (syncToViewport && mapTab.classList.contains('active') && map.getZoom() > 5) {
+    const bounds = map.getBounds().pad(0.05);
+    props = props.filter(p => bounds.contains([parseFloat(p.lat), parseFloat(p.lon)]));
+  }
+
+  const list = document.getElementById('property-list');
+  list.innerHTML = '';
+  props.forEach(p => {
+    const el = document.createElement('div');
+    el.className = 'property-item' + (selectedProperty === p ? ' active' : '');
+    el.innerHTML = `
+      <div class="addr">${esc(p.address)}</div>
+      <div class="meta">
+        <span class="${badgeClass(p.status)}">${shortStatus(p.status)}</span>
+        <span class="type-tag">${p.type}</span>
+        ${p.assessment ? `<span class="value-tag">${p.assessment}</span>` : ''}
+      </div>`;
+    el.onclick = () => selectProperty(p);
+    list.appendChild(el);
+  });
+
+  document.getElementById('list-count').textContent =
+    props.length === allProperties.length ? `${props.length} properties` :
+    `${props.length} of ${allProperties.length} in view`;
+}
+
+// ===== MARKERS =====
+function renderMarkers(props) {
+  clusterGroup.clearLayers();
+  labelLayer.clearLayers();
+
+  let toRender = props, capped = false;
+  if (props.length > MAX_MARKERS_IN_VIEW) {
+    const bounds = map.getBounds().pad(0.3);
+    const inView = props.filter(p => bounds.contains([parseFloat(p.lat), parseFloat(p.lon)]));
+    if (inView.length > MAX_MARKERS_IN_VIEW) { toRender = inView.slice(0, MAX_MARKERS_IN_VIEW); capped = true; }
+    else toRender = inView;
+  }
+  document.getElementById('viewport-warning').style.display = capped ? 'block' : 'none';
+
+  const markers = toRender.map(p => {
+    const lat = parseFloat(p.lat), lon = parseFloat(p.lon);
+    const color = STATUS_COLORS[p.status] || '#888';
+    const labelText = shortStatus(p.status) + ' ' + p.type;
+
+    const marker = L.circleMarker([lat, lon], {
+      radius: 8, fillColor: color, color: '#fff', weight: 2, opacity: 1, fillOpacity: 0.9,
+    });
+
+    // Label tooltip that shows on hover
+    marker.bindTooltip(labelText, {
+      className: 'marker-label',
+      direction: 'top',
+      offset: [0, -10],
+    });
+
+    marker.bindPopup(`
+      <div class="popup-title">${esc(p.address)}</div>
+      <div class="popup-meta"><b>Status:</b> ${p.status}</div>
+      <div class="popup-meta"><b>Type:</b> ${p.type}</div>
+      ${p.owner ? `<div class="popup-meta"><b>Owner:</b> ${esc(p.owner)}</div>` : ''}
+      ${p.assessment ? `<div class="popup-meta"><b>Value:</b> ${p.assessment}</div>` : ''}
+      ${p.source ? `<div class="popup-meta"><b>Source:</b> <a href="${p.source}" target="_blank" style="color:var(--accent)">${esc(p.source.replace(/https?:\/\/(www\.)?/,'').split('/')[0])}</a></div>` : ''}
+      <a class="popup-btn" href="#" onclick="event.preventDefault();selectProperty(window.__propByAddr['${p.address.replace(/'/g,"\\'")}'])">View Property &rarr;</a>
+    `, { maxWidth: 320, minWidth: 200 });
+
+    marker.on('click', () => selectProperty(p));
+    p._marker = marker;
+    return marker;
+  });
+  clusterGroup.addLayers(markers);
+
+  // At high zoom, show persistent labels
+  if (map.getZoom() >= 16) {
+    toRender.forEach(p => {
+      const lat = parseFloat(p.lat), lon = parseFloat(p.lon);
+      const label = L.marker([lat, lon], {
+        icon: L.divIcon({
+          className: 'marker-label',
+          html: shortStatus(p.status) + ' ' + p.type,
+          iconSize: null,
+          iconAnchor: [0, -14],
+        }),
+        interactive: false,
+      });
+      labelLayer.addLayer(label);
+    });
+  }
+}
+
+// Sync on map move
+let debounce;
+map.on('moveend zoomend', () => {
+  clearTimeout(debounce);
+  debounce = setTimeout(() => {
+    renderMarkers(getStatusFiltered());
+    renderSidebar();
+  }, 120);
+});
+
+// ===== PROPERTY SELECTION =====
+function selectProperty(p) {
+  selectedProperty = p;
+  document.querySelectorAll('.property-item').forEach(el => el.classList.remove('active'));
+  const items = document.querySelectorAll('.property-item');
+  const allItems = [...items];
+  const match = allItems.find(el => el.querySelector('.addr')?.textContent === p.address);
+  if (match) { match.classList.add('active'); match.scrollIntoView({ block:'nearest', behavior:'smooth' }); }
+
+  document.getElementById('property-tab').classList.remove('disabled');
+  document.querySelector('[data-tab="property"]').click();
+
+  const lat = parseFloat(p.lat), lon = parseFloat(p.lon);
+  if (!isNaN(lat) && !isNaN(lon)) map.setView([lat, lon], Math.max(map.getZoom(), 16));
+  showPropertyView(p);
+}
+window.selectProperty = selectProperty;
+
+function showPropertyView(p) {
+  document.getElementById('property-empty').style.display = 'none';
+  const svC = document.getElementById('streetview-container');
+  const svI = document.getElementById('streetview-iframe');
+  const svO = document.getElementById('streetview-overlay');
+  const det = document.getElementById('property-detail');
+
+  svC.style.display = 'flex'; det.style.display = 'block';
+  svO.style.display = 'flex';
+  svI.onload = () => { svO.style.display = 'none'; };
+  svI.src = `https://www.google.com/maps?q=${p.lat},${p.lon}&z=18&layer=c&cbll=${p.lat},${p.lon}&cbp=12,0,0,0,0&output=svembed`;
+
+  det.innerHTML = `
+    <h2>${esc(p.address)}</h2>
+    <div class="detail-grid">
+      <div class="detail-field"><span class="detail-label">Status</span><span class="detail-value"><span class="${badgeClass(p.status)}">${p.status}</span></span></div>
+      <div class="detail-field"><span class="detail-label">Type</span><span class="detail-value">${p.type}</span></div>
+      <div class="detail-field"><span class="detail-label">Location</span><span class="detail-value">${esc(p.city)}, ${p.state} ${p.zip}</span></div>
+      <div class="detail-field"><span class="detail-label">Coordinates</span><span class="detail-value">${p.lat}, ${p.lon}</span></div>
+      ${p.owner ? `<div class="detail-field"><span class="detail-label">Owner</span><span class="detail-value">${esc(p.owner)}</span></div>` : ''}
+      ${p.assessment ? `<div class="detail-field"><span class="detail-label">Assessment</span><span class="detail-value">${p.assessment}</span></div>` : ''}
+      ${p.source ? `<div class="detail-field"><span class="detail-label">Source</span><span class="detail-value"><a href="${p.source}" target="_blank" style="color:var(--accent);text-decoration:underline">${esc(p.source.replace(/https?:\/\/(www\.)?/,'').split('/')[0])}</a></span></div>` : ''}
+    </div>
+    <div class="detail-actions">
+      ${p.link ? `<a class="btn btn-primary" href="${p.link}" target="_blank" rel="noopener">Open in Google Maps</a>` : ''}
+      <button class="btn btn-ghost" onclick="navigator.clipboard.writeText('${p.address.replace(/'/g,"\\'")}')">Copy Address</button>
+      <button class="btn btn-ghost" onclick="showOnMap()">Show on Map</button>
+    </div>`;
+}
+
+window.showOnMap = function() {
+  if (!selectedProperty) return;
+  document.querySelector('[data-tab="map"]').click();
+  setTimeout(() => {
+    map.setView([parseFloat(selectedProperty.lat), parseFloat(selectedProperty.lon)], 17);
+    if (selectedProperty._marker) selectedProperty._marker.openPopup();
+  }, 100);
+};
+
+// ===== STATS =====
+function updateStats() {
+  document.getElementById('stat-total').textContent = allProperties.length;
+  document.getElementById('stat-cities').textContent = new Set(allProperties.map(p => p.city)).size;
+  document.getElementById('stat-states').textContent = new Set(allProperties.map(p => p.state)).size;
+  let t = 0;
+  allProperties.forEach(p => { if (p.assessment) { const n = parseFloat(p.assessment.replace(/[$,]/g,'')); if(!isNaN(n))t+=n; }});
+  document.getElementById('stat-value').textContent = '$' + t.toLocaleString();
+}
+
+function fitBounds() {
+  if (!allProperties.length) return;
+  const lats = allProperties.map(p=>parseFloat(p.lat)).filter(n=>!isNaN(n));
+  const lons = allProperties.map(p=>parseFloat(p.lon)).filter(n=>!isNaN(n));
+  if (!lats.length) return;
+  map.fitBounds([[Math.min(...lats)-0.02,Math.min(...lons)-0.02],[Math.max(...lats)+0.02,Math.max(...lons)+0.02]]);
+}
+
+document.getElementById('search-input').addEventListener('input', () => renderSidebar());
+
+function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+</script>
+</body>
+</html>
