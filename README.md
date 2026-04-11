@@ -31,6 +31,7 @@ Open `index.html` in a browser. That's it. No build step, no backend, no API key
 AbandonedAmerica/
   index.html                                          # Map viewer (single-file, zero deps besides CDN)
   Abandoned America - Abandoned or Unused Properties.csv  # The database
+  SOURCES.md                                          # Where to find data (national, state, local source guide)
   README.md                                           # This file (agent instructions)
   CLAUDE.md                                           # Claude Code project context
 ```
@@ -130,6 +131,8 @@ grep -i "[city name]" "Abandoned America - Abandoned or Unused Properties.csv"
 This tells you what's already been cataloged so you don't duplicate work.
 
 ### Step 4: Research Properties
+
+**See [`SOURCES.md`](SOURCES.md) for a full guide to national, state, and local data sources.** It includes a search playbook for finding the right portals in any city/county.
 
 For each target area, do ALL of the following — not just one. This is a single comprehensive workflow, not a menu of options.
 
