@@ -59,6 +59,7 @@ The entire database is a single CSV file. Every row is one property. The columns
 | `assessment` | string | NO | Tax assessed value. Format: `$1,234,567` with dollar sign and commas. |
 | `link` | string | YES | Google Maps URL. Must start with `https://www.google.com/maps`. Include Street View link when available. |
 | `source` | string | NO | URL to the source of the property data (city website, county records portal, news article, etc.) |
+| `notes` | string | NO | Free-text observations about the property: confidence level, estimated vacancy duration, visual condition, ambiguity notes, or anything relevant that doesn't fit other columns. |
 
 ### Allowed `type` Values
 

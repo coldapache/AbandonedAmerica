@@ -118,7 +118,7 @@ Skip any duplicates.
 For each verified, non-duplicate property, build a CSV row following the schema EXACTLY:
 
 ```
-address,lat,lon,city,state,zip,type,status,owner,assessment,link
+address,lat,lon,city,state,zip,type,status,owner,assessment,link,source,notes
 ```
 
 **Column rules (MUST FOLLOW):**
@@ -133,6 +133,8 @@ address,lat,lon,city,state,zip,type,status,owner,assessment,link
 - `owner`: Uppercase. From official records only. Leave empty if unknown.
 - `assessment`: Format $X,XXX,XXX. From tax records only. Leave empty if unknown.
 - `link`: Google Maps URL starting with https://www.google.com/maps
+- `source`: URL to source data (assessor portal, news article, city records). Leave empty if unknown.
+- `notes`: Free-text observations — confidence level, estimated vacancy duration, visual condition, ambiguity notes. Leave empty if nothing notable.
 
 ### 7. Append to CSV
 

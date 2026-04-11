@@ -901,6 +901,7 @@ function showPropertyView(p) {
       ${p.owner ? `<div class="detail-field"><span class="detail-label">Owner</span><span class="detail-value">${esc(p.owner)}</span></div>` : ''}
       ${p.assessment ? `<div class="detail-field"><span class="detail-label">Assessment</span><span class="detail-value">${p.assessment}</span></div>` : ''}
       ${p.source ? `<div class="detail-field"><span class="detail-label">Source</span><span class="detail-value"><a href="${p.source}" target="_blank" style="color:var(--accent);text-decoration:underline">${esc(p.source.replace(/https?:\/\/(www\.)?/,'').split('/')[0])}</a></span></div>` : ''}
+      ${p.notes ? `<div class="detail-field" style="grid-column:1/-1"><span class="detail-label">Notes</span><span class="detail-value" style="font-style:italic;color:#aaa">${esc(p.notes)}</span></div>` : ''}
     </div>
     <div class="detail-actions">
       ${p.link ? `<a class="btn btn-primary" href="${p.link}" target="_blank" rel="noopener">Open in Google Maps</a>` : ''}
