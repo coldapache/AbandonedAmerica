@@ -22,7 +22,6 @@ CSV columns: `address,lat,lon,city,state,zip,type,status,owner,assessment,link,s
 - `CHRONICALLY VACANT`
 - `CONDEMNED`
 - `DEMOLISHED`
-- `PERMANENTLY CLOSED`
 - `PROBABLY VACANT`
 - `VACANT`
 

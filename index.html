@@ -28,7 +28,6 @@
   --condemned: #ea580c;
   --vacant: #b45309;
   --demolished: #6b7280;
-  --closed: #7c3aed;
   --chronic: #db2777;
   --probably: #2563eb;
 }
@@ -186,12 +185,56 @@ body {
 .badge-CONDEMNED { background: var(--condemned); color: #fff; }
 .badge-VACANT { background: var(--vacant); color: #fff; }
 .badge-DEMOLISHED { background: var(--demolished); color: #fff; }
-.badge-PERMANENTLY_CLOSED { background: var(--closed); color: #fff; }
 .badge-CHRONICALLY_VACANT { background: var(--chronic); color: #fff; }
 .badge-PROBABLY_VACANT { background: var(--probably); color: #fff; }
 
 .type-tag { color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.3px; }
 .value-tag { color: var(--text-mid); font-weight: 600; }
+
+/* ===== TABLE VIEW ===== */
+#table-container {
+  height: 100%;
+  overflow: auto;
+  background: var(--surface);
+}
+#data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+#data-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+#data-table th {
+  background: var(--surface3);
+  color: var(--text-mid);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+  user-select: none;
+}
+#data-table th.sortable { cursor: pointer; }
+#data-table th.sortable:hover { color: var(--accent); }
+#data-table th .sort-arrow { font-size: 10px; margin-left: 2px; }
+#data-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border-light);
+  white-space: nowrap;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#data-table tbody tr { cursor: pointer; transition: background 0.1s; }
+#data-table tbody tr:hover { background: var(--accent-bg); }
+#data-table tbody tr:nth-child(even) { background: var(--surface2); }
+#data-table tbody tr:nth-child(even):hover { background: var(--accent-bg); }
 
 /* Info button */
 .info-btn {
@@ -411,6 +454,7 @@ body {
   <div id="main-panel">
     <div id="tab-bar">
       <div class="tab active" data-tab="map">Map Overview</div>
+      <div class="tab" data-tab="table">Table View</div>
       <div class="tab disabled" data-tab="property" id="property-tab">Property View</div>
     </div>
 
@@ -423,7 +467,6 @@ body {
         <div class="legend-row"><div class="legend-dot" style="background:var(--condemned)"></div>Condemned</div>
         <div class="legend-row"><div class="legend-dot" style="background:var(--vacant)"></div>Vacant</div>
         <div class="legend-row"><div class="legend-dot" style="background:var(--demolished)"></div>Demolished</div>
-        <div class="legend-row"><div class="legend-dot" style="background:var(--closed)"></div>Perm. Closed</div>
         <div class="legend-row"><div class="legend-dot" style="background:var(--chronic)"></div>Chronic Vacant</div>
         <div class="legend-row"><div class="legend-dot" style="background:var(--probably)"></div>Prob. Vacant</div>
       </div>
@@ -437,6 +480,26 @@ body {
           <iframe id="streetview-iframe" allow="accelerometer; gyroscope"></iframe>
         </div>
         <div id="property-detail" style="display:none"></div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-table">
+      <div id="table-container">
+        <table id="data-table">
+          <thead>
+            <tr>
+              <th data-col="address" class="sortable">Address <span class="sort-arrow"></span></th>
+              <th data-col="city" class="sortable">City <span class="sort-arrow"></span></th>
+              <th data-col="state" class="sortable">State <span class="sort-arrow"></span></th>
+              <th data-col="zip" class="sortable">ZIP <span class="sort-arrow"></span></th>
+              <th data-col="type" class="sortable">Type <span class="sort-arrow"></span></th>
+              <th data-col="status" class="sortable">Status <span class="sort-arrow"></span></th>
+              <th data-col="owner" class="sortable">Owner <span class="sort-arrow"></span></th>
+              <th data-col="assessment" class="sortable">Assessment <span class="sort-arrow"></span></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -473,7 +536,7 @@ body {
       <li>Buildings that have been <b>empty for a long time</b> with no signs of returning to use</li>
       <li>Properties that are <b>visibly deteriorating</b> (boarded windows, collapsed roof, overgrown)</li>
       <li>Officially <b>condemned</b> by local government</li>
-      <li>Businesses that <b>permanently closed</b> and the building sits empty</li>
+      <li>Buildings where the <b>business closed and the building sits empty</b> with no new tenant</li>
       <li>Structures that have been <b>demolished</b>, leaving empty lots</li>
     </ul>
     <p>If you're unsure, look for the signs: no lights, no cars, no maintenance, weeds growing through the parking lot, weathered "For Sale" signs, faded signage. You know it when you see it.</p>
@@ -497,12 +560,11 @@ function toggleGuide() {
 const MAX_MARKERS_IN_VIEW = 500;
 const STATUS_COLORS = {
   'ABANDONED':'#dc2626','CONDEMNED':'#ea580c','VACANT':'#b45309',
-  'DEMOLISHED':'#6b7280','PERMANENTLY CLOSED':'#7c3aed',
-  'CHRONICALLY VACANT':'#db2777','PROBABLY VACANT':'#2563eb',
+  'DEMOLISHED':'#6b7280','CHRONICALLY VACANT':'#db2777','PROBABLY VACANT':'#2563eb',
 };
 
 const badgeClass = s => 'badge badge-' + s.replace(/\s+/g, '_');
-const shortStatus = s => ({ 'PERMANENTLY CLOSED':'CLOSED', 'CHRONICALLY VACANT':'CHR. VACANT', 'PROBABLY VACANT':'PROB. VACANT' }[s] || s);
+const shortStatus = s => ({ 'CHRONICALLY VACANT':'CHR. VACANT', 'PROBABLY VACANT':'PROB. VACANT' }[s] || s);
 
 let allProperties = [], activeFilters = new Set(), selectedProperty = null;
 let map, clusterGroup, labelLayer;
@@ -541,6 +603,7 @@ document.querySelectorAll('.tab').forEach(tab => {
     tab.classList.add('active');
     document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
     if (tab.dataset.tab === 'map') setTimeout(() => map.invalidateSize(), 50);
+    if (tab.dataset.tab === 'table') renderTable();
   });
 });
 
@@ -556,6 +619,7 @@ Papa.parse('Abandoned America - Abandoned or Unused Properties.csv', {
     buildFilters();
     renderMarkers(allProperties);
     renderSidebar();
+    renderTable(allProperties);
     updateStats();
   }
 });
@@ -582,8 +646,14 @@ function buildFilters() {
 function mkBtn(l,s,a){const b=document.createElement('button');b.className='filter-btn'+(a?' active':'');b.textContent=l;b.dataset.status=s;return b;}
 
 function onFilterChange() {
-  renderMarkers(getStatusFiltered());
+  const filtered = getFiltered();
+  renderMarkers(filtered);
   renderSidebar();
+  renderTable(filtered);
+}
+
+function getFiltered() {
+  return getSearchFiltered(getStatusFiltered());
 }
 
 function getStatusFiltered() {
@@ -607,7 +677,7 @@ function renderSidebar() {
 
   // If on map tab, filter to viewport
   const mapTab = document.querySelector('[data-tab="map"]');
-  if (syncToViewport && mapTab.classList.contains('active') && map.getZoom() > 5) {
+  if (syncToViewport && mapTab.classList.contains('active')) {
     const bounds = map.getBounds().pad(0.05);
     props = props.filter(p => bounds.contains([parseFloat(p.lat), parseFloat(p.lon)]));
   }
@@ -702,8 +772,15 @@ let debounce;
 map.on('moveend zoomend', () => {
   clearTimeout(debounce);
   debounce = setTimeout(() => {
-    renderMarkers(getStatusFiltered());
-    renderSidebar();
+    const filtered = getFiltered();
+    renderMarkers(filtered);
+    // Only re-render sidebar when map tab is active, so clicking a property
+    // doesn't wipe the sidebar list by re-filtering to the new viewport
+    const mapTab = document.querySelector('[data-tab="map"]');
+    if (mapTab.classList.contains('active')) {
+      renderSidebar();
+      renderTable(filtered);
+    }
   }, 120);
 });
 
@@ -782,7 +859,86 @@ function fitBounds() {
   map.fitBounds([[Math.min(...lats)-0.02,Math.min(...lons)-0.02],[Math.max(...lats)+0.02,Math.max(...lons)+0.02]]);
 }
 
-document.getElementById('search-input').addEventListener('input', () => renderSidebar());
+// ===== TABLE VIEW =====
+let tableSortCol = 'address', tableSortAsc = true;
+
+function renderTable(data) {
+  const tbody = document.querySelector('#data-table tbody');
+  if (!tbody) return;
+  if (!data) data = getFiltered();
+
+  const sorted = [...data].sort((a, b) => {
+    let va = (a[tableSortCol] || '').toLowerCase();
+    let vb = (b[tableSortCol] || '').toLowerCase();
+    if (tableSortCol === 'assessment') {
+      va = parseFloat((a.assessment || '0').replace(/[$,]/g, '')) || 0;
+      vb = parseFloat((b.assessment || '0').replace(/[$,]/g, '')) || 0;
+      return tableSortAsc ? va - vb : vb - va;
+    }
+    if (va < vb) return tableSortAsc ? -1 : 1;
+    if (va > vb) return tableSortAsc ? 1 : -1;
+    return 0;
+  });
+
+  tbody.innerHTML = sorted.map(p => `
+    <tr data-addr="${esc(p.address)}">
+      <td title="${esc(p.address)}">${esc(p.address)}</td>
+      <td>${esc(p.city)}</td>
+      <td>${p.state}</td>
+      <td>${p.zip}</td>
+      <td>${p.type}</td>
+      <td><span class="${badgeClass(p.status)}">${shortStatus(p.status)}</span></td>
+      <td>${esc(p.owner || '')}</td>
+      <td>${p.assessment || ''}</td>
+    </tr>`).join('');
+
+  tbody.querySelectorAll('tr').forEach(tr => {
+    tr.addEventListener('click', () => {
+      const prop = window.__propByAddr[tr.dataset.addr];
+      if (prop) selectProperty(prop);
+    });
+  });
+
+  // Update sort arrows
+  document.querySelectorAll('#data-table th').forEach(th => {
+    const arrow = th.querySelector('.sort-arrow');
+    if (th.dataset.col === tableSortCol) arrow.textContent = tableSortAsc ? '\u25B2' : '\u25BC';
+    else arrow.textContent = '';
+  });
+}
+
+document.querySelectorAll('#data-table th.sortable').forEach(th => {
+  th.addEventListener('click', () => {
+    if (tableSortCol === th.dataset.col) tableSortAsc = !tableSortAsc;
+    else { tableSortCol = th.dataset.col; tableSortAsc = true; }
+    renderTable();
+  });
+});
+
+let preSearchBounds = null;
+document.getElementById('search-input').addEventListener('input', () => {
+  const q = document.getElementById('search-input').value.trim();
+  if (q) {
+    if (!preSearchBounds) preSearchBounds = map.getBounds();
+    const matches = getFiltered();
+    if (matches.length) {
+      const lats = matches.map(p => parseFloat(p.lat)).filter(n => !isNaN(n));
+      const lons = matches.map(p => parseFloat(p.lon)).filter(n => !isNaN(n));
+      if (lats.length) {
+        map.fitBounds([[Math.min(...lats)-0.01, Math.min(...lons)-0.01],[Math.max(...lats)+0.01, Math.max(...lons)+0.01]]);
+      }
+    }
+    renderMarkers(matches);
+    renderSidebar();
+    renderTable(matches);
+  } else {
+    if (preSearchBounds) { map.fitBounds(preSearchBounds); preSearchBounds = null; }
+    const filtered = getFiltered();
+    renderMarkers(filtered);
+    renderSidebar();
+    renderTable(filtered);
+  }
+});
 
 function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 </script>
