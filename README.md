@@ -131,32 +131,39 @@ This tells you what's already been cataloged so you don't duplicate work.
 
 ### Step 4: Research Properties
 
-Use multiple methods to find abandoned/blighted properties:
+For each target area, do ALL of the following — not just one. This is a single comprehensive workflow, not a menu of options:
 
-#### Method A: Government Property Records
-- Search for "[city] condemned properties list"
-- Search for "[city] blighted properties"
-- Search for "[city] code enforcement demolition list"
-- Search for "[county] tax delinquent properties"
-- Search for "[city] vacant property registry"
-- Many cities publish lists of condemned, vacant, or blighted properties
+1. **Government Property Records** — Search for official condemned, blighted, and vacant property lists:
+   - "[city] condemned properties list"
+   - "[city] blighted properties"
+   - "[city] code enforcement demolition list"
+   - "[county] tax delinquent properties"
+   - "[city] vacant property registry"
 
-#### Method B: Tax Assessment Records
-- Search for "[county] property tax records" or "[county] GIS"
-- Look for properties with very low assessments relative to their area
-- Look for properties owned by "CITY OF..." or "COUNTY OF..." (often seized properties)
-- Cross-reference with Google Maps to verify abandonment
+2. **Tax Assessment Records** — Look up the county assessor/GIS portal:
+   - Search for "[county] property tax records" or "[county] GIS"
+   - Find properties with very low assessments relative to their area
+   - Find properties owned by "CITY OF..." or "COUNTY OF..." (often seized)
+   - Pull owner names and assessed values for every property you add
 
-#### Method C: Google Maps Visual Confirmation
-- Use Google Maps Street View to visually confirm property condition
-- Look for: boarded windows, overgrown lots, collapsed roofs, graffiti, demolition debris
-- Check multiple years of Street View imagery when available
-- Screenshot the Street View for documentation
+3. **Google Maps Visual Confirmation** — Verify EVERY property visually before adding:
+   - Use Street View to confirm the property looks abandoned/blighted/vacant
+   - Look for: boarded windows, overgrown lots, collapsed roofs, graffiti, demolition debris
+   - Check multiple years of Street View imagery when available
+   - Get the Street View link and coordinates
 
-#### Method D: News and Community Reports
-- Search for "[city] abandoned buildings"
-- Search for "[address] condemned" or "[address] demolished"
-- Local news often covers blight and demolition
+4. **Google Earth Historical Imagery** — Time-travel to verify abandonment timeline:
+   - Use Google Earth's historical imagery slider to view the property across different years
+   - Confirm the property has been deteriorating or vacant over time (not just a recent closure)
+   - Note when the property first appeared abandoned — this strengthens the case
+   - Compare current vs. past imagery to distinguish truly abandoned properties from those under renovation
+
+5. **News and Community Reports** — Cross-reference with local coverage:
+   - "[city] abandoned buildings"
+   - "[address] condemned" or "[address] demolished"
+   - Local news often covers blight and demolition
+
+Every property you add should have been found through official records AND visually confirmed. Don't skip steps.
 
 ### Step 5: Build Each Property Record
 
