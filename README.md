@@ -224,66 +224,63 @@ gh pr create --title "Add [N] properties in [City], [State]" --body "Added [N] a
 
 ---
 
-## Claude Code Slash Commands
+## AI Agent Commands
 
-This repo ships with ready-to-use Claude Code commands in `.claude/commands/`. After cloning, these are available as slash commands:
+This repo ships with detailed command instructions in `.claude/commands/`. These work automatically as slash commands in Claude Code. For any other AI agent, read the markdown files directly and follow the steps.
 
-### `/hunt-properties` - Find New Properties
+### How It Works
+
+The `.claude/commands/` directory contains markdown files that define autonomous workflows. Each file is a complete, step-by-step playbook that any AI agent can follow:
+
+```
+.claude/commands/
+  hunt-properties.md    # Find and add new ABNC properties for a target area
+  verify-property.md    # Visually verify existing properties via Google Maps
+  validate-csv.md       # Run comprehensive data quality checks on the CSV
+  repair-data.md        # Fill in missing fields (owner, assessment, source) for existing records
+```
+
+**In Claude Code:** These are available as `/hunt-properties`, `/verify-property`, `/validate-csv`, and `/repair-data`. Just type the slash command with your arguments.
+
+**In any other AI agent (OpenClaw, Codex, Cursor, etc.):** Read the `.claude/commands/*.md` files — they are plain markdown with numbered steps. Follow them exactly. The key capabilities needed are:
+- **Web search** to find government property records
+- **Browser automation** (Playwright, Puppeteer, Selenium, or similar) to scrape data and visit Google Maps
+- **Screenshot analysis** to visually confirm property condition
+- **CSV read/write** to update the database
+- **US Census Geocoder** (https://geocoding.geo.census.gov/geocoder/) for address-to-coordinate lookup — free, no API key needed
+
+**If a slash command doesn't work:** Read the corresponding `.claude/commands/*.md` file and execute each step manually. The instructions are self-contained — no special tooling is required beyond what's described above.
+
+### Available Commands
+
+#### `/hunt-properties [City, State]` - Find New Properties
 
 Takes a city/state and autonomously:
-1. Web searches for condemned/blighted/vacant property lists from government sources
-2. Scrapes property data from county assessor sites, GIS portals, code enforcement lists
-3. Uses **Playwright browser automation** to visit Google Maps for each property
-4. Gets coordinates, Street View screenshots, and visual confirmation of abandonment
+1. Builds a research plan and checks existing coverage
+2. Web searches for condemned/blighted/vacant property lists from government sources
+3. Scrapes property data from county assessor sites, GIS portals, code enforcement lists
+4. Verifies each property via Google Maps (coordinates + Street View visual confirmation)
 5. Checks for duplicates against the existing CSV
 6. Adds verified properties with all required fields
 7. Validates the entire CSV after adding
-8. Commits and opens a PR
+8. Commits and opens a PR (~20 properties per PR max)
 
-```
-/hunt-properties Detroit, MI
-/hunt-properties Baltimore, MD
-/hunt-properties Gary, IN
-```
+#### `/verify-property [address|city|all]` - Verify Existing Properties
 
-### `/verify-property` - Verify Existing Properties
-
-Uses **Playwright browser automation** to visually confirm properties:
+Visually confirms properties via Google Maps Street View:
 1. Navigates to the Google Maps link for a property
-2. Takes screenshots of the Street View
-3. Analyzes the visual evidence for signs of abandonment (boarded windows, overgrown lots, collapsed roofs, debris, etc.)
-4. Confirms the address and coordinates match
-5. Flags discrepancies (address mismatch, property appears occupied, demolished, etc.)
-6. Reports confidence level for each property
+2. Takes screenshots, pans 360 degrees to find the building
+3. Analyzes visual evidence for signs of abandonment
+4. Confirms address and coordinates match
+5. Flags discrepancies and reports confidence level
 
-```
-/verify-property 1709 N King St, Hampton, VA 23669
-/verify-property all
-/verify-property Hampton
-```
+#### `/validate-csv` - Data Quality Check
 
-### `/validate-csv` - Data Quality Check
+Comprehensive validation of the entire database: enum validity, coordinate ranges, duplicate detection, data completeness, and auto-fix for correctable issues.
 
-Comprehensive validation of the entire database:
-1. Checks all required fields are present
-2. Validates all status and type values against the allowed enums
-3. Validates coordinates are within US bounds
-4. Checks ZIP codes, state abbreviations, Google Maps links
-5. Detects duplicate addresses and near-coordinate duplicates
-6. Reports data completeness (missing owner, assessment fields)
-7. Offers to auto-fix correctable issues
+#### `/repair-data [address|city|all]` - Fill Missing Data
 
-```
-/validate-csv
-```
-
-### For Other AI Agents (Non-Claude-Code)
-
-If you're using a different AI coding agent, the instructions in `.claude/commands/*.md` are plain markdown files. Read them and follow the steps manually. The key capabilities needed are:
-- **Web search** to find government property records
-- **Browser automation** (Playwright, Puppeteer, Selenium) to scrape data and visit Google Maps
-- **Screenshot analysis** to visually confirm property condition
-- **CSV read/write** to update the database
+Finds incomplete records and looks up missing owner, assessment, and source data from county assessor websites and other official records.
 
 ---
 
