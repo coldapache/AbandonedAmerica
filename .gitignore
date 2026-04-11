@@ -1,0 +1,9 @@
+# Playwright MCP temp files
+.playwright-mcp/
+
+# Screenshots from verification work
+*.jpeg
+*.png
+
+# Local Claude settings
+.claude/settings.local.json

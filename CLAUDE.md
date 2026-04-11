@@ -15,7 +15,7 @@ Abandoned America is a crowdsourced national database of abandoned, blighted, an
 
 ## Data Schema (Strict)
 
-CSV columns: `address,lat,lon,city,state,zip,type,status,owner,assessment,link,source`
+CSV columns: `address,lat,lon,city,state,zip,type,status,owner,assessment,link,source,notes`
 
 ### Allowed `status` values (EXACT - do not deviate):
 - `ABANDONED`
