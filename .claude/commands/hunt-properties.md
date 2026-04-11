@@ -144,7 +144,37 @@ import csv
 # read existing, append new rows, write back
 ```
 
-### 8. Validate
+### 8. Quality check each property via Playwright
+
+Before finalizing, run these checks for every property you're adding:
+
+**Step 8a: Verify Street View availability**
+Navigate to the Google Maps Street View embed URL for the property:
+```
+https://www.google.com/maps?q=LAT,LON&z=18&layer=c&cbll=LAT,LON&output=svembed
+```
+Take a screenshot. If Street View shows the property, note this. If it shows "No Street View available", the property will default to satellite view in the app — that's fine, but make a note.
+
+**Step 8b: Verify satellite view**
+Navigate to the Google Maps satellite view and confirm the property is visible from above:
+```
+https://www.google.com/maps/@LAT,LON,18z/data=!3m1!1e3
+```
+Take a screenshot. Confirm the coordinates actually fall on the building/lot, not on the street or a neighboring property. Adjust coordinates if needed.
+
+**Step 8c: Verify coordinates match the address**
+The marker should be ON the building or lot, not on the street in front of it or on a neighboring property. If the marker is off, use the Census Geocoder to get better coordinates:
+```
+https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=ADDRESS&benchmark=Public_AR_Current&format=json
+```
+
+**Step 8d: Try to get a Street View link with heading**
+If Street View is available, navigate to Street View facing the property and copy the URL. Links with pano IDs and heading data (`!1s...`) are strongly preferred over bare coordinate embeds, as they point the camera directly at the property.
+
+**Step 8e: Look up source data**
+For every property with owner/assessment data, include the assessor URL as the `source` field. If the assessor doesn't support direct links to individual properties, link to the search page (e.g., `https://assessment.nnva.gov/PT/search/commonsearch.aspx?mode=address`).
+
+### 9. Validate
 
 After adding, run validation:
 ```python
