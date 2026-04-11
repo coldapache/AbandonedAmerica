@@ -356,6 +356,19 @@ body {
   display: flex; align-items: center; justify-content: center;
   background: var(--surface2); color: var(--text-dim); font-size: 13px;
 }
+#property-map { width: 100%; height: 100%; display: none; }
+.view-toggle {
+  position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+  z-index: 1000; display: flex; gap: 0; border-radius: 6px; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.view-toggle button {
+  padding: 6px 14px; border: none; font-size: 11px; font-weight: 600;
+  cursor: pointer; background: rgba(30,30,30,0.85); color: #ccc;
+  text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.15s;
+}
+.view-toggle button.active { background: var(--accent); color: #fff; }
+.view-toggle button:hover:not(.active) { background: rgba(60,60,60,0.9); color: #fff; }
 
 #property-detail {
   flex: 0 0 auto;
@@ -476,8 +489,14 @@ body {
       <div id="property-view">
         <div class="empty-state" id="property-empty">Select a property from the sidebar or click a marker on the map</div>
         <div id="streetview-container" style="display:none">
+          <div class="view-toggle" id="view-toggle">
+            <button class="active" data-view="sv">Street View</button>
+            <button data-view="satellite">Satellite</button>
+            <button data-view="map">Map</button>
+          </div>
           <div id="streetview-overlay">Loading Street View...</div>
           <iframe id="streetview-iframe" allow="accelerometer; gyroscope"></iframe>
+          <div id="property-map"></div>
         </div>
         <div id="property-detail" style="display:none"></div>
       </div>
@@ -796,17 +815,81 @@ function selectProperty(p) {
 }
 window.selectProperty = selectProperty;
 
+let propertyMap = null;
+let currentViewMode = 'sv';
+
+function setViewMode(mode) {
+  currentViewMode = mode;
+  const svI = document.getElementById('streetview-iframe');
+  const pMap = document.getElementById('property-map');
+  const svO = document.getElementById('streetview-overlay');
+  document.querySelectorAll('#view-toggle button').forEach(b => b.classList.toggle('active', b.dataset.view === mode));
+
+  if (mode === 'sv') {
+    svI.style.display = 'block';
+    pMap.style.display = 'none';
+  } else {
+    svI.style.display = 'none';
+    pMap.style.display = 'block';
+    svO.style.display = 'none';
+    if (propertyMap) {
+      propertyMap.invalidateSize();
+      const satTile = mode === 'satellite';
+      propertyMap.eachLayer(l => { if (l._url) propertyMap.removeLayer(l); });
+      if (satTile) {
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 20 }).addTo(propertyMap);
+      } else {
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20 }).addTo(propertyMap);
+      }
+    }
+  }
+}
+
+document.querySelectorAll('#view-toggle button').forEach(b => {
+  b.addEventListener('click', () => setViewMode(b.dataset.view));
+});
+
 function showPropertyView(p) {
   document.getElementById('property-empty').style.display = 'none';
   const svC = document.getElementById('streetview-container');
   const svI = document.getElementById('streetview-iframe');
   const svO = document.getElementById('streetview-overlay');
   const det = document.getElementById('property-detail');
+  const pMapEl = document.getElementById('property-map');
 
   svC.style.display = 'flex'; det.style.display = 'block';
+
+  // Initialize or update the property satellite map
+  const lat = parseFloat(p.lat), lon = parseFloat(p.lon);
+  if (!propertyMap) {
+    propertyMap = L.map('property-map', { zoomControl: true, attributionControl: false }).setView([lat, lon], 18);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 20 }).addTo(propertyMap);
+  } else {
+    propertyMap.setView([lat, lon], 18);
+  }
+  // Clear old markers, add new one
+  propertyMap.eachLayer(l => { if (l instanceof L.Marker) propertyMap.removeLayer(l); });
+  L.marker([lat, lon], {
+    icon: L.divIcon({ className: 'marker-cluster marker-cluster-small', html: '<div style="background:#dc2626;width:12px;height:12px;border-radius:50%;border:2px solid #fff;margin:10px"></div>', iconSize: [36, 36] })
+  }).addTo(propertyMap);
+
+  // Detect if the link has Street View data (pano IDs, heading info)
+  const hasStreetViewLink = p.link && (p.link.includes('!1s') || p.link.includes('cbll=') || p.link.includes('/data=!3m'));
+  const defaultView = hasStreetViewLink ? 'sv' : 'satellite';
+
+  // Load the Street View iframe regardless (user can switch to it)
   svO.style.display = 'flex';
+  svO.textContent = 'Loading Street View...';
   svI.onload = () => { svO.style.display = 'none'; };
   svI.src = `https://www.google.com/maps?q=${p.lat},${p.lon}&z=18&layer=c&cbll=${p.lat},${p.lon}&cbp=12,0,0,0,0&output=svembed`;
+
+  // Set the default view mode
+  setViewMode(defaultView);
+
+  // Ensure property map renders correctly after display
+  setTimeout(() => {
+    if (propertyMap) propertyMap.invalidateSize();
+  }, 300);
 
   det.innerHTML = `
     <h2>${esc(p.address)}</h2>
