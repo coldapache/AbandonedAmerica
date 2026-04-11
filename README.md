@@ -131,7 +131,13 @@ This tells you what's already been cataloged so you don't duplicate work.
 
 ### Step 4: Research Properties
 
-For each target area, do ALL of the following — not just one. This is a single comprehensive workflow, not a menu of options:
+For each target area, do ALL of the following — not just one. This is a single comprehensive workflow, not a menu of options.
+
+#### Start with the easy money
+
+Go after official government lists first. If a city or county publishes a list of condemned, blighted, or nuisance properties with a recent date — those are slam dunks. Take them, source them, and add them. But you STILL must verify each one has a working Google Maps link with valid coordinates before it goes in the database.
+
+#### The full workflow
 
 1. **Government Property Records** — Search for official condemned, blighted, and vacant property lists:
    - "[city] condemned properties list"
@@ -139,6 +145,7 @@ For each target area, do ALL of the following — not just one. This is a single
    - "[city] code enforcement demolition list"
    - "[county] tax delinquent properties"
    - "[city] vacant property registry"
+   - If you find an official list with recent dates, these are high-confidence adds — source the list URL
 
 2. **Tax Assessment Records** — Look up the county assessor/GIS portal:
    - Search for "[county] property tax records" or "[county] GIS"
@@ -146,11 +153,12 @@ For each target area, do ALL of the following — not just one. This is a single
    - Find properties owned by "CITY OF..." or "COUNTY OF..." (often seized)
    - Pull owner names and assessed values for every property you add
 
-3. **Google Maps Visual Confirmation** — Verify EVERY property visually before adding:
-   - Use Street View to confirm the property looks abandoned/blighted/vacant
+3. **Google Maps Link Verification** — REQUIRED for every property, no exceptions:
+   - Navigate to the address in Google Maps and confirm it resolves to the correct location
+   - Verify the coordinates match the address (not off by a block, not in the wrong city)
+   - Get Street View if available — visually confirm abandonment indicators
    - Look for: boarded windows, overgrown lots, collapsed roofs, graffiti, demolition debris
-   - Check multiple years of Street View imagery when available
-   - Get the Street View link and coordinates
+   - The link must actually work. Test it. Broken links = broken data.
 
 4. **Google Earth Historical Imagery** — Time-travel to verify abandonment timeline:
    - Use Google Earth's historical imagery slider to view the property across different years
@@ -163,7 +171,7 @@ For each target area, do ALL of the following — not just one. This is a single
    - "[address] condemned" or "[address] demolished"
    - Local news often covers blight and demolition
 
-Every property you add should have been found through official records AND visually confirmed. Don't skip steps.
+Even "easy money" properties from official lists MUST have verified, working Google Maps links with correct coordinates before being added. No exceptions.
 
 ### Step 5: Build Each Property Record
 
