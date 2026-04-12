@@ -601,6 +601,18 @@ const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/servi
 light.addTo(map);
 L.control.layers({ 'Light': light, 'Streets': streets, 'Satellite': satellite }, null, { position: 'topright' }).addTo(map);
 
+const HomeControl = L.Control.extend({
+  options: { position: 'topleft' },
+  onAdd() {
+    const btn = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+    btn.innerHTML = '<a href="#" title="Reset view" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;font-size:16px;text-decoration:none;color:#333;background:#fff;">&#8962;</a>';
+    btn.querySelector('a').addEventListener('click', e => { e.preventDefault(); map.setView([39.5, -98.35], 4); });
+    L.DomEvent.disableClickPropagation(btn);
+    return btn;
+  }
+});
+new HomeControl().addTo(map);
+
 clusterGroup = L.markerClusterGroup({
   maxClusterRadius: 45, spiderfyOnMaxZoom: true, showCoverageOnHover: false,
   disableClusteringAtZoom: 16, chunkedLoading: true,
