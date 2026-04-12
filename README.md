@@ -1,8 +1,10 @@
 # Abandoned America
 
-A crowdsourced, AI-assisted national database and map viewer for abandoned, blighted, and non-contributing (ABNC) properties across the United States.
+A crowdsourced, AI-assisted effort to map **every** abandoned, blighted, and non-contributing (ABNC) property in the United States.
 
-**The idea is simple:** AI coding agents (Claude Code, OpenClaw, Codex, etc.) can clone this project, search for abandoned properties in any area, add them to the CSV database, and submit a pull request. Over time, this builds a comprehensive national picture of property abandonment, blight, and vacancy.
+**The goal is total national coverage.** Not 30 properties. Not 300. Every abandoned storefront, every condemned factory, every blighted commercial corridor, every vacant lot where a building used to stand — in every city, every county, all 50 states. This is a living database that grows continuously as AI agents and human contributors sweep the country, one corridor at a time.
+
+**The idea is simple:** AI coding agents (Claude Code, OpenClaw, Codex, etc.) can clone this project, search for abandoned properties in any area, add them to the CSV database, and submit a pull request. The map viewer renders everything in real time — no backend, no API keys. As the database scales from hundreds to thousands to hundreds of thousands of properties, the full scope of America's abandonment crisis becomes visible for the first time.
 
 ---
 
@@ -99,6 +101,7 @@ The entire database is a single CSV file. Every row is one property. The columns
 - **Owner names in uppercase** when sourced from official records.
 - **Include source URLs whenever possible** so others can verify the data.
 - **Business closure ≠ building abandonment.** A business marked "CLOSED" on Yelp or Google does not qualify. The physical building must be verifiably vacant and unused. Visual verification via Google Maps/Street View is required for every property.
+- **Do not add DEMOLISHED properties.** Demolition is a resolution — the blight problem has been addressed. Only add properties where a structure still stands. Existing DEMOLISHED entries in the database are kept as historical records, but agents should not hunt for or add new ones.
 
 ---
 
@@ -116,11 +119,13 @@ git checkout -b add-properties-[city]-[state]
 
 ### Step 2: Choose a Target Area
 
-Pick a city, county, or region to research. Good starting points:
-- The area where your user lives
-- Cities known for high vacancy rates (Detroit, Baltimore, St. Louis, Cleveland, Gary, Camden, etc.)
-- Rural areas with declining populations
-- Any area the user requests
+Pick a city, county, or region to research. The goal is full national coverage, so **every area is a valid target.** Prioritize:
+- Areas with zero existing coverage in the database (check first — fill gaps before deepening existing cities)
+- Cities known for high vacancy rates (Detroit, Baltimore, St. Louis, Cleveland, Gary, Camden, East St. Louis, Flint, etc.)
+- Declining industrial and coal towns (Rust Belt, Appalachia, Mississippi Delta)
+- Rural counties with shrinking populations
+- Commercial corridors with visible blight (downtowns, old retail strips, industrial parks)
+- The area where your user lives or requests
 
 ### Step 3: Check for Existing Coverage
 
@@ -320,11 +325,11 @@ No API keys. No server. No build step. Just open `index.html` in a browser or ho
 
 ## Why This Matters
 
-Every abandoned property is unrealized potential — a business that could exist, a home someone could live in, economic value evaporating year after year. There are potentially **hundreds of billions of dollars** in assessed property value locked up in abandoned buildings across America, with no national strategy to address it.
+Every abandoned property is unrealized potential — a business that could exist, a home someone could live in, economic value evaporating year after year. There are potentially **hundreds of billions of dollars** in assessed property value locked up in abandoned buildings across America, with no national strategy to address it. No one has ever mapped it all.
 
 **Read the full case: [`WHY.md`](WHY.md)**
 
-This project aims to make the scale of the problem visible. By mapping every abandoned property we can find, we create a tool for communities, journalists, researchers, and policymakers to understand and address the problem — and ultimately unlock that value for entrepreneurs, homeowners, and communities.
+This project exists to change that. The goal is a complete, continuously updated map of every abandoned and blighted property in the United States — a tool for communities, journalists, researchers, entrepreneurs, and policymakers to see the full scale of the problem and act on it. City by city, block by block, until the entire country is covered.
 
 ---
 
