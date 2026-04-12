@@ -49,6 +49,7 @@ CSV columns: `address,lat,lon,city,state,zip,type,status,owner,assessment,link,s
 8. ZIP codes must be 5 digits and valid for the state
 9. Latitude range: 24.0 to 49.5 (contiguous US)
 10. Longitude range: -125.0 to -66.5 (contiguous US)
+11. Do not add DEMOLISHED properties — demolition is a resolution, not an ongoing problem. Only add properties where a structure still stands.
 
 ## Contribution Workflow
 
