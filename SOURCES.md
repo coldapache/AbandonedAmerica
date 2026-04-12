@@ -142,6 +142,16 @@ These are examples of what you'll find when you follow the playbook above. Every
 
 **Pro tip:** Query the CARTO API for `exterior_condition IN ('6','7')` to find properties rated in worst condition by city assessors. Filter out `building_code_description LIKE 'VACANT%'` to exclude empty lots. This yields hundreds of confirmed blighted buildings with official data.
 
+### Memphis, TN (Shelby County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Shelby County Land Bank** | https://landbank.shelbycountytn.gov/ | Interactive map of tax-delinquent and abandoned properties in Shelby County. Searchable by address and parcel. |
+| **Memphis Metropolitan Land Bank Authority (MMLBA)** | https://mmlba.org/property-sales/ | City land bank acquiring and disposing blighted properties for redevelopment. Property sales listings. |
+| **Memphis Property Hub (DataMidSouth)** | https://info.datamidsouth.org | Vacancy, code enforcement, tax delinquency dashboard. Aggregates multiple city/county data sources into searchable interface. |
+| **Downtown Memphis Commission** | https://downtownmemphis.com | Downtown revitalization updates, commercial vacancy monitoring, development pipeline tracking. |
+| **Shelby County Assessor** | https://assessor.shelby.tn.us/ | Property assessments, ownership, tax records for all Shelby County parcels. |
+
 ### Elizabeth City, NC (Pasquotank County)
 
 | Source | URL | What You Get |
