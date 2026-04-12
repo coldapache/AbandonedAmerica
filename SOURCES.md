@@ -129,6 +129,19 @@ These are examples of what you'll find when you follow the playbook above. Every
 | **King Street Corridor Plan** | https://www.hampton.gov/515/King-Street | Master plan for the N King St corridor — acknowledges need for revitalization. |
 | **Brownfields** | https://www.hampton.gov/2107/Brownfields | EPA-funded brownfield assessments covering 100+ acres in Hampton. |
 
+### Philadelphia, PA (Philadelphia County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Office of Property Assessment (OPA)** | https://property.phila.gov/ | Owner, assessed value, property details, exterior condition ratings (1-7 scale, 7=worst). |
+| **OPA Bulk Data / CARTO API** | https://phl.carto.com/api/v2/sql?q=SELECT * FROM opa_properties_public WHERE location='ADDRESS' | Programmatic access to all OPA property data. Filter by exterior_condition, zip_code, category. |
+| **OPA Bulk CSV Download** | https://www.phila.gov/property/data/ | Full CSV/GeoJSON/SHP download of all property assessments. |
+| **L&I Code Violations** | https://opendataphilly.org/datasets/licenses-and-inspections-code-violations/ | Violations from Dept of Licenses & Inspections — unsafe structures, condemned buildings. |
+| **Abandoned Philadelphia (blog)** | https://abandonedphiladelphia.com/properties/ | Community-reported shell properties, vacant lots, tax delinquent properties. Categories: shell-properties, vacant-land, tax-delinquency. |
+| **Philadelphia Atlas** | https://atlas.phila.gov/ | Geocoded address lookup with zoning, ownership, permits, violations. |
+
+**Pro tip:** Query the CARTO API for `exterior_condition IN ('6','7')` to find properties rated in worst condition by city assessors. Filter out `building_code_description LIKE 'VACANT%'` to exclude empty lots. This yields hundreds of confirmed blighted buildings with official data.
+
 ### Elizabeth City, NC (Pasquotank County)
 
 | Source | URL | What You Get |
