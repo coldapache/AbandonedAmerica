@@ -885,18 +885,14 @@ function showPropertyView(p) {
     icon: L.divIcon({ className: 'marker-cluster marker-cluster-small', html: '<div style="background:#dc2626;width:12px;height:12px;border-radius:50%;border:2px solid #fff;margin:10px"></div>', iconSize: [36, 36] })
   }).addTo(propertyMap);
 
-  // Detect if the link has Street View data (pano IDs, heading info)
-  const hasStreetViewLink = p.link && (p.link.includes('!1s') || p.link.includes('cbll=') || p.link.includes('/data=!3m'));
-  const defaultView = hasStreetViewLink ? 'sv' : 'satellite';
-
-  // Load the Street View iframe regardless (user can switch to it)
+  // Load the Street View iframe
   svO.style.display = 'flex';
   svO.textContent = 'Loading Street View...';
   svI.onload = () => { svO.style.display = 'none'; };
   svI.src = `https://www.google.com/maps?q=${p.lat},${p.lon}&z=18&layer=c&cbll=${p.lat},${p.lon}&cbp=12,0,0,0,0&output=svembed`;
 
-  // Set the default view mode
-  setViewMode(defaultView);
+  // Always default to Street View
+  setViewMode('sv');
 
   // Ensure property map renders correctly after display
   setTimeout(() => {
