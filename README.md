@@ -94,6 +94,7 @@ The entire database is a single CSV file. Every row is one property. The columns
 - **No duplicate properties.** Before adding a property, search the CSV for the address.
 - **All coordinates must be verified.** Use Google Maps to confirm lat/lon matches the address.
 - **All properties must have a Google Maps link.** Street View links are strongly preferred.
+- **Street View must show the actual property.** When you click "Open in Google Maps" or view the Street View embed, the building described in the record must be visible. If the Street View shows a different building, a residential street when the property is industrial, or a location blocks away from the address, the link/coordinates are wrong and must be fixed. This is the #1 data quality issue — coordinates from geocoders often land on the street or a neighboring parcel, not on the actual building.
 - **Status must be from the enum.** Do not invent new statuses.
 - **Type must be from the enum.** If a property doesn't fit, use the closest match.
 - **Assessments from official tax records only.** Do not estimate.
@@ -244,9 +245,10 @@ The `.claude/commands/` directory contains markdown files that define autonomous
   verify-property.md    # Visually verify existing properties via Google Maps
   validate-csv.md       # Run comprehensive data quality checks on the CSV
   repair-data.md        # Fill in missing fields (owner, assessment, source) for existing records
+  reassess-links.md     # Find and fix mismatched coordinates/Street View links
 ```
 
-**In Claude Code:** These are available as `/hunt-properties`, `/verify-property`, `/validate-csv`, and `/repair-data`. Just type the slash command with your arguments.
+**In Claude Code:** These are available as `/hunt-properties`, `/verify-property`, `/validate-csv`, `/repair-data`, and `/reassess-links`. Just type the slash command with your arguments.
 
 **In any other AI agent (OpenClaw, Codex, Cursor, etc.):** Read the `.claude/commands/*.md` files — they are plain markdown with numbered steps. Follow them exactly. The key capabilities needed are:
 - **Web search** to find government property records
@@ -287,6 +289,10 @@ Comprehensive validation of the entire database: enum validity, coordinate range
 #### `/repair-data [address|city|all]` - Fill Missing Data
 
 Finds incomplete records and looks up missing owner, assessment, and source data from county assessor websites and other official records.
+
+#### `/reassess-links [address|city|all|bad-panos]` - Fix Mismatched Links
+
+Scans properties for broken or mismatched Google Maps links. The most common problem is placeholder pano IDs (`0x0:0x0`) that cause Street View to load the wrong location entirely. The command navigates to each property's link via Playwright, checks if the displayed address matches the CSV, and if not, searches for the correct address and replaces the coordinates and link. Also catches properties that have been demolished since listing.
 
 ---
 
