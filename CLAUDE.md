@@ -50,6 +50,7 @@ CSV columns: `address,lat,lon,city,state,zip,type,status,owner,assessment,link,s
 9. Latitude range: 24.0 to 49.5 (contiguous US)
 10. Longitude range: -125.0 to -66.5 (contiguous US)
 11. Do not add DEMOLISHED properties — demolition is a resolution, not an ongoing problem. Only add properties where a structure still stands.
+12. Street View must show the actual property described in the record. If the embed shows a different building, a residential street when the property is industrial, or a location blocks away, the link/coordinates are wrong and must be fixed. This is the #1 data quality issue.
 
 ## Contribution Workflow
 
