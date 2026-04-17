@@ -9,13 +9,14 @@ Abandoned America is a crowdsourced national database of abandoned, blighted, an
 - `Abandoned America - Abandoned or Unused Properties.csv` - THE database. Every row = one property.
 - `index.html` - Map viewer. Leaflet + PapaParse + MarkerCluster. No build step. Open in browser.
 - `README.md` - Full instructions, data schema, contribution workflow.
+- `server.py` - Dev server with API endpoint for human confirmation feature (`python server.py`)
 - `.claude/commands/hunt-properties.md` - Slash command: find new ABNC properties in a target area using web search + Playwright
 - `.claude/commands/verify-property.md` - Slash command: verify existing properties via Playwright + Google Maps Street View
 - `.claude/commands/validate-csv.md` - Slash command: comprehensive data quality validation
 
 ## Data Schema (Strict)
 
-CSV columns: `address,lat,lon,city,state,zip,type,status,owner,assessment,link,source,notes`
+CSV columns: `address,lat,lon,city,state,zip,type,status,owner,assessment,link,source,notes,human_confirmed`
 
 ### Allowed `status` values (EXACT - do not deviate):
 - `ABANDONED`
