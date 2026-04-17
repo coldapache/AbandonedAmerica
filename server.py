@@ -19,31 +19,34 @@ class Handler(SimpleHTTPRequestHandler):
                 self._json_response(400, {"error": "address required"})
                 return
 
-            # Read CSV, update the matching row, write back
-            rows = []
-            headers = []
-            found = False
-            with open(CSV_PATH, "r", newline="", encoding="utf-8") as f:
-                reader = csv.DictReader(f)
-                headers = reader.fieldnames
-                if "human_confirmed" not in headers:
-                    headers = list(headers) + ["human_confirmed"]
-                for row in reader:
-                    if row["address"] == address:
-                        row["human_confirmed"] = "HUMAN CONFIRMED"
-                        found = True
-                    rows.append(row)
+            try:
+                # Read CSV, update the matching row, write back
+                rows = []
+                headers = []
+                found = False
+                with open(CSV_PATH, "r", newline="", encoding="utf-8-sig") as f:
+                    reader = csv.DictReader(f)
+                    headers = reader.fieldnames
+                    if "human_confirmed" not in headers:
+                        headers = list(headers) + ["human_confirmed"]
+                    for row in reader:
+                        if row["address"] == address:
+                            row["human_confirmed"] = "HUMAN CONFIRMED"
+                            found = True
+                        rows.append(row)
 
-            if not found:
-                self._json_response(404, {"error": "property not found"})
-                return
+                if not found:
+                    self._json_response(404, {"error": "property not found"})
+                    return
 
-            with open(CSV_PATH, "w", newline="", encoding="utf-8") as f:
-                writer = csv.DictWriter(f, fieldnames=headers, quoting=csv.QUOTE_ALL)
-                writer.writeheader()
-                writer.writerows(rows)
+                with open(CSV_PATH, "w", newline="", encoding="utf-8-sig") as f:
+                    writer = csv.DictWriter(f, fieldnames=headers, quoting=csv.QUOTE_ALL)
+                    writer.writeheader()
+                    writer.writerows(rows)
 
-            self._json_response(200, {"ok": True, "address": address})
+                self._json_response(200, {"ok": True, "address": address})
+            except Exception as e:
+                self._json_response(500, {"error": str(e)})
         else:
             self._json_response(404, {"error": "not found"})
 
