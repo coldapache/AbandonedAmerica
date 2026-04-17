@@ -16,14 +16,14 @@ cd AbandonedAmerica
 ```
 
 ```bash
-# To view the app locally, serve via HTTP:
-python -m http.server 8765
-# Then open http://localhost:8765 in your browser
+# Start the dev server (enables human verification feature):
+python server.py
+# Then open http://localhost:8080 in your browser
 ```
 
-You can also just open `index.html` directly in your browser for basic viewing, or use any static file server.
+The dev server serves static files and provides an API endpoint for the "Confirm Abandoned" button in the UI. You can also use any static HTTP server (`python -m http.server 8080`) for read-only viewing, but the human confirmation feature requires `server.py`.
 
-Open `index.html` in a browser. That's it. No build step, no backend, no API keys. The app loads the CSV and renders an interactive map.
+Opening `index.html` directly as a file won't work due to browser CORS restrictions on CSV loading.
 
 ---
 
@@ -62,6 +62,7 @@ The entire database is a single CSV file. Every row is one property. The columns
 | `link` | string | YES | Google Maps URL. Must start with `https://www.google.com/maps`. Include Street View link when available. |
 | `source` | string | NO | URL to the source of the property data (city website, county records portal, news article, etc.) |
 | `notes` | string | NO | Free-text observations about the property: confidence level, estimated vacancy duration, visual condition, ambiguity notes, or anything relevant that doesn't fit other columns. |
+| `human_confirmed` | string | NO | Set to `HUMAN CONFIRMED` when a human has visually verified the property is abandoned via the UI. Only written through the viewer's "Confirm Abandoned" button — never set manually in the CSV. |
 
 ### Allowed `type` Values
 

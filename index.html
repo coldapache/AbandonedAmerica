@@ -400,6 +400,10 @@ body {
 .btn-primary:hover { background: var(--accent-hover); }
 .btn-ghost { background: var(--surface2); color: var(--text-mid); border: 1px solid var(--border); }
 .btn-ghost:hover { border-color: var(--text-dim); color: var(--text); }
+.btn-confirm { background: #16a34a; color: #fff; }
+.btn-confirm:hover { background: #15803d; }
+.btn-confirmed { background: var(--surface2); color: #16a34a; border: 1px solid #16a34a; cursor: default; }
+.confirmed-badge { display: inline-block; padding: 2px 7px; border-radius: 3px; font-size: 9px; font-weight: 800; letter-spacing: 0.3px; text-transform: uppercase; line-height: 14px; background: #16a34a; color: #fff; }
 
 /* Popup */
 .leaflet-popup-content-wrapper {
@@ -515,6 +519,7 @@ body {
               <th data-col="status" class="sortable">Status <span class="sort-arrow"></span></th>
               <th data-col="owner" class="sortable">Owner <span class="sort-arrow"></span></th>
               <th data-col="assessment" class="sortable">Assessment <span class="sort-arrow"></span></th>
+              <th data-col="human_confirmed" class="sortable">Verified <span class="sort-arrow"></span></th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -722,6 +727,7 @@ function renderSidebar() {
       <div class="meta">
         <span class="${badgeClass(p.status)}">${shortStatus(p.status)}</span>
         <span class="type-tag">${p.type}</span>
+        ${p.human_confirmed === 'HUMAN CONFIRMED' ? '<span class="confirmed-badge">Verified</span>' : ''}
         ${p.assessment ? `<span class="value-tag">${p.assessment}</span>` : ''}
       </div>`;
     el.onclick = () => selectProperty(p);
@@ -902,7 +908,7 @@ function showPropertyView(p) {
   det.innerHTML = `
     <h2>${esc(p.address)}</h2>
     <div class="detail-grid">
-      <div class="detail-field"><span class="detail-label">Status</span><span class="detail-value"><span class="${badgeClass(p.status)}">${p.status}</span></span></div>
+      <div class="detail-field"><span class="detail-label">Status</span><span class="detail-value"><span class="${badgeClass(p.status)}">${p.status}</span>${p.human_confirmed === 'HUMAN CONFIRMED' ? ' <span class="confirmed-badge">Verified</span>' : ''}</span></div>
       <div class="detail-field"><span class="detail-label">Type</span><span class="detail-value">${p.type}</span></div>
       <div class="detail-field"><span class="detail-label">Location</span><span class="detail-value">${esc(p.city)}, ${p.state} ${p.zip}</span></div>
       <div class="detail-field"><span class="detail-label">Coordinates</span><span class="detail-value">${p.lat}, ${p.lon}</span></div>
@@ -912,6 +918,9 @@ function showPropertyView(p) {
       ${p.notes ? `<div class="detail-field" style="grid-column:1/-1"><span class="detail-label">Notes</span><span class="detail-value" style="font-style:italic;color:#aaa">${esc(p.notes)}</span></div>` : ''}
     </div>
     <div class="detail-actions">
+      ${p.human_confirmed === 'HUMAN CONFIRMED'
+        ? `<button class="btn btn-confirmed" disabled>&#10003; Verified</button>`
+        : `<button class="btn btn-confirm" onclick="confirmProperty('${p.address.replace(/'/g,"\\'")}')">Confirm Abandoned</button>`}
       ${p.link ? `<a class="btn btn-primary" href="${p.link}" target="_blank" rel="noopener">Open in Google Maps</a>` : ''}
       <a class="btn btn-ghost" href="https://earth.google.com/web/@${p.lat},${p.lon},0a,500d,35y,0h,0t,0r" target="_blank" rel="noopener">Open in Google Earth</a>
       <button class="btn btn-ghost" onclick="navigator.clipboard.writeText('${p.address.replace(/'/g,"\\'")}')">Copy Address</button>
@@ -977,6 +986,7 @@ function renderTable(data) {
       <td><span class="${badgeClass(p.status)}">${shortStatus(p.status)}</span></td>
       <td>${esc(p.owner || '')}</td>
       <td>${p.assessment || ''}</td>
+      <td>${p.human_confirmed === 'HUMAN CONFIRMED' ? '<span class="confirmed-badge">Verified</span>' : ''}</td>
     </tr>`).join('');
 
   tbody.querySelectorAll('tr').forEach(tr => {
@@ -1026,6 +1036,26 @@ document.getElementById('search-input').addEventListener('input', () => {
     renderTable(filtered);
   }
 });
+
+function confirmProperty(address) {
+  fetch('/api/confirm', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ address })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.ok) {
+      const p = window.__propByAddr[address];
+      if (p) {
+        p.human_confirmed = 'HUMAN CONFIRMED';
+        showPropertyView(p);
+        renderSidebar();
+      }
+    }
+  });
+}
+window.confirmProperty = confirmProperty;
 
 function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 </script>
