@@ -22,7 +22,7 @@ Use the Brave Web Search API:
 curl -s "https://api.search.brave.com/res/v1/web/search?q=QUERY&count=10" \
   -H "Accept: application/json" \
   -H "Accept-Encoding: gzip" \
-  -H "X-Subscription-Token: BSAUS93yJr9WqN1GW48tv26sEJ8q1gS"
+  -H "X-Subscription-Token: $BRAVE_SEARCH_API_KEY"
 ```
 
 Replace `QUERY` with the URL-encoded search query from the user's input.
