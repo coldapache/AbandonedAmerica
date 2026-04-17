@@ -1038,6 +1038,9 @@ document.getElementById('search-input').addEventListener('input', () => {
 });
 
 function confirmProperty(address) {
+  const btn = event.target;
+  btn.textContent = 'Saving...';
+  btn.disabled = true;
   fetch('/api/confirm', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -1052,7 +1055,14 @@ function confirmProperty(address) {
         showPropertyView(p);
         renderSidebar();
       }
+    } else {
+      btn.textContent = 'Error — retry';
+      btn.disabled = false;
     }
+  })
+  .catch(() => {
+    btn.textContent = 'Error — retry';
+    btn.disabled = false;
   });
 }
 window.confirmProperty = confirmProperty;
