@@ -1,9 +1,79 @@
+# Claude Code local config and commands
+.claude/
+
+# Screenshots and images
+*.jpg
+*.jpeg
+*.png
+*.gif
+
 # Playwright MCP temp files
 .playwright-mcp/
 
-# Screenshots from verification work
-*.jpeg
-*.png
+# Python
+__pycache__/
+*.pyc
 
-# Local Claude settings
-.claude/settings.local.json
+# Research/batch scripts
+add_*.py
+enrich*.py
+verify_*.py
+audit_*.py
+cleanup_*.py
+apply_*.py
+fix_*.py
+reconstruct_*.py
+rerun_*.py
+reverify*.py
+build_*.py
+get_*.py
+lookup_*.py
+query_*.py
+parse_*.py
+identify_*.py
+upgrade_*.py
+*_geocode.py
+*_sv.py
+*_hunt.py
+*_verify.py
+*_assess*.py
+detailed_analysis.py
+analyze_csv.sh
+advanced_analysis.awk
+gary_*.py
+kc_*.py
+louisville_*.py
+cleveland_*.py
+cle_*.py
+durham_*.py
+raleigh_*.py
+charlotte_*.py
+fay_wilm_*.py
+triad_*.py
+portsmouth_*.py
+norfolk_*.py
+sat_and_sv_*.py
+screenshot_*.py
+sv_*.py
+
+# Intermediate research data
+*.json
+*_candidates.json
+*_enrichment.json
+*_geocoded.json
+
+# Research artifacts
+*.html
+!index.html
+*.txt
+*.csv
+!Abandoned America - Abandoned or Unused Properties.csv
+*.log
+
+# Backup CSVs
+csv_backup_*.csv
+wprdc_*.csv
+
+# Experimental work
+experimental/
+audit_screenshots/
