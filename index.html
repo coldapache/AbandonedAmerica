@@ -466,7 +466,7 @@ body {
 .dash-section { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px 18px; }
 .dash-section h3 { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-mid); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border-light); }
 .bar-list { display: flex; flex-direction: column; gap: 6px; }
-.bar-row { display: grid; grid-template-columns: 130px 1fr 60px 110px; align-items: center; gap: 10px; font-size: 11px; }
+.bar-row { display: grid; grid-template-columns: 160px 1fr 110px 90px; align-items: center; gap: 10px; font-size: 11px; }
 .bar-name { font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .bar-track { height: 14px; background: var(--surface3); border-radius: 4px; overflow: hidden; position: relative; }
 .bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #e05545); border-radius: 4px; transition: width 0.3s; }
@@ -530,11 +530,11 @@ body {
           <div class="hero-card hero-card-gov"><div class="hero-label">Government Owned</div><div class="hero-value" id="dash-gov">—</div><div class="hero-sub" id="dash-gov-pct">—</div></div>
         </div>
         <div class="dash-row dash-row-2">
-          <div class="dash-section"><h3>Top Cities</h3><div class="bar-list" id="dash-by-city"></div></div>
-          <div class="dash-section"><h3>Top States</h3><div class="bar-list" id="dash-by-state"></div></div>
+          <div class="dash-section"><h3>Top Abandoned Cities (by Assessed Value)</h3><div class="bar-list" id="dash-by-city"></div></div>
+          <div class="dash-section"><h3>Top Abandoned States (by Assessed Value)</h3><div class="bar-list" id="dash-by-state"></div></div>
         </div>
         <div class="dash-row">
-          <div class="dash-section"><h3>Top Government Owners</h3><div class="bar-list" id="dash-by-gov"></div></div>
+          <div class="dash-section"><h3>Top Government Owners (by Assessed Value)</h3><div class="bar-list" id="dash-by-gov"></div></div>
         </div>
       </div>
     </div>
@@ -1236,28 +1236,32 @@ function aggregateWithSum(arr, keyFn) {
     if (v > 0) { cur.sum += v; cur.valued++; }
     map.set(k, cur);
   });
-  return [...map.entries()].map(([key, v]) => ({ key, count: v.count, sum: v.sum, valued: v.valued })).sort((a,b) => b.count - a.count);
+  // Sort by total assessed value descending — the dashboard is about
+  // *dollar* concentration of abandonment, not raw property counts. Places
+  // with no assessment data sink to the bottom (visible data gap).
+  return [...map.entries()].map(([key, v]) => ({ key, count: v.count, sum: v.sum, valued: v.valued })).sort((a,b) => b.sum - a.sum);
 }
 
 function renderBars(containerId, rows) {
   const el = document.getElementById(containerId);
   if (!rows.length) { el.innerHTML = '<div class="bar-empty">No data</div>'; return; }
-  const max = rows[0].count;
+  // Bar width is driven by *assessed sum*, not property count, so the visual
+  // matches the user's mental model ("where is the abandoned dollar value?").
+  const max = rows[0].sum || 1;
   el.innerHTML = rows.map(r => {
-    const pct = (r.count / max * 100).toFixed(1);
-    let amt = '<span class="bar-na">—</span>';
-    if (r.valued > 0) {
-      amt = fmtMoney(r.sum);
-      if (r.valued < r.count) amt += ' <span class="bar-partial">(' + r.valued + '/' + r.count + ')</span>';
-    }
+    const pct = r.sum > 0 ? (r.sum / max * 100).toFixed(1) : 0;
+    const amt = r.sum > 0 ? fmtMoney(r.sum) : '<span class="bar-na">—</span>';
+    const assessedLabel = r.valued > 0
+      ? r.valued.toLocaleString() + ' assessed'
+      : '<span class="bar-na">no assessments</span>';
     const titleAmt = r.valued > 0
-      ? ' — ' + fmtMoneyFull(r.sum) + ' assessed across ' + r.valued + ' of ' + r.count + ' properties'
+      ? ' — ' + fmtMoneyFull(r.sum) + ' assessed across ' + r.valued + ' propert' + (r.valued === 1 ? 'y' : 'ies')
       : ' — no assessment data';
-    return `<div class="bar-row" title="${esc(r.key)} — ${r.count} properties${titleAmt}">
+    return `<div class="bar-row" title="${esc(r.key)}${titleAmt}">
       <div class="bar-name">${esc(r.key)}</div>
       <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
-      <div class="bar-count">${r.count.toLocaleString()}</div>
       <div class="bar-amount">${amt}</div>
+      <div class="bar-count">${assessedLabel}</div>
     </div>`;
   }).join('');
 }
