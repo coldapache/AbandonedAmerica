@@ -1,11 +1,5 @@
-# Claude Code local config and commands
+# Claude Code local config
 .claude/
-
-# Screenshots and images
-*.jpg
-*.jpeg
-*.png
-*.gif
 
 # Playwright MCP temp files
 .playwright-mcp/
@@ -14,71 +8,31 @@
 __pycache__/
 *.pyc
 
-# Research/batch scripts
-add_*.py
-enrich*.py
-verify_*.py
-audit_*.py
-cleanup_*.py
-apply_*.py
-fix_*.py
-reconstruct_*.py
-rerun_*.py
-reverify*.py
-build_*.py
-get_*.py
-lookup_*.py
-query_*.py
-parse_*.py
-identify_*.py
-upgrade_*.py
-*_geocode.py
-*_sv.py
-*_hunt.py
-*_verify.py
-*_assess*.py
-detailed_analysis.py
-analyze_csv.sh
-advanced_analysis.awk
-gary_*.py
-kc_*.py
-louisville_*.py
-cleveland_*.py
-cle_*.py
-durham_*.py
-raleigh_*.py
-charlotte_*.py
-fay_wilm_*.py
-triad_*.py
-portsmouth_*.py
-norfolk_*.py
-reading_*.py
-sat_and_sv_*.py
-screenshot_*.py
-sv_*.py
+# Reorganized scratch space — research scripts, raw images, intermediate
+# data, and Street View screenshots. Anything an agent generates during a
+# batch addition or enrichment run lives here and stays out of git.
+# See temp/README.md for layout.
+temp/
 
-# Intermediate research data
-*.json
-*_candidates.json
-*_enrichment.json
-*_geocoded.json
+# Reference source datasets (kept locally, too large for repo)
+sources/data/*.csv
+sources/data/*.xlsx
+sources/data/*.json
 
-# Research artifacts
-*.html
-!index.html
-*.txt
-*.csv
-!Abandoned America - Abandoned or Unused Properties.csv
-*.log
-
-# Backup CSVs
-csv_backup_*.csv
-wprdc_*.csv
-
-# Downloaded source spreadsheets
-*.xlsx
-*.xls
-
-# Experimental work
-experimental/
-audit_screenshots/
+# Catch-all safety net for stray artifacts at repo root.
+# `!`-rules below re-include the files we DO want tracked.
+/*.jpg
+/*.jpeg
+/*.png
+/*.gif
+/*.json
+/*.txt
+/*.log
+/*.xlsx
+/*.xls
+/*.html
+/*.csv
+/*.py
+!/index.html
+!/server.py
+!/Abandoned America - Abandoned or Unused Properties.csv
