@@ -338,8 +338,14 @@ body {
   letter-spacing: 0.2px;
 }
 
-/* ===== PROPERTY VIEW ===== */
-#property-view { display: flex; flex-direction: column; height: 100%; }
+/* ===== PROPERTY VIEW =====
+   The property view scrolls as one column. Street View takes a predictable
+   share of the viewport height (clamped so it can't disappear on small
+   screens or eat the whole panel on tall ones), and the detail block flows
+   naturally below it at its content height. If the combined content is
+   taller than the panel, the WHOLE view scrolls — no nested scrollbars,
+   no clipped buttons at the bottom. */
+#property-view { display: flex; flex-direction: column; height: 100%; overflow-y: auto; }
 
 #property-view .empty-state {
   flex: 1; display: flex; align-items: center; justify-content: center;
@@ -347,7 +353,9 @@ body {
 }
 
 #streetview-container {
-  flex: 3; position: relative; min-height: 0;
+  flex: 0 0 auto;
+  height: clamp(280px, 55vh, 640px);
+  position: relative;
   background: var(--surface3); border-bottom: 1px solid var(--border);
 }
 #streetview-container iframe { width: 100%; height: 100%; border: none; }
@@ -373,28 +381,27 @@ body {
 #property-detail {
   flex: 0 0 auto;
   background: var(--surface);
-  padding: 20px 24px;
-  overflow-y: auto;
-  max-height: 250px;
+  padding: 14px 20px 18px;
 }
 
-#property-detail h2 { font-size: 17px; font-weight: 700; margin-bottom: 14px; line-height: 1.3; }
+#property-detail h2 { font-size: 15px; font-weight: 700; margin-bottom: 10px; line-height: 1.25; word-break: break-word; }
 
-.detail-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px 16px; }
-.detail-field { display: flex; flex-direction: column; gap: 3px; }
-.detail-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); }
-.detail-value { font-size: 13px; color: var(--text); font-weight: 500; }
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 9px 16px; }
+.detail-field { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.detail-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-dim); }
+.detail-value { font-size: 12.5px; color: var(--text); font-weight: 500; word-break: break-word; }
 
 .detail-actions {
-  display: flex; gap: 8px; margin-top: 16px; padding-top: 14px;
+  display: flex; gap: 6px; margin-top: 12px; padding-top: 10px;
   border-top: 1px solid var(--border-light);
+  flex-wrap: wrap;
 }
 
 .btn {
-  padding: 8px 16px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  padding: 6px 12px; border-radius: 5px; font-size: 10px; font-weight: 700;
   cursor: pointer; text-decoration: none; text-transform: uppercase;
   letter-spacing: 0.5px; transition: all 0.15s; border: none;
-  display: inline-flex; align-items: center; gap: 6px;
+  display: inline-flex; align-items: center; gap: 5px;
 }
 .btn-primary { background: var(--accent); color: #fff; }
 .btn-primary:hover { background: var(--accent-hover); }
@@ -651,7 +658,9 @@ Papa.parse('Abandoned America - Abandoned or Unused Properties.csv', {
       const lat = parseFloat(r.lat), lon = parseFloat(r.lon);
       return !isNaN(lat) && !isNaN(lon) && lat >= 24 && lat <= 50 && lon >= -126 && lon <= -66;
     });
-    allProperties.forEach(p => { window.__propByAddr[p.address] = p; });
+    // Tag each property with its CSV row order so the sidebar can surface
+    // most-recently-added rows first (CSV is append-only for new entries).
+    allProperties.forEach((p, i) => { p._rowIndex = i; window.__propByAddr[p.address] = p; });
     buildFilters();
     renderMarkers(allProperties);
     renderSidebar();
@@ -716,6 +725,9 @@ function renderSidebar() {
     const bounds = map.getBounds().pad(0.05);
     props = props.filter(p => bounds.contains([parseFloat(p.lat), parseFloat(p.lon)]));
   }
+
+  // Most-recently-added first (largest CSV row index = appended most recently)
+  props = [...props].sort((a, b) => (b._rowIndex || 0) - (a._rowIndex || 0));
 
   const list = document.getElementById('property-list');
   list.innerHTML = '';
