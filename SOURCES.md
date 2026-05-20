@@ -152,6 +152,123 @@ These are examples of what you'll find when you follow the playbook above. Every
 | **Downtown Memphis Commission** | https://downtownmemphis.com | Downtown revitalization updates, commercial vacancy monitoring, development pipeline tracking. |
 | **Shelby County Assessor** | https://assessor.shelby.tn.us/ | Property assessments, ownership, tax records for all Shelby County parcels. |
 
+### Reading, PA (Berks County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Certified Blighted Properties** | https://www.readingpa.gov/certified-blighted-properties | **400+ city-certified blighted properties** with downloadable Excel (`Blight_List_for_City_Website.xlsx`). Each row: address, owner + mailing address, certification date, room count, Res/Comm flag. Gold-standard source — city has formally certified each property as blighted. |
+| **Berks County Assessor** | https://www.berkspa.gov/departments/assessment-office | Owner names, assessed values, parcel data for cross-referencing the blight list. |
+
+### Erie, PA (Erie County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Erie Land Bank** | https://www.erielandbank.org/properties | City land bank inventory. Mostly vacant land from prior demolitions (filter out per Rule #11) plus a few standing structures available for development. |
+| **Erie County Land Bank** | https://www.eriecountylandbank.org/ | Countywide land bank — separate from city land bank. Covers surrounding municipalities. |
+| **Erie County Real Estate Tax Office** | https://eriecountypa.gov/departments/real-estate-tax-office/ | Tax delinquent property search, assessment lookups. |
+
+### Scranton, PA (Lackawanna County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Lackawanna County Land Bank** | http://www.lackawannalandbank.com/properties/ | **~200 properties** in searchable inventory (filter by address, type, municipality, value). Mix of vacant lots and standing structures — verify each via Street View before adding. |
+| **Lackawanna County Assessment Office** | https://www.lackawannacounty.org/government/departments/assessor/ | Owner, assessed value, parcel data. |
+| **Lackawanna County Tax Claim Bureau** | https://www.lackawannacounty.org/government/departments/tax_claim_bureau/ | Tax-delinquent property listings; correlates strongly with abandonment. |
+
+### Chester, PA (Delaware County) — Receivership City
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Chester Receivership** | https://dced.pa.gov/local-government/act-47-financial-distress-program/cities-in-act-47/chester/ | Chester is in state receivership (only second PA city ever). Receiver publishes recovery plans referencing problem properties. |
+| **Delaware County Assessor** | https://delcopa.gov/treasurer/index.html | Owner, assessed value, tax delinquency for Delaware County parcels. |
+| **Chester Code Enforcement** | https://www.chestercity.com/departments/licensing-inspections/ | Code violation reporting; ask for condemned/unsafe structure lists via the department. |
+
+### Bridgeport, CT (Fairfield County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Anti-Blight Division** | https://www.bridgeportct.gov/blight | Active anti-blight enforcement. As of March 2026, vacant blighted properties fined $250/day; the development administrator maintains an internal blighted-properties list. |
+| **Cited for Blight** | https://www.bridgeportct.gov/government/departments/housing-code/anti-blight/cited-blight | Citation process info; the list of currently cited properties is not posted but can be requested via FOIA. |
+| **Anti-Blight Ordinance (Ch. 8.76)** | https://library.municode.com/ct/bridgeport/codes/code_of_ordinances?nodeId=TIT8HESA_CH8.76ANIGPR_8.76.020DE | Legal definition of blight in Bridgeport. |
+| **Bridgeport GIS / Assessor** | https://www.bridgeportct.gov/government/departments/finance/tax-assessor | Owner, assessed value, parcel data. |
+
+### Hartford, CT (Hartford County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Blight Remediation Team** | https://www.hartfordct.gov/Government/Departments/DDS/DDS-Divisions/Blight-Remediation | City enforces Anti-Blight & Property Maintenance Ordinance against deteriorated occupied + vacant properties. **City reports 400+ vacant/abandoned properties citywide.** Public list not posted; request via department. |
+| **Blight Lien Forbearance Program (PDF)** | https://www.hartfordct.gov/files/assets/public/v/1/development-services/licenses-inspections/li-documents/brt_lienforbearanceprogam.pdf | Identifies properties under blight liens. |
+| **Hartford 20 Blighted Sites Story** | https://hartfordbusiness.com/article/hartford-identifies-20-blighted-sites-for-new-housing/ | City flagged 20 specific sites for housing redevelopment — paywalled, but addresses surface in news coverage. |
+| **Hartford Land Bank** | https://www.hartfordlandbank.org/ | New land bank; conducting citywide property survey funded by Hartford Foundation. |
+| **Hartford Assessor** | https://www.hartfordct.gov/Government/Departments/Assessor | Owner, assessed value, parcel data. |
+
+### New Haven, CT (New Haven County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Livable City Initiative (LCI)** | https://www.newhavenct.gov/government/departments-divisions/livable-city-initiative | LCI enforces anti-blight ordinance, monitors building licensing. Mobile pop-up offices take blight complaints. List not posted publicly. |
+| **Housing Code Enforcement** | https://www.newhavenct.gov/government/departments-divisions/livable-city-initiative/housing-code-enforcement | Code enforcement info; ask department for current cited-properties list. |
+| **New Haven Open Data** | https://data.newhavenct.gov/ | Open data portal — search for code violations, blight citations datasets. |
+| **New Haven Assessor** | https://www.newhavenct.gov/government/departments-divisions/assessors-office | Owner, assessed value, parcel data. |
+
+### Providence, RI (Providence County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Providence Inspections — Blight Confirmation** | https://www.providenceri.gov/inspection/rhode-island-housing-acquisition-and-revitalization-program/ | City confirms whether properties meet HUD blight definition (failing HUD Housing Quality Standards or unsafe). Used to qualify properties for RI Housing Acquisition & Revitalization Program (ARP). |
+| **RIHousing ARP-Funded Properties** | https://www.rihousing.com/rihousing-funding-approvals-revitalize-blighted-and-vacant-properties/ | Press releases naming specific blighted properties receiving state revitalization funding. |
+| **Providence Tax Assessor** | https://www.providenceri.gov/assessor/ | Owner, assessment, parcel data. |
+| **Providence Open Data** | https://data.providenceri.gov/ | Open data portal — search for code violations, demolitions, vacant building registry datasets. |
+
+### Westerly, RI (Washington County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Inventory of Abandoned Properties** | https://www.westerlyri.gov/839/Inventory-of-Abandoned-Properties | Town Clerk's published inventory of abandoned properties. Small list, but every entry is town-certified. |
+
+### Pawtucket / Woonsocket, RI
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Pawtucket Planning & Development** | https://www.pawtucketri.com/departments/planning-and-redevelopment | Tracks redevelopment of blighted sites (e.g., 71 Dexter St / Dexter Street Commons). |
+| **Woonsocket Building & Zoning** | https://www.woonsocketri.org/building-zoning | Code enforcement contact for blight inquiries; ask for unsafe-structures list. |
+| **RI Vacant Properties Commission Report (PDF)** | https://www.rilegislature.gov/commissions/VPC/commdocs/02-13-2023---DOA%20Vacant%20Property%20Commission%20FINAL.pdf | State-level analysis of vacant property in RI, includes data on Pawtucket / Woonsocket / Central Falls. |
+
+### Massachusetts — Statewide Receivership
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **MA Abandoned Housing Initiative (AHI)** | https://www.mass.gov/abandoned-housing-initiative-ahi | Attorney General's program that petitions courts to appoint receivers for vacant/abandoned housing across the state. Active in all Gateway Cities. **Court filings list specific addresses.** |
+| **AHI Receivership Manual (PDF)** | https://www.mass.gov/files/documents/2016/08/uc/ahi-manual.pdf | Process documentation; references how cases are identified and tracked. |
+| **MassLandRecords** | https://www.masslandrecords.com/ | All MA registries of deeds searchable here — confirms owner, sale history. |
+| **MassGIS Parcels** | https://www.mass.gov/info-details/massgis-data-property-tax-parcels | Statewide parcel data with assessor-keyed attributes (owner, use code, value). |
+
+### Springfield, MA (Hampden County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Office of Housing** | https://www.springfield-ma.gov/housing/ | Runs City of Homes program transferring distressed vacant properties to nonprofits for rehab. |
+| **Code Enforcement / Receivership** | https://www.springfield-ma.gov/cos/housing-services/ | Springfield initiates more receivership actions than any MA city. Receiver-assigned properties surface in court filings. |
+| **Hampden County Registry of Deeds** | https://www.masslandrecords.com/Hampden/ | Owner, sale history. |
+
+### Holyoke, MA (Hampden County)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Building Department** | https://www.holyoke.org/departments-services/building-department/ | Emergency-action lists for abandoned properties posing fire/safety threats. |
+| **Office of Planning & Economic Development** | https://www.holyoke.org/departments-services/planning-and-development/ | Tracks redevelopment of mill-district blight (Lyman Mills, Open Square area). |
+
+### Worcester / Lawrence / Lowell / Fall River / New Bedford, MA (Gateway Cities)
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **MassDevelopment TDI** | https://www.massdevelopment.com/what-we-offer/key-initiatives/tdi | Transformative Development Initiative districts in Chelsea, Chicopee, Fall River, Fitchburg, Lawrence, Springfield, Worcester — published target-property lists by district. |
+| **Worcester Inspectional Services** | https://www.worcesterma.gov/inspections | Problem property complaints; ask for active condemnation list. |
+| **Lawrence Inspectional Services** | https://www.cityoflawrence.com/departments/inspectional-services | Vacant/abandoned building reporting. |
+| **Lowell Department of Inspectional Services** | https://www.lowellma.gov/170/Department-of-Inspectional-Services | Code enforcement and unsafe structure tracking. |
+| **Fall River Inspectional Services** | https://www.fallriverma.org/departments/inspectional-services/ | Vacant/condemned property tracking; large mill-district inventory. |
+| **New Bedford Inspectional Services** | https://www.newbedford-ma.gov/inspectional-services/ | Code enforcement; many former waterfront industrial sites. |
+
 ### Elizabeth City, NC (Pasquotank County)
 
 | Source | URL | What You Get |
