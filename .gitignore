@@ -52,6 +52,7 @@ fay_wilm_*.py
 triad_*.py
 portsmouth_*.py
 norfolk_*.py
+reading_*.py
 sat_and_sv_*.py
 screenshot_*.py
 sv_*.py
@@ -73,6 +74,10 @@ sv_*.py
 # Backup CSVs
 csv_backup_*.csv
 wprdc_*.csv
+
+# Downloaded source spreadsheets
+*.xlsx
+*.xls
 
 # Experimental work
 experimental/
