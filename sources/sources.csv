@@ -176,3 +176,328 @@ Anchorage Municipal Code 15.20.105,http://anchorage-ak.elaws.us/code/coor_title1
 ADN Anchorage Blight Coverage,https://www.adn.com/alaska-news/anchorage/2018/05/20/a-city-crackdown-on-anchorages-abandoned-buildings-flares-up-in-airport-heights/,city,AK,Anchorage,news,HTML,public_html,,Anchorage Daily News coverage of city's abandoned-building crackdown.
 Hawaii County Code Enforcement,https://www.dpw.hawaiicounty.gov/divisions/building/code-enforcement-information,county,HI,Hawaii,code_enforcement,HTML,public_html,,Big Island building code enforcement.
 Hawaii County GIS Code Enforcement Hub,https://hawaii-county-public-works-hawaiicountygis.hub.arcgis.com/pages/blg-code-enforcement-information,county,HI,Hawaii,parcel_gis,ArcGIS,public_html,,Hawaii County Public Works ArcGIS hub for code enforcement info.
+Detroit Open Data Portal,https://data.detroitmi.gov/,city,MI,Detroit,open_data,catalog,public_html,,Master Detroit open data hub — Socrata + ArcGIS.
+Detroit Land Bank Inventory,https://data.detroitmi.gov/Property-Parcels/Land-Bank-Inventory/vsin-ur7i,city,MI,Detroit,land_bank,Socrata,open_api,,DLBA full inventory dataset — one of the largest blight datasets in the US.
+Detroit DLBA Owned Properties,https://data.detroitmi.gov/datasets/848bc665295f4ca9b1e25068ffa88ab0_0/about,city,MI,Detroit,land_bank,ArcGIS,open_api,,DLBA owned parcels with geometry and attribute data.
+Detroit Vacant Property Registrations,https://data-detroitmi.hub.arcgis.com/datasets/vacant-property-registrations-1/about,city,MI,Detroit,registry,ArcGIS,open_api,,BSEED-tracked vacant property registrations 2019-present.
+Detroit Land Bank Authority,https://detroitmi.gov/document/detroit-land-bank-authority,city,MI,Detroit,land_bank,HTML,public_html,,DLBA official page; vacant land policy + program docs.
+Cleveland Land Bank Available Parcels,https://data.clevelandohio.gov/datasets/city-of-cleveland-land-bank-available-parcels/about,city,OH,Cleveland,land_bank,ArcGIS,open_api,13000+,City of Cleveland Land Bank — 13000+ vacant parcels available for public sale. Map updated weekly.
+Cleveland Land Bank Owned Parcels,https://data.clevelandohio.gov/datasets/ClevelandGIS::city-of-cleveland-land-bank-owned-parcels/explore,city,OH,Cleveland,land_bank,ArcGIS,open_api,,All Cleveland Land Bank owned parcels with map view.
+Cuyahoga Land Bank,https://cuyahogalandbank.org/all-available-properties/,county,OH,Cuyahoga,land_bank,HTML,public_html,,County land bank separate from city; demolished 10000+ blighted properties.
+Cleveland NST Property Status Map,https://www.arcgis.com/apps/webappviewer/index.html?id=4f45a7e9ebf84467bf7ba8caa25aa0f2,city,OH,Cleveland,parcel_gis,ArcGIS,public_html,,Neighborhood Stabilization Team property status map.
+Cleveland Land Bank Program,https://www.clevelandohio.gov/city-hall/departments/community-development/programs-services/cleveland-land-bank,city,OH,Cleveland,land_bank,HTML,public_html,,Land bank program overview and application process.
+St. Louis LRA Property,https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=30,city,MO,St. Louis,land_bank,API,open_api,,Land Reutilization Authority inventory — CSV/PDF/JSON. Updated nightly.
+St. Louis LRA Inventory CSV,https://www.stlouis-mo.gov/data/datasets/distribution.cfm?id=145,city,MO,St. Louis,land_bank,CSV,downloadable,,Direct CSV download of LRA inventory excluding sold/retired.
+St. Louis Vacant Buildings,https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=108,city,MO,St. Louis,registry,API,open_api,,All vacant buildings tracked by Building Division. Live updates 2017-present.
+STL Vacancy Explorer,https://www.stlvacancytools.com/,city,MO,St. Louis,dashboard,interactive_map,public_html,,Interactive viewer aggregating LRA + vacant buildings + violations.
+STL Vacancy Collaborative,https://www.stlvacancy.com/,city,MO,St. Louis,community_list,HTML,public_html,,Community organization tracking vacant lots/buildings.
+St. Louis LRA Property Search,https://www.stlouis-mo.gov/government/departments/sldc/real-estate/lra-owned-property-search.cfm,city,MO,St. Louis,land_bank,HTML,public_html,,Search LRA-owned properties available for sale.
+Chicago Vacant Building Registry,http://ipiweb.cityofchicago.org/vbr/,city,IL,Chicago,registry,HTML,login_required,,Mandatory VBR portal. $250-500 registration fees.
+Chicago Vacant/Abandoned Buildings Violations,https://data.cityofchicago.org/Buildings/Vacant-and-Abandoned-Buildings-Violations/kc9i-wq85,city,IL,Chicago,open_data,Socrata,open_api,,Violations issued against vacant/abandoned buildings.
+Chicago 311 Vacant Buildings Reported,https://data.cityofchicago.org/Service-Requests/311-Service-Requests-Vacant-and-Abandoned-Building/7nii-7srd,city,IL,Chicago,open_data,Socrata,open_api,,All 311 calls reporting vacant/abandoned buildings since 2010. Daily updates.
+Chicago Vacant Buildings by Neighborhood,https://data.cityofchicago.org/Buildings/Vacant-and-Abandoned-Buildings-by-Neighborhood/6enz-k5d6,city,IL,Chicago,open_data,Socrata,open_api,,Aggregate vacant building counts by neighborhood.
+Chicago Vacant Buildings FAQ,https://www.chicago.gov/city/en/depts/bldgs/supp_info/vacant-buildings.html,city,IL,Chicago,code_enforcement,HTML,public_html,,Dept of Buildings vacant property program info.
+Milwaukee Vacant Buildings,https://data.milwaukee.gov/dataset/accelavacantbuilding,city,WI,Milwaukee,registry,Accela,open_api,,VBR dataset extracted daily from Accela. Live + 72hr lag.
+Milwaukee VBR,https://city.milwaukee.gov/DNSPrograms/VBR,city,WI,Milwaukee,registry,HTML,public_html,,Vacant Building Registration program since 2010-01-01.
+Milwaukee Open Data Housing,https://data.milwaukee.gov/group/housing-and-property-information,city,WI,Milwaukee,open_data,catalog,public_html,,Housing & property data group.
+Milwaukee Vacant Properties ArcGIS,https://www.arcgis.com/home/item.html?id=5088b169cd4346a49ec34a63bbfdca45,city,WI,Milwaukee,parcel_gis,ArcGIS,public_html,,Vacant Properties layer.
+Milwaukee RPPF,https://city.milwaukee.gov/DNSPrograms/RPPF,city,WI,Milwaukee,registry,HTML,public_html,,Residential Property Pending Foreclosure registry.
+Indianapolis Abandoned & Vacant Housing,https://data.indy.gov/datasets/abandoned-and-vacant-housing,city,IN,Indianapolis,open_data,ArcGIS,open_api,,Open Indy abandoned/vacant housing dataset.
+Indianapolis Vacant to Vibrant,https://www.indy.gov/activity/vacant-to-vibrant,city,IN,Indianapolis,redevelopment,HTML,public_html,,2000 Homes initiative dashboard.
+IndyGIS Assessor,https://maps.indy.gov/AssessorPropertyCards/,county,IN,Marion,assessor,HTML,public_html,,Marion County assessor property cards.
+Cincinnati VBML Cases Map,https://cagismaps.hamilton-co.org/cincinnatiServices/CodeEnforcement/CincinnatiVacantBuildingCases/,city,OH,Cincinnati,registry,ArcGIS,public_html,,Vacant Building Maintenance License (VBML) case map.
+Cincinnati VBML Program,https://www.cincinnati-oh.gov/buildings/property-maintenance-code-enforcement/vacated-condemned-buildings-vbml/,city,OH,Cincinnati,code_enforcement,HTML,public_html,,Vacated & Condemned Buildings VBML.
+Cincinnati Vacant Foreclosed Property Registration,https://www.cincinnati-oh.gov/buildings/property-maintenance-code-enforcement/vacant-foreclosed-property-registration-vfpr/,city,OH,Cincinnati,registry,HTML,public_html,,VFPR program.
+Genesee County Land Bank,https://www.thelandbank.org/activateland.asp,county,MI,Genesee,land_bank,HTML,public_html,,Flint-area land bank since 2004.
+Flint Property Portal,https://www.thelandbank.org/,city,MI,Flint,land_bank,interactive_map,public_html,,Real-time inventory of every Flint property.
+Michigan State Land Bank,https://www.michigan.gov/leo/bureaus-agencies/landbank,state,MI,,land_bank,HTML,public_html,,Statewide land bank authority.
+Gary IN City Properties,https://www.gary.gov/redevelopment/city-properties,city,IN,Gary,redevelopment,HTML,public_html,,Gary Redevelopment Commission listings.
+Baltimore Vacant Building Notices,https://data.baltimorecity.gov/datasets/baltimore::vacant-building-notices,city,MD,Baltimore,registry,ArcGIS,open_api,,Vacant Building Notices. Daily updates since 2011.
+Baltimore Open Bid List V2V,https://data.baltimorecity.gov/maps/baltimore::open-bid-list-vacants-to-value,city,MD,Baltimore,redevelopment,ArcGIS,open_api,,Vacants to Value open bid list.
+Baltimore V2V Resources,https://www.baltimorecity.gov/dhcd/vacants-reduction-plan/vacant-property-resources-and-information,city,MD,Baltimore,redevelopment,HTML,public_html,,Vacants Reduction Plan resources.
+Baltimore V2V Property Search,https://dhcd.baltimorecity.gov/property-search-map-faq,city,MD,Baltimore,registry,interactive_map,public_html,,V2V Property Search Map.
+Baltimore County Vacant Properties,https://opendata.baltimorecountymd.gov/datasets/BC-GIS::vacant-properties/explore,county,MD,Baltimore,registry,ArcGIS,open_api,,Baltimore County vacant properties dataset.
+Baltimore Heritage Vacant Buildings 101,https://baltimoreheritage.github.io/vacant-buildings-101/guides/counting-vacants/,city,MD,Baltimore,research,HTML,public_html,,Civic guide to interpreting Baltimore's vacant building data.
+DC Vacant & Blighted Building Footprints,https://opendata.dc.gov/datasets/vacant-and-blighted-building-footprints/about,city,DC,Washington,registry,ArcGIS,open_api,,Vacant/blighted properties from ITSPE with footprints.
+DC ITSPE Vacant & Blighted Extract,https://catalog.data.gov/dataset/integrated-tax-system-public-extract-vacant-and-blighted,city,DC,Washington,registry,CSV,downloadable,,Integrated Tax System Public Extract.
+DC Vacant Buildings Enforcement,https://dob.dc.gov/vacantbuildings,city,DC,Washington,code_enforcement,HTML,public_html,,DC Dept of Buildings vacant building enforcement.
+DC Open Data Vacant Tag,https://opendata.dc.gov/search?tags=vacant,city,DC,Washington,open_data,catalog,public_html,,DC open data tagged 'vacant.'
+Atlanta Vacant Property Registry,https://www.atlantapd.org/services/register-a-vacant-property,city,GA,Atlanta,registry,HTML,public_html,,APD Code Enforcement vacant property registry. $100/year/property.
+Metro Atlanta Land Bank,https://metroatlantalandbank.org/,city,GA,Atlanta,land_bank,HTML,public_html,,Fulton County/City of Atlanta Land Bank Authority.
+Metro Atlanta Land Bank Portal,https://public-fcca.epropertyplus.com/,city,GA,Atlanta,land_bank,ePropertyPlus,public_html,,Public ePropertyPlus portal.
+GALBA Georgia Land Banks,https://www.galbaonline.com/,state,GA,,land_bank,HTML,public_html,,Georgia Association of Land Bank Authorities.
+Fulton County Abandoned/Vacant Form,https://www.fultoncountyga.gov/-/media/Forms/Police-Forms/Abandoned-and-Vacant-Building-App-Final.ashx,county,GA,Fulton,registry,PDF,public_html,,Fulton County registration form.
+Birmingham Land Bank Authority,https://birminghamlandbank.org/,city,AL,Birmingham,land_bank,HTML,public_html,,Established 2014.
+Birmingham Land Bank Programs,https://birminghamlandbank.org/programs/,city,AL,Birmingham,land_bank,HTML,public_html,,Programs incl side-yard sales.
+Jefferson County AL Land Bank,https://jeffersoncountylandbank.org/,county,AL,Jefferson,land_bank,HTML,public_html,,Countywide land bank.
+FightBlightBham,https://www.fightblightbham.com/city-government/birmingham-land-bank-authority/,city,AL,Birmingham,community_blog,HTML,public_html,,Citizen-resource guide.
+New Orleans NORA Uncommitted Inventory,https://data.nola.gov/Housing-Land-Use-and-Blight/NORA-Uncommitted-Property-Inventory/5ktx-e9wc,city,LA,New Orleans,land_bank,Socrata,open_api,,Primary NORA vacant property inventory.
+New Orleans NORA Inventory Map,https://data.nola.gov/Housing-Land-Use-and-Blight/NORA-Uncommitted-Property-Inventory-Map/cx4b-64ru,city,LA,New Orleans,land_bank,Socrata,interactive_map,,Map view.
+New Orleans BlightStatus Demolitions,https://data.nola.gov/Housing-Land-Use-and-Blight/BlightStatus-Demolitions/e3wd-h7q2,city,LA,New Orleans,registry,Socrata,open_api,,Demolition records.
+NORA Property Viewer,https://noraproperty.nola.gov/map/,city,LA,New Orleans,land_bank,interactive_map,public_html,,Interactive map.
+NOLA Property Viewer,https://property.nola.gov/,city,LA,New Orleans,parcel_gis,HTML,public_html,,Citywide property lookup.
+Empty New Orleans Map,https://prcno.org/empty-new-orleans-explore-web-map/,city,LA,New Orleans,community_list,interactive_map,public_html,,PRC vacant properties map.
+NORA About,https://www.noraworks.org/about/,city,LA,New Orleans,land_bank,HTML,public_html,,NORA overview.
+Jackson MS Blight Elimination,https://jacksonms.gov/blight-elimination/,city,MS,Jackson,redevelopment,HTML,public_html,,City blight elimination program.
+Jackson MS Blight 2nd App List,https://www.jacksonms.gov/document/blight-elimination-2nd-application-property-list/,city,MS,Jackson,registry,PDF,public_html,,Property list for 2nd-round demolitions.
+MS Statewide Abandoned Properties,https://magnoliatribune.com/2024/09/09/city-of-jackson-has-nearly-a-quarter-of-mississippis-abandoned-properties/,state,MS,,registry,HTML,public_html,1800+,~1800 state-owned abandoned properties statewide.
+Dallas Vacant Building Registration,https://www.dawgsinc.com/dallas-tx-vacant-property-ordinances-for-investors-rehabbers-and-realtors/,city,TX,Dallas,registry,HTML,public_html,,Dallas City Code Ch 48B CBD VPR.
+Houston Housing Data Center,https://www.houstontx.gov/housing/research.html,city,TX,Houston,open_data,catalog,public_html,,City of Houston Housing Resource & Data Center.
+HCAD Harris County Appraisal,https://hcad.org/,county,TX,Harris,assessor,HTML,public_html,,Harris County Appraisal District.
+Texas Problem Properties Toolkit,https://law.utexas.edu/wp-content/uploads/sites/11/2015/07/2010-ECDC-ProblemPropertiesTexasToolkit.pdf,state,TX,,research,PDF,public_html,,UT Law toolkit.
+Camden NJ VPR,https://www.camdennj.gov/camdenvpr/,city,NJ,Camden,registry,HTML,public_html,,Camden VPR $500/year/property escalating.
+Camden Abandoned Property Ordinance,https://www.camdennj.gov/wp-content/uploads/2025/03/Chapter-615-Property-Vacant-and-Abandoned-1.pdf,city,NJ,Camden,municipal_code,PDF,public_html,,Ch 615 Property Vacant and Abandoned.
+Newark Office of Vacant & Abandoned Property,https://www.newarknj.gov/618/Office-of-Vacant-and-Abandoned-Property,city,NJ,Newark,code_enforcement,HTML,public_html,,Newark's VAP office.
+Trenton Vacant Property Registration,https://www.trentonnj.org/240/Vacant-Property-Registration,city,NJ,Trenton,registry,HTML,public_html,,Trenton VPR.
+HCDNNJ Abandoned Property List,https://www.hcdnnj.org/index.php?option=com_content&view=article&catid=19:site-content&id=605:abandoned-property-list,state,NJ,,registry,HTML,public_html,,HCDNNJ abandoned property list info.
+NYC Building Vacant Open Unsecured,https://data.cityofnewyork.us/Social-Services/Building-Vacant-Open-Unsecured/br7h-6m8v,city,NY,New York,open_data,Socrata,open_api,,Primary NYC vacant/open/unsecured building dataset.
+NYC HPD Open Data,https://www.nyc.gov/site/hpd/about/open-data.page,city,NY,New York,open_data,catalog,public_html,,HPD vacant buildings/lots data.
+NYC VACANT MAN Dataset,https://data.cityofnewyork.us/Housing-Development/VACANT-MAN/742a-8ifx,city,NY,New York,open_data,Socrata,open_api,,VACANT MAN dataset.
+NYC Vacant Storefronts,https://github.com/NewYorkCityCouncil/vacant_storefronts,city,NY,New York,research,GitHub,public_html,,NYC Council vacant storefronts analysis.
+Rochester NY Vacant Structures Map,https://data.cityofrochester.gov/datasets/city-of-rochester-vacant-structures-vacant-land-and-city-owned-properties,city,NY,Rochester,registry,ArcGIS,open_api,,Rochester vacant structures + vacant land + city-owned.
+Rochester DataROC,https://data.cityofrochester.gov/,city,NY,Rochester,open_data,catalog,public_html,,Rochester open data portal.
+Rochester VBR,https://www.cityofrochester.gov/departments/neighborhood-and-business-development/vacant-building-registry-vbr,city,NY,Rochester,registry,HTML,public_html,,VBR — owners of buildings vacant 60+ days must register (2024).
+Rochester BuildingBlocks,https://www.cityofrochester.gov/departments/neighborhood-and-business-development/buildingblocks,city,NY,Rochester,parcel_gis,interactive_map,public_html,,Advanced property info viewer.
+Syracuse Vacant Properties Open Data,https://data.syr.gov/datasets/c23882a4f7904747ab7a4cab637d912d_0/explore,city,NY,Syracuse,registry,ArcGIS,open_api,,Vacant Properties dataset on Syracuse open data portal.
+Syracuse Vacant Property Registry,https://www.syr.gov/Departments/Code-Enforcement/Periodic-Inspections/Vacant-Property-Registry,city,NY,Syracuse,registry,HTML,public_html,,VPR for owners with exterior code violations.
+Buffalo Demolition,https://www.buffalony.gov/450/Demolition,city,NY,Buffalo,code_enforcement,HTML,public_html,,City demolition program — historic average 458 demos/year (2000-2013).
+Buffalo PRS Demolition by Neglect,https://www.preservationready.org/SortByZip/DemolitionByNeglect,city,NY,Buffalo,community_list,HTML,public_html,2188,Preservation-Ready Sites: 2188 buildings tracked.
+Buffalo PPG Vacant Housing Brief,https://ppgbuffalo.org/files/documents/data-demographics-history/demographics_and_data/datademographicshistory-_vacant_and_abandoned_housing_in_buffalo.pdf,city,NY,Buffalo,research,PDF,public_html,,PPG 2014 brief on vacant/abandoned housing.
+Phoenix Vacant Property Registry,https://www.phoenix.gov/administration/departments/nsd/blight-removal/code-enforcement/vacant-property-registry.html,city,AZ,Phoenix,registry,HTML,public_html,,VPR effective 2024-01-01 via myPHX311. $500-2500 non-compliance.
+Phoenix VPR Handout PDF,https://www.phoenix.gov/content/dam/phoenix/citymanagersite/documents/Vacant%20Property%20Registry%20Handout%20(English)%202024%2003-11.pdf,city,AZ,Phoenix,registry,PDF,public_html,,Official VPR program handout.
+Kansas City Land Bank Open Data,https://data.kcmo.org/stories/s/Land-Bank-and-Homesteading-Authority/t82c-gg6n/,city,MO,Kansas City,land_bank,Socrata,open_api,,KC Land Bank + Homesteading Authority data.
+Kansas City VPR,https://www.kcmo.gov/city-hall/departments/neighborhoods-housing-services/neighborhood-preservation/vacant-property-registration,city,MO,Kansas City,registry,HTML,public_html,17856,~17856 vacant properties citywide (2023).
+Kansas City Land Bank Portal,https://public-kclb.epropertyplus.com/,city,MO,Kansas City,land_bank,ePropertyPlus,public_html,,Public ePropertyPlus inventory.
+Missouri Land Banks Directory,https://molandbanks.com/,state,MO,,land_bank,HTML,public_html,,Statewide directory.
+Louisville Abandoned Urban Property,https://louisville-metro-opendata-lojic.hub.arcgis.com/documents/3410e35e77064ba9b9eac2106885df85,city,KY,Louisville,registry,ArcGIS,open_api,,Annual Abandoned Urban Property designation list.
+Louisville Vacant & Public Property Data Group,https://data.louisvilleky.gov/group/vacant-and-public-property-administration,city,KY,Louisville,open_data,catalog,public_html,,Dataset group for vacant/public property.
+Louisville VAP Strategies,https://louisvilleky.gov/government/community-development/vacant-and-abandoned-property-strategies,city,KY,Louisville,redevelopment,HTML,public_html,,VAP strategies & resources.
+LOJIC Open Data,https://data.lojic.org/search?tags=abandoned+properties,city,KY,Louisville,open_data,ArcGIS,public_html,,LOJIC datasets.
+Las Vegas Abandoned Property Registry,https://www.lasvegasnevada.gov/Business/Planning-Zoning/Code-Enforcement/Abandoned-Property-Registry,city,NV,Las Vegas,registry,HTML,public_html,,City of Las Vegas Abandoned Property Registry.
+Columbia SC Vacant Building Ordinance,https://columbiapd.net/code-enforcement/vacant-building-ordinance/,city,SC,Columbia,code_enforcement,HTML,public_html,,Columbia PD Code Enforcement — vacant building program.
+Charleston SC GIS,https://gis.charleston-sc.gov/document-search/,city,SC,Charleston,parcel_gis,HTML,public_html,,Charleston SC GIS.
+Charleston County SC Records,https://sc-charleston.publicaccessnow.com/,county,SC,Charleston,assessor,HTML,public_html,,Charleston County real property records.
+Huntington WV Vacant Building Registry,https://wvpublic.org/huntington-creates-vacant-building-registry/,city,WV,Huntington,registry,HTML,public_html,,Huntington VBR — 30+ day vacancy registration.
+Wheeling WV Anti-Blight,https://www.wheelingwv.gov/preventing-or-eliminating-slums-or-blight,city,WV,Wheeling,redevelopment,HTML,public_html,,Wheeling slum/blight elimination program.
+WV BAD Buildings,https://badbuildings.wvu.edu/resources/tools/prevent-blight,state,WV,,research,HTML,public_html,,WVU BAD Buildings program.
+WV LEAP Legal Toolkit,https://wvleap.wvu.edu/files/d/cf7aade6-10ca-4df7-b154-6956dbad3b85/from-liability-to-viability.pdf,state,WV,,research,PDF,public_html,,Legal toolkit.
+Charleston WV BAD Buildings,https://www.charlestonwv.gov/sites/default/files/non-departmental-documents/2019-03/WSNAWestSideBADBuildingsFINALReportMay252018.pdf,city,WV,Charleston,research,PDF,public_html,,West Side BAD Buildings final report.
+LoopNet Commercial,https://www.loopnet.com/,national,,,commercial_listings,HTML,public_html,,Largest CRE listing site. Filter for distressed/abandoned/shell/as-is/value-add.
+Crexi Commercial,https://www.crexi.com/,national,,,commercial_listings,HTML,public_html,,CRE listing competitor — strong on auctions/distressed.
+Auction.com,https://www.auction.com/,national,,,foreclosure,HTML,public_html,,National foreclosure/REO/auction listings.
+Zillow Foreclosures,https://www.zillow.com/foreclosures/,national,,,foreclosure,HTML,public_html,,Foreclosure search.
+Realtor.com,https://www.realtor.com/,national,,,residential_listings,HTML,public_html,,Filter by foreclosure status.
+Norristown Blighted Property Removal Committee,https://www.norristown.org/299/Blighted-Property-Removal-Committee,city,PA,Norristown,code_enforcement,HTML,public_html,,Designates/certifies blighted property under PA Urban Redevelopment Law.
+Norristown Abandoned Real Property Ord,https://ecode360.com/33560895,city,PA,Norristown,registry,HTML,public_html,,Foreclosure/vacancy registration program.
+Norristown Code Enforcement,https://www.norristown.org/180/Buildings-Code-Enforcement,city,PA,Norristown,code_enforcement,HTML,public_html,,Dept of Buildings & Code Enforcement.
+Norristown Property Maintenance Code,https://norristown.org/DocumentCenter/View/4693/2021-Norristown-Property-Maintenance-and-Building-Code,city,PA,Norristown,municipal_code,PDF,public_html,,2021 Norristown Property Maintenance and Building Code.
+Norristown SeeClickFix,https://en.seeclickfix.com/norristown/categories/blighted_property,city,PA,Norristown,community_list,HTML,public_html,,Crowdsourced 311 blighted property reports.
+Pottstown Borough Land Bank,https://www.pottstown.org/432/Land-Bank-Board,city,PA,Pottstown,land_bank,HTML,public_html,,PBLB established 2017-11-13.
+Pottstown Land Bank Ord,https://ecode360.com/32967165,city,PA,Pottstown,municipal_code,HTML,public_html,,Borough Land Bank ordinance.
+Pottstown Blighted Property Review Committee,https://www.pottstown.org/202/Blighted-Property-Review-Committee,city,PA,Pottstown,code_enforcement,HTML,public_html,,Identifies/determines blighted properties.
+Bensalem Vacant Property Review Board,https://library.municode.com/pa/bensalem/codes/code_of_ordinances?nodeId=PTIADLE_CH45VAPRREBO,city,PA,Bensalem,code_enforcement,HTML,public_html,,Ch 45 Vacant Property Review Board.
+Newtown Township Codes,https://newtownpa.gov/newtown-township-department-of-codes-zoning/,city,PA,Newtown,code_enforcement,HTML,public_html,,Codes & Zoning Dept. Small affluent township.
+Bucks County RDA Blight Program,https://www.bcrda.com/blight-abatement-program/,county,PA,Bucks,redevelopment,HTML,public_html,,BCRDA Blight Abatement Program. Bristol Township + Morrisville participate.
+Bucks County Tax Claim Bureau,https://www.buckscounty.gov/323/Tax-Claim-Bureau,county,PA,Bucks,tax_records,HTML,public_html,,Upset/Judicial/Repository sales.
+Bucks County Repository Sales,https://www.buckscounty.gov/2107/Repository-Sales,county,PA,Bucks,tax_records,HTML,public_html,,Repository sale — parcels available for $500+.
+Bucks County Property Tax Inquiry,https://buckspa.devnetwedge.com/,county,PA,Bucks,assessor,HTML,public_html,,Bucks parcel/assessment search.
+Bucks County Sheriff Sales,https://www.buckscounty.gov/579/Sheriff-Sales,county,PA,Bucks,foreclosure,HTML,public_html,,Sheriff foreclosure sales.
+Montgomery County PA Tax Claim Bureau,https://www.montgomerycountypa.gov/569/Tax-Claim-Bureau,county,PA,Montgomery,tax_records,HTML,public_html,,Tax claim bureau.
+Montgomery County PA Upset Sale,https://www.montgomerycountypa.gov/2331/Upset-Sale,county,PA,Montgomery,tax_records,HTML,public_html,,Annual Upset Sale.
+Montgomery County PA Judicial Sale,https://www.montgomerycountypa.gov/2330/Judicial-Sale,county,PA,Montgomery,tax_records,HTML,public_html,,Judicial Sale.
+PA DCED Blight & Land Banks,https://dced.pa.gov/local-government/blight-and-land-banks/,state,PA,,state_program,HTML,public_html,,PA land bank + blight resources.
+PA Housing Alliance Land Bank Guide,https://housingalliancepa.org/wp-content/uploads/LandBankResourceGuideREVsinglepages.pdf,state,PA,,research,PDF,public_html,,PA Land Bank Resource Guide.
+Coatesville RDA,https://www.coatesville.org/wp-content/uploads/2023/07/RDA-Bylaws-Amended-May-20-2013.pdf,city,PA,Coatesville,redevelopment,PDF,public_html,,Coatesville RDA bylaws.
+Coatesville Downtown Revitalization Plan,https://2ndcenturyalliance.org/wp-content/uploads/2021/12/Downtown-Coatesville-Revitalization-Plan-and-ES.pdf,city,PA,Coatesville,redevelopment,PDF,public_html,,Coatesville plan with 'eliminate blight' as objective #1.
+Delaware County Land Bank,https://whyy.org/articles/delaware-county-pennsylvania-land-bank-abandoned-properties/,county,PA,Delaware,land_bank,HTML,public_html,,New DelCo land bank.
+Chester County Records Search,https://www.chesco.org/431/Records-Search,county,PA,Chester,assessor,HTML,public_html,,Chester County records search.
+Chester County Recorder of Deeds,https://www.chesco.org/169/Recorder-of-Deeds,county,PA,Chester,land_records,HTML,public_html,,Eagle Web property records 1960+.
+Cherry Hill NJ VPR,https://www.chnj.gov/1109/Foreclosed-Abandoned-Vacant-Property-Reg,city,NJ,Cherry Hill,registry,HTML,public_html,,VPR under Ord 2023-4. $500/yr + $2000 vacancy surcharge.
+Cherry Hill NJ Ord 2023-4 PDF,https://chnj.gov/DocumentCenter/View/13810/Ordinance-2023-4?bidId=,city,NJ,Cherry Hill,municipal_code,PDF,public_html,,Cherry Hill VPR ordinance text.
+NJ Vacant Property Tools Guidebook,https://www.njlm.org/DocumentCenter/View/274/Beyond-Code-Enforcement-Understanding-and-Using-Vacant-and-Abandoned-Property-Tools-in-Your-Municipality-PDF,state,NJ,,research,PDF,public_html,,NJ League of Municipalities guide.
+HCDNNJ Abandoned Properties Guidebook,https://www.hcdnnj.org/assets/documents/PUB%20AbandonedPropertiesGuidebookFINAL.doc,state,NJ,,research,DOC,public_html,,Restoring Problem Properties guide.
+Jersey City Vacant Property Inventory,https://www.jerseycitynj.gov/cityhall/housinganddevelopment/housingpreservation/vacantbuildinginventory,city,NJ,Jersey City,registry,HTML,public_html,,Jersey City vacant building inventory.
+Miami Register Vacant/Abandoned,https://www.miami.gov/My-Home-Neighborhood/Register-Vacant-or-Abandoned-Structure-or-Lot,city,FL,Miami,registry,HTML,public_html,,Registration for vacant/blighted/abandoned structures + empty lots.
+Miami-Dade Open Vacant Abandoned,https://www.miamidade.gov/building/standards/residential-properties-open-vacant-abandoned.asp,county,FL,Miami-Dade,registry,HTML,public_html,,Miami-Dade standards.
+Jacksonville Foreclosure Property Registry,https://www.jacksonville.gov/departments/neighborhoods/neighborhoods-property-administration/foreclosure-property-registry,city,FL,Jacksonville,registry,HTML,public_html,,Foreclosure Property Registry est 2010. 2018: all vacant. $250/yr via Hera.
+Jacksonville Municipal Code Compliance,https://www.jacksonville.gov/departments/neighborhoods/municipal-code-compliance,city,FL,Jacksonville,code_enforcement,HTML,public_html,,Property Safety & Maintenance Code enforcement.
+Tampa Condemned Properties,https://www.tampa.gov/neighborhood-enhancement/info/properties-under-demolition-review,city,FL,Tampa,registry,HTML,public_html,,City list of condemned properties.
+St Johns County FL VPR,https://www.sjcfl.us/vacant-property-registry/,county,FL,St Johns,registry,HTML,public_html,,St Johns County VPR.
+Hernando County FL VPR,https://www.hernandocounty.us/departments/departments-a-e/code-enforcement/vacant-property-registration,county,FL,Hernando,registry,HTML,public_html,,Hernando County VPR.
+Fort Lauderdale VPR,https://www.fortlauderdale.gov/government/departments-a-h/development-services/community-enhancement-and-compliance/administrative-services/application-programs,city,FL,Fort Lauderdale,registry,HTML,public_html,,Mandatory registration for vacant/abandoned + free voluntary vacant lots.
+Broward County FL Abandoned/Vacant,https://www.broward.org/Planning/CodeEnforcement/Pages/VacantProp.aspx,county,FL,Broward,registry,HTML,public_html,,Ordinance 2009-80 abandoned/vacant property registration.
+Lauderdale Lakes FL Vacant,https://www.lauderdalelakes.org/530/AbandonedVacant-Properties,city,FL,Lauderdale Lakes,registry,HTML,public_html,,City abandoned/vacant property registration.
+Orlando Vacant Lots Inventory,https://www.orlando.gov/Our-Government/Records-and-Documents/Financial/Vacant-Lots-Inventory,city,FL,Orlando,registry,HTML,public_html,,Inventory of city-owned vacant lots.
+Abandoned Florida,https://abandonedfl.com/,state,FL,,community_blog,HTML,public_html,,Photo blog of abandoned sites across FL.
+Pinellas County Property Appraiser,https://www.pcpao.gov/quick-search,county,FL,Pinellas,assessor,HTML,public_html,,St Pete area parcel/owner/assessment search.
+Minneapolis Vacant & Condemned Dashboard,https://www.minneapolismn.gov/government/government-data/datasource/vacant-condemned-property-dashboard/,city,MN,Minneapolis,registry,interactive_map,public_html,,Searchable dashboard of vacant & condemned properties.
+Minneapolis VBR,https://www.minneapolismn.gov/business-services/licenses-permits-inspections/housing-code/vacant-building-registration/,city,MN,Minneapolis,registry,HTML,public_html,,VBR program — $7228.70 annual fee. PVE after 2 years.
+St Paul Vacant Buildings Open Data,https://information.stpaul.gov/Buildings-Housing-Economic-Development/Vacant-Buildings-Map/rfbb-x7za,city,MN,St Paul,registry,Socrata,open_api,,Vacant Buildings dataset.
+St Paul Vacant Buildings Map,https://information.stpaul.gov/maps/284c28f3acea45bd8a513f4d80bb0e67,city,MN,St Paul,registry,interactive_map,public_html,,Public map of vacant buildings.
+St Paul Vacant Buildings Program,https://www.stpaul.gov/departments/safety-inspections/rent-buy-sell-property/vacant-buildings/vacant-building-program,city,MN,St Paul,code_enforcement,HTML,public_html,,Program documentation.
+Denver Neglected & Derelict Buildings,https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Community-Planning-and-Development/Plan-Review-Permits-and-Inspections/Construction-Inspections/Neglected-and-Derelict-Buildings,city,CO,Denver,registry,HTML,public_html,160+,Denver CPD registry. Added 160 properties in 2024.
+Colorado Springs Dilapidated Buildings,https://codelibrary.amlegal.com/codes/coloradospringsco/latest/coloradosprings_co/0-0-0-7546,city,CO,Colorado Springs,municipal_code,HTML,public_html,,Section 6.12.606 dilapidated buildings registration.
+Colorado Springs URA,https://www.csura.org/definitions.html,city,CO,Colorado Springs,redevelopment,HTML,public_html,,Urban Renewal Authority blight definitions.
+Tulsa County Sheriff Property Auctions,https://tcso.org/resources/property-auctions/,county,OK,Tulsa,foreclosure,HTML,public_html,,Sheriff's tax-delinquent auctions.
+Toledo Vacant Property Registration,https://toledo.oh.gov/residents/neighborhoods/revitalization/vacant-lots-buildings/vacant-residential-registration,city,OH,Toledo,registry,HTML,public_html,,Mandatory VPR.
+Lucas County OH Land Bank,https://www.lucascountylandbank.org/,county,OH,Lucas,land_bank,HTML,public_html,,Toledo-area blight elimination.
+Akron Vacant Building Registration,https://www.akronohio.gov/departments/neighborhood_assistance/vacant_building_registration.php,city,OH,Akron,registry,HTML,public_html,,Mandatory VBR + vacant building plan.
+Mahoning County Land Bank,https://mahoninglandbank.com/,county,OH,Mahoning,land_bank,HTML,public_html,,Youngstown-area land bank.
+Richland County OH Land Bank,https://www.richlandcountyoh.gov/departments/landbank,county,OH,Richland,land_bank,HTML,public_html,,Mansfield-area land bank.
+Montgomery County OH Land Bank,https://mclandbank.com/,county,OH,Montgomery,land_bank,HTML,public_html,1800+,Dayton-area land bank. ~1800 demos since 2011.
+Paterson NJ VPR,https://www.patersonnj.gov/eGov/apps/document/center.egov?view=item&id=5718,city,NJ,Paterson,registry,HTML,public_html,,Foreclosure + Vacant Property Registration. $2000/year per structure.
+Paterson NJ Vacant Buildings Code,https://ecode360.com/8551586,city,NJ,Paterson,municipal_code,HTML,public_html,,Paterson vacant buildings ordinance.
+Atlantic City NJ Abandoned Property,https://ecode360.com/30687709,city,NJ,Atlantic City,registry,HTML,public_html,,AC abandoned property ordinance.
+Allentown PA BPRC,https://ecode360.com/36433335,city,PA,Allentown,code_enforcement,HTML,public_html,,Blighted Property Review Committee (Article IV).
+Allentown PA Abandoned Real Property,https://ecode360.com/36434985,city,PA,Allentown,registry,HTML,public_html,,Foreclosure inspection + 10-day registration.
+Allentown Blight Certification,https://www.allentownpa.gov/en-us/Government/Departments/Community-Economic-Development/Building-Standards-and-Safety/Property-Maintenance-Enforcement-Compliance/Blight-Certification,city,PA,Allentown,registry,HTML,public_html,,Blight Certification process.
+Bethlehem PA RDA Blight,https://www.bethlehemrda.com/blight,city,PA,Bethlehem,redevelopment,HTML,public_html,,Primary blight authority — multi-step certification.
+Bethlehem PA Article 149 BPRC,https://devarchive.bethlehem-pa.gov/ordinance/articles/ARTICLE0149.html,city,PA,Bethlehem,code_enforcement,HTML,public_html,,Article 149 BPRC.
+Bethlehem PA Abandoned Article 1732,https://devarchive.bethlehem-pa.gov/ordinance/articles/article1732.html,city,PA,Bethlehem,registry,HTML,public_html,,Article 1732 Abandoned Real Property.
+Bethlehem Township PA Ch 187,https://ecode360.com/31805573,city,PA,Bethlehem Township,registry,HTML,public_html,,Township Ch 187 registration.
+Pittsburgh Land Bank,https://pghlandbank.org/,city,PA,Pittsburgh,land_bank,HTML,public_html,270+,Created 2014. ~270 condemned + ~5000 vacant lots.
+Pittsburgh Land Bank Cost of Blight,https://pghlandbank.org/wp-content/uploads/2022/03/Cost-of-Blight-2.pdf,city,PA,Pittsburgh,research,PDF,public_html,,2022 Cost of Blight report.
+Allegheny County VPRP,https://www.alleghenycounty.us/Projects-and-Initiatives/Economic-Development/Residents-Housing-Support/Vacant-Property-Recovery-Program,county,PA,Allegheny,redevelopment,HTML,public_html,,VPRP — 91/130 municipalities participate. 3+ yr delinquency.
+South Bend V&A Properties,https://southbendin.gov/initiative/vacant-abandoned-properties/,city,IN,South Bend,registry,HTML,public_html,,VPR — 90+ days + 30+ days unaddressed code violation.
+South Bend All V&A Open Data,https://data-southbend.opendata.arcgis.com/maps/all-vacant-and-abandoned-properties,city,IN,South Bend,open_data,ArcGIS,open_api,,Full V&A properties map and dataset.
+Bangor ME Vacant Property Ord,https://ecode360.com/6893512,city,ME,Bangor,registry,HTML,public_html,,Ch 223 — 60+ day vacancy triggers $250 registration.
+Lewiston ME Lead/Multifamily Registry,https://safeguardproperties.com/bill-aims-to-target-blighted-property-problem-in-maine-cities/,city,ME,Lewiston,registry,HTML,public_html,,Voluntary registry for 3+ unit buildings.
+ME Municipal Authority Abandoned,https://www.mainelegislature.org/legis/statutes/30-a/title30-Asec3106-B.html,state,ME,,municipal_code,HTML,public_html,,Title 30-A §3106-B.
+Manchester NH Code Enforcement,https://www.manchesternh.gov/Departments/Planning-and-Comm-Dev/Code-Enforcement,city,NH,Manchester,code_enforcement,HTML,public_html,,Code Enforcement Dept.
+Nashua NH Code Enforcement,https://www.nashuanh.gov/284/Code-Enforcement,city,NH,Nashua,code_enforcement,HTML,public_html,,Code Enforcement Department.
+Wilmington DE VPR Program,https://www.wilmingtonde.gov/residents/vacant-property-registration-program,city,DE,Wilmington,registry,HTML,public_html,,VPR via L&I. $500 criminal penalty.
+Wilmington DE Vacant Property Ord PDF,https://www.wilmingtoncitycouncil.com/wp-content/uploads/2021/02/0034-Ordinance-to-Amend-Chapter-4-Vacant-Properties-Registration-002.pdf,city,DE,Wilmington,municipal_code,PDF,public_html,,Ch 4 Vacant Properties Registration ordinance.
+Wilmington Neighborhood Conservancy Land Bank,https://wilmingtonlandbank.org/,city,DE,Wilmington,land_bank,HTML,public_html,,WNCLB returns vacant/dilapidated/abandoned properties.
+New Castle County DE VPR,https://www.newcastlede.gov/1098/Vacant-Property-Registration,county,DE,New Castle,registry,HTML,public_html,,Countywide VPR.
+New Castle County Vacant Spaces to Livable Places,https://www.newcastlede.gov/1762/Vacant-Spaces-to-Livable-Places,county,DE,New Castle,redevelopment,HTML,public_html,,Vacant Spaces to Livable Places.
+Cedar Rapids VPR,https://www.cedar-rapids.org/local_government/public_records/index.php,city,IA,Cedar Rapids,registry,HTML,public_html,,VPR — 6+ months unoccupied/unsecured.
+Des Moines VBR,https://www.axios.com/local/des-moines/2022/10/03/des-moines-launch-vacant-property-registry,city,IA,Des Moines,registry,HTML,public_html,,Des Moines VBR launched 2022. $750+ non-compliance fines.
+Augusta GA Land Bank,https://aglba.org/documents/,city,GA,Augusta,land_bank,HTML,public_html,,AGLBA.
+Augusta Land Bank Listing PDF,https://www.augustaga.gov/DocumentCenter/View/6089/Land-Bank-Authority-Properties-Listing_Public,city,GA,Augusta,land_bank,PDF,public_html,,Public listing of AGLBA properties.
+Macon-Bibb County Land Bank,https://maconlandbank.org/,county,GA,Bibb,land_bank,HTML,public_html,,Established 1996.
+Chatham Savannah Land Bank,https://www.savannahga.gov/485/Land-Bank-Authority,county,GA,Chatham,land_bank,HTML,public_html,,Savannah-area land bank.
+GA Land Banks Resource Guide,https://communityprogress.org/wp-content/uploads/2022/09/2022-09-Resource-Guide-for-Georgia-Land-Banks.pdf,state,GA,,research,PDF,public_html,,2022 Resource Guide.
+Mobile AL Vacant Structure Registry,https://mynbc15.com/news/local/vacant-building-owners-in-mobile-must-register-and-secure-properties-under-new-ordinance,city,AL,Mobile,registry,HTML,public_html,,City vacant structure registry. Hank Aaron Loop downtown.
+Mobile Neighborhood Renewal,https://www.cityofmobile.gov/departments/neighborhood-development/neighborhood-development-programs/neighborhood-renewal-program/,city,AL,Mobile,redevelopment,HTML,public_html,,Mobile neighborhood renewal.
+Montgomery AL Blight,https://www.wsfa.com/2022/03/31/montgomery-seeks-blight-ordinance-dilapidated-buildings/,city,AL,Montgomery,news,HTML,public_html,,Montgomery proposed land bank + SB 335.
+Rockford IL VFPR,https://www.rockfordil.gov/454/Register-a-Vacant-Foreclosing-Property,city,IL,Rockford,registry,HTML,public_html,,Vacant & Foreclosing Property Registry.
+Saginaw County MI Land Bank,https://www.saginawcountymi.gov/departments/treasurer/land-bank/,county,MI,Saginaw,land_bank,HTML,public_html,,Saginaw County Land Bank.
+Saginaw County Land Bank ePropertyPlus,https://public-sclb.epropertyplus.com/,county,MI,Saginaw,land_bank,ePropertyPlus,public_html,,Public Saginaw inventory.
+Ingham County Land Bank (Lansing),https://inghamlandbank.org/properties,county,MI,Ingham,land_bank,HTML,public_html,500+,Lansing-area land bank.
+MI Blight Elimination Program,https://www.michigan.gov/leo/bureaus-agencies/landbank,state,MI,,state_program,HTML,public_html,,$150M+ statewide Blight Elimination Program 2022-2026.
+State Land Bank MI Property Search,https://public-mlb.epropertyplus.com/landmgmtpub/app/base/propertySearch,state,MI,,land_bank,ePropertyPlus,public_html,,Statewide SLBA property search.
+Wichita Vacant Lot Inventory,https://www.wichita.gov/1619/Vacant-Lot-Inventory,city,KS,Wichita,registry,HTML,public_html,,2022 inventory + GIS map.
+Wichita Land Bank,https://www.wichita.gov/298/Wichita-Land-Bank,city,KS,Wichita,land_bank,HTML,public_html,,Established 2021.
+Topeka Land Bank,https://www.topeka.org/government/boards-commissions/topeka-land-bank/,city,KS,Topeka,land_bank,HTML,public_html,,Topeka Land Bank.
+Topeka VPR Ord,https://topeka-ordinances.s3.amazonaws.com/2023/20464-Amending_TMC_Chapter_8.65_concerning_Vacant_Property_Registration.pdf,city,KS,Topeka,registry,PDF,public_html,,TMC Ch 8.65 VPR ordinance.
+Wyandotte County KS / KCK Vacant Property,https://www.wycokck.org/Departments/Neighborhood-Resource-Center/Property-Maintenance-Compliance/Register-a-Vacant-Property,city,KS,Kansas City KS,registry,HTML,public_html,,Wyandotte County / KCK vacant property registration.
+Pine Bluff Urban Renewal,https://www.thv11.com/article/news/local/pine-bluff/pine-bluff-urban-renewal-agency-demolishing-neglected-homes-hopes-to-build-up-the-city/91-3d6ece74-d070-4e0c-aaa2-b4af3776804f,city,AR,Pine Bluff,redevelopment,HTML,public_html,,URA formed 2017. 5/8-cent sales tax funding.
+Pine Bluff Proposed VPR,https://www.arkansasonline.com/news/2021/may/13/anti-blight-proposal-gets-committees-ok/,city,AR,Pine Bluff,registry,HTML,public_html,,Proposed VPR ordinance — first in AR.
+AR Commissioner of State Lands,https://www.cosl.org/Home/Search,state,AR,,tax_records,HTML,public_html,,Statewide tax-delinquent search.
+Knoxville Blighted Property,https://www.knoxvilletn.gov/services/neighborhood_services/blighted_property,city,TN,Knoxville,code_enforcement,HTML,public_html,,Blighted property reporting via 311.
+Knoxville Homemakers Program,https://www.knoxvilletn.gov/government/city_departments_offices/housing_and_neighborhood_development/homemakers_program,city,TN,Knoxville,redevelopment,HTML,public_html,,Vacant lots + substandard structures for sale.
+Knox County TN Land Bank,https://knoxadf.com/land-bank/,county,TN,Knox,land_bank,HTML,public_html,,Knox County land bank.
+Chattanooga Land Bank Authority,https://chattanooga.gov/government/economic-development/chattanooga-land-bank-authority,city,TN,Chattanooga,land_bank,HTML,public_html,,CLBA returns vacant/underused properties.
+TN Property Viewer,https://tnmap.tn.gov/assessment/,state,TN,,parcel_gis,interactive_map,public_html,,Statewide TN parcel viewer.
+Jackson MI VPR,https://www.cityofjackson.org/339/Foreclosed-Vacant-Abandoned-Property-Reg,city,MI,Jackson,registry,HTML,public_html,,Jackson MI Foreclosed/Vacant/Abandoned Property Registry.
+Grand Rapids Land Bank Authority,https://growgr.grandrapidsmi.gov/Boards-and-Authorities/Grand-Rapids-Land-Bank-Authority,city,MI,Grand Rapids,land_bank,HTML,public_html,,GRLBA manages vacant/abandoned/foreclosed/blighted real property.
+Grand Traverse County Land Bank,https://www.gtcountymi.gov/660/Land-Bank-Authority,county,MI,Grand Traverse,land_bank,HTML,public_html,,Traverse City area land bank. Tax-foreclosure acquisitions.
+Grand Traverse Land Bank Available Properties,https://www.gtcountymi.gov/1615/Properties-Available-For-Sale,county,MI,Grand Traverse,land_bank,HTML,public_html,,Current GT County Land Bank properties for sale.
+Saginaw Building & Code Enforcement,https://www.saginaw-mi.com/168/Building-and-Code-Enforcement,city,MI,Saginaw,code_enforcement,HTML,public_html,,Catalogs abandoned/fire-damaged/neglect properties.
+Saginaw Area GIS,https://www.sagagis.org/,county,MI,Saginaw,parcel_gis,ArcGIS,public_html,,Saginaw-area GIS authority.
+MSHDA Saginaw Blight Grant,https://www.saginawfuture.com/news-&-resources/p/item/25265/mshda-awards-36-million-for-blight-elimination-500000-for-saginaw,city,MI,Saginaw,redevelopment,HTML,public_html,,$500k MSHDA blight elimination grant.
+MI State Blight Grant Program,https://www.michigan.gov/whitmer/news/press-releases/2022/09/30/whitmer-announces-blight-elimination-grant-program,state,MI,,state_program,HTML,public_html,,$21.55M statewide Blight Elimination Grant Program.
+Albany County Land Bank,https://www.albanycountylandbank.org/,county,NY,Albany,land_bank,HTML,public_html,,Tax-foreclosed/vacant/abandoned across Albany County.
+Albany Vacant Building Inventory 2013 Open Data,https://data.ny.gov/Economic-Development/City-of-Albany-Vacant-Building-Inventory-2013/nv2j-hmda,city,NY,Albany,registry,Socrata,open_api,,2013 vacant building inventory on Open Data NY.
+Albany VBR Reports,https://albanyny.gov/2412/Housing-Reports-Data,city,NY,Albany,registry,HTML,public_html,,Quarterly VBR reports since 2012.
+Troy NY VBR,https://www.troyny.gov/181/Vacant-Building-Registry,city,NY,Troy,registry,HTML,public_html,,Troy mandatory VBR.
+Chemung County Land Bank (Elmira),https://www.chemungcountyny.gov/177/Chemung-County-Land-Bank,county,NY,Chemung,land_bank,HTML,public_html,,Elmira-area land bank.
+Chautauqua County Land Bank (Jamestown),https://chqlandbank.org/,county,NY,Chautauqua,land_bank,HTML,public_html,,Jamestown-area land bank.
+Broome County Land Bank (Binghamton),https://broomelandbank.org/about-us/,county,NY,Broome,land_bank,HTML,public_html,,Binghamton-area land bank since 2013.
+Allegany County NY Land Bank,https://www.alleganyco.gov/departments/planning/allegany-county-land-bank-corporation/,county,NY,Allegany,land_bank,HTML,public_html,,Rural NY land bank.
+NORLIC Niagara/Orleans Land Bank,http://www.niagaraorleanslandbank.com/,county,NY,Niagara,land_bank,HTML,public_html,,Niagara Orleans Regional Land Improvement Corp.
+BENLIC Buffalo Erie Niagara Land Bank,https://benlic.org/,regional,NY,,land_bank,HTML,public_html,,Buffalo Erie Niagara Land Improvement Corp.
+Auburn NY VBR,http://www.auburnny.gov/Public_Documents/AuburnNY_Fire/VacantBldgReg/index,city,NY,Auburn,registry,HTML,public_html,,Auburn (Cayuga County) VBR.
+NY State Land Banks Report (OSC),https://www.osc.ny.gov/files/local-government/publications/pdf/landbanks1016.pdf,state,NY,,research,PDF,public_html,20,Office of State Comptroller report on 20 NY land banks.
+NY State Land Banks Profile (CCP),https://communityprogress.org/publications/new-york-state-land-banks/,state,NY,,research,HTML,public_html,,Center for Community Progress profile of all NY land banks.
+City of Niagara Falls PROS,https://cityofniagarafalls.prosgar.com/PROSSearch/AdvancedSearchFilters,city,NY,Niagara Falls,assessor,HTML,public_html,,Property Record Online System.
+USDA NASS Cropland Data Layer,https://www.nass.usda.gov/Research_and_Science/Cropland/sarsfaqs2.php,national,,,agricultural,raster,downloadable,,USDA CDL annual crop-specific land cover. 10m resolution since 2024. Multi-year fallow = potential abandonment.
+USDA CDL Viewer,https://www.nass.usda.gov/Research_and_Science/Cropland/Viewer/index.php,national,,,agricultural,interactive_map,public_html,,Web viewer to compare years and spot newly-fallow parcels.
+CropScape USDA,https://nassgeodata.gmu.edu/CropScape/,national,,,agricultural,interactive_map,public_html,,CropScape — primary public interface for CDL.
+USDA CDL on Google Earth Engine,https://developers.google.com/earth-engine/datasets/catalog/USDA_NASS_CDL,national,,,agricultural,raster,open_api,,USDA CDL via Earth Engine — fallow detection at scale.
+Farmers.gov FSA Farm+,https://fsa.usda.gov/online-services/farm-plus/index,national,,,agricultural,HTML,login_required,,Active FSA farm records — landowners only.
+USDA RD/FSA Property Resale,https://properties.sc.egov.usda.gov/resales/public/searchFSA,national,,,agricultural,HTML,public_html,,USDA Rural Development + FSA resale properties — often distressed farms.
+MapUrbex Abandoned Places,https://www.mapurbex.com/gb/en/blog/abandoned-places-in-the-united-states-full-list-by-state-2,national,,,community_list,interactive_map,public_html,,Crowdsourced urbex map incl farms. Verify before use.
+OKC Abandoned Buildings List,https://www.okc.gov/Infrastructure-Development/Development-Planning/Subdivision-Zoning/Abandoned-Buildings,city,OK,Oklahoma City,registry,HTML,public_html,12000+,Abandoned Buildings List declared by Council. ~12000 vacant/abandoned structures across 8 wards (2013 baseline).
+Oklahoma Statutes §46-302 Abandoned Property,https://law.justia.com/codes/oklahoma/title-46/section-46-302/,state,OK,,municipal_code,HTML,public_html,,OK statute on abandoned/vacated property — motion to protect + hearing procedure.
+Reno Vacant Property Registry,https://www.reno.gov/government/departments/code-enforcement,city,NV,Reno,registry,HTML,public_html,,Reno VPR — annual fee funds code enforcement.
+Henderson NV Abandoned Property Registry,https://registerhenderson.com/about,city,NV,Henderson,registry,HTML,public_html,,Henderson Abandoned Residential Real Property Registry (Ord 3121 2014). Required for lenders on abandoned/in-danger properties.
+Henderson NV Property Maintenance Code,https://library.municode.com/nv/henderson/codes/code_of_ordinances?nodeId=TIT15BUCO_CH15.12PRMACO,city,NV,Henderson,municipal_code,HTML,public_html,,Henderson Ch 15.12 Property Maintenance Code.
+Albuquerque Vacant Building Registry,https://www.cabq.gov/problematicproperties,city,NM,Albuquerque,registry,HTML,public_html,1300+,VBR for residential since 2013 (electronic since 2015). 1300+ added in 2016 alone. Problematic Properties Program targets nuisance buildings.
+Albuquerque Vacant & Abandoned Task Force Report,https://www.cabq.gov/council/documents/vacant-abandoned-houses-task-force-final-final-report-1-17-18.pdf,city,NM,Albuquerque,research,PDF,public_html,,2018 Vacant & Abandoned Houses Task Force final report.
+NM MainStreet Vacant Building Ordinance Paper,https://www.nmmainstreet.org/WPBeta/wp-content/uploads/2019/01/Vacant_Building_Ordinance_White_Paper.pdf,state,NM,,research,PDF,public_html,,NM MainStreet vacant building ordinance template/whitepaper.
+Omaha Abandoned Property Ordinance,https://permits.cityofomaha.org/housing-enforcement,city,NE,Omaha,registry,HTML,public_html,,Omaha Abandoned/Vacant Property Ordinance. Quarterly registration fees.
+Omaha Code Enforcement,https://planning.cityofomaha.org/latest-news/832-code-enforcement,city,NE,Omaha,code_enforcement,HTML,public_html,,Omaha Planning Dept Code Enforcement.
+Omaha Nuisances Ch 18,https://library.municode.com/ne/omaha/codes/code_of_ordinances?nodeId=PTIIMUCO_CH18NU,city,NE,Omaha,municipal_code,HTML,public_html,,Omaha Ch 18 Nuisances.
+Lincoln NE Neglected Buildings Registry,https://www.7dayscash.com/lincoln-nebraska-neglected-buildings-registry/,city,NE,Lincoln,registry,HTML,public_html,,Lincoln Neglected Buildings Registry — most serious code violations + extended vacancy.
+NE Statewide VPR Guidelines,https://www.ascentres.com/home/industry-news/nebraska-adopts-bill-establishing-vacant-property-registration-guidelines-for-its-communities/,state,NE,,state_program,HTML,public_html,,NE state VPR guidelines for municipalities.
+Boise Code Compliance,https://www.cityofboise.org/departments/planning-and-development-services/code-compliance/,city,ID,Boise,code_enforcement,HTML,public_html,,Boise Code Compliance — addresses abandoned/vacant buildings. 6-month restoration requirement.
+Boise Code Violation Online Reporting,https://www.cityofboise.org/government/report-an-issue-or-file-a-complaint/,city,ID,Boise,code_enforcement,HTML,public_html,,Online compliance service request system. Closed cases publicly searchable.
+Boise City Code 11-05-07,https://codelibrary.amlegal.com/codes/boise_id/latest/boise/0-0-0-70163,city,ID,Boise,municipal_code,HTML,public_html,,Boise City Code violations enforcement and penalties.
+Ada County Code Enforcement,https://adacounty.id.gov/sheriff/services/code-enforcement/,county,ID,Ada,code_enforcement,HTML,public_html,,Ada County Sheriff code enforcement (Boise area unincorporated).
+Billings Community Development Properties,https://www.billingsmt.gov/1995/Community-Development-Properties,city,MT,Billings,redevelopment,HTML,public_html,,City-owned vacant property + first-time home buyer rehabilitation program.
+Yellowstone County Community Decay Ordinance,https://www.yellowstonecountymt.gov/publicworks/codeenforcement.asp,county,MT,Yellowstone,code_enforcement,HTML,public_html,,Community Decay Ordinance covering nuisance + abandoned buildings.
+MT Vacant Property Registration Act,https://leg.mt.gov/bills/2019/BillHtml/HB0253.htm,state,MT,,state_program,HTML,public_html,,Montana Vacant Property Registration Act (HB 253) — enables municipal 90+ day registration.
+MT Property Assessment Online,https://svc.mt.gov/dor/property/prc,state,MT,,assessor,HTML,public_html,,Statewide MT property record card lookup.
+Burlington VT Vacant Buildings Code Article 8-3,https://www.codepublishing.com/VT/Burlington/html/Burlington08/Burlington0803.html,city,VT,Burlington,municipal_code,HTML,public_html,,Burlington Article 8-3 Abatement & Rehabilitation of Vacant Buildings & Dangerous Structures.
+Burlington VT Property Records,https://property.burlingtonvt.gov/,city,VT,Burlington,assessor,HTML,public_html,,Burlington parcel/assessment lookup.
+Burlington VT Land Records,https://www.burlingtonvt.gov/211/Land-Records,city,VT,Burlington,land_records,HTML,public_html,,Burlington land records portal.
+Rutland Town VT Public Nuisance Ordinance,https://vtdigger.org/2017/10/19/rutland-town-public-nuisance-law-targets-blight-unsafe-sites/,city,VT,Rutland,municipal_code,HTML,public_html,,Rutland Town public nuisance/blight ordinance + GovPilot digital vacant property registration.
+VT Land Records Online,https://vmcta.org/Vermont_Land_Records_Online,state,VT,,land_records,HTML,public_html,,VT Municipal Clerk Treasurer Association — statewide land records directory.
+Salt Lake County Open Data,https://gisdata-slco.opendata.arcgis.com/,county,UT,Salt Lake,open_data,ArcGIS,public_html,,Salt Lake County ArcGIS open data hub.
+Salt Lake County Recorder,https://apps.saltlakecounty.gov/data-services/DataServicesAccess/PublicSearch.aspx,county,UT,Salt Lake,land_records,HTML,public_html,,SLCo Recorder property search.
+Utah State Parcels (UGRC),https://parcels.utah.gov/,state,UT,,parcel_gis,interactive_map,public_html,,Statewide UT parcels database — every parcel mappable.
+San Antonio Register a Vacant Building,https://www.sa.gov/Directory/Departments/OHP/Vacant-Buildings/Register-a-Vacant-Building,city,TX,San Antonio,registry,HTML,public_html,,San Antonio VBR — annual renewal required.
+San Antonio Code Enforcement,https://www.sa.gov/Directory/Departments/DSD/CES,city,TX,San Antonio,code_enforcement,HTML,public_html,,Code Enforcement Services.
+San Antonio Complaint Status Search,https://webapp1.sanantonio.gov/CodeComplaintStatus/,city,TX,San Antonio,code_enforcement,HTML,public_html,,Public complaint case search.
+Austin TX Vacant Building Registration,https://www.austintexas.gov/department/common-austin-code-violations,city,TX,Austin,registry,HTML,public_html,,Austin VBR ordinance — $120 fee. 120-day vacancy trigger.
+Petersburg VA Vacant Property Registry,https://www.petersburgva.gov/674/Vacant-Property-Registry,city,VA,Petersburg,registry,HTML,public_html,297,VPR — $100/year. $400 penalty in blighted areas. 297 abandoned properties (2019).
+Richmond VA Vacant Building Information,https://www.rva.gov/planning-development-review/vacant-building-information,city,VA,Richmond,registry,HTML,public_html,,Richmond derelict building registration — 12+ month vacancy. $100/year fee. $200-$250 civil penalty.
+Richmond VA Property Maintenance,https://www.rva.gov/planning-development-review/property-maintenance-code-enforcement,city,VA,Richmond,code_enforcement,HTML,public_html,,Richmond property maintenance + code enforcement.
+Virginia Mercury Blight Coverage,https://virginiamercury.com/2024/01/31/fighting-blight-how-cities-across-virginia-are-addressing-abandoned-property/,state,VA,,news,HTML,public_html,,2024 statewide blight coverage — Danville/Roanoke/Chesapeake have land banks.
+Roanoke Real Estate GIS,https://gisre.roanokeva.gov/js/,city,VA,Roanoke,parcel_gis,interactive_map,public_html,,Roanoke real estate GIS portal.
+Boston Property Data and Information,https://www.boston.gov/departments/assessing/property-data-and-information,city,MA,Boston,assessor,HTML,public_html,,Boston Assessing Dept property data.
+Worcester Property Records,https://www.worcesterma.gov/finance/taxes-assessments/property-records,city,MA,Worcester,assessor,HTML,public_html,,Worcester property records + Worcester Atlas interactive viewer.
+Vision Government Solutions MA Online Database,https://www.vgsi.com/massachusetts-online-database/,state,MA,,assessor,HTML,public_html,,Vision Government Solutions MA municipality assessor database.
+Waterbury CT Blight Task Force,https://www.waterburyct.org/services/public-works/parks/fight-blight,city,CT,Waterbury,code_enforcement,HTML,public_html,,Waterbury Blight Task Force — 311 reporting.
+Norwich CT Blight & Housing Code Enforcement,https://www.norwichct.gov/984/Blight-and-Housing-Code-Enforcement,city,CT,Norwich,code_enforcement,HTML,public_html,,Norwich Blight & Housing Code Enforcement office.
+CT Anti-Blight Ordinances Report,https://www.cga.ct.gov/PS98/rpt%5Colr%5Chtm/98-R-0268.htm,state,CT,,research,HTML,public_html,,CT General Assembly anti-blight ordinances overview.
+CT Blight Comparison Report 2013,https://www.cga.ct.gov/2013/rpt/2013-R-0422.htm,state,CT,,research,HTML,public_html,,Comparison of CT municipal blight ordinances (2013).
+CT Blight Info Kit 2020,https://ctmainstreet.org/wp-content/uploads/2024/03/2020_Blight_Infokit-1.pdf,state,CT,,research,PDF,public_html,,CCM 2020 Blight Prevention & Mitigation municipal resource.
+Racine County Register of Deeds,https://www.racinecounty.gov/departments/register-of-deeds,county,WI,Racine,land_records,HTML,public_html,,Racine County Register of Deeds + LandShark online property records.
+Racine County Tax Foreclosure Sales,https://www.racinecounty.gov/departments/county-treasurer/public-sale-of-properties-taken-in-tax-foreclosure,county,WI,Racine,tax_records,HTML,public_html,,Public sales of tax-foreclosed properties.
+WI Property Info,https://propertyinfo.revenue.wi.gov/,state,WI,,assessor,HTML,public_html,,Wisconsin statewide property information.
+Shreveport Vacant Property Registry,https://www.shreveportbossieradvocate.com/news/after-changes-only-shreveports-blighted-vacant-downtown-buildings-affected-by-new-ordinance/article_06d1031f-c070-4564-9f70-79d7770f2b49.html,city,LA,Shreveport,registry,HTML,public_html,,Shreveport blighted vacant downtown building registry.
+Baton Rouge Adjudicated Property,https://data.brla.gov/Housing-and-Development/Adjudicated-Property/a4h4-zi7e,city,LA,Baton Rouge,registry,Socrata,open_api,6800,~6800 properties on adjudicated list. 64000 blight-related service calls since 2016.
+Baton Rouge Open Data,https://data.brla.gov/,city,LA,Baton Rouge,open_data,Socrata,public_html,,Open Data BR — Socrata portal.
+LA Revised Statutes 33:4720.59 Blight,https://codes.findlaw.com/la/revised-statutes/la-rev-stat-tit-33-sect-4720-59/,state,LA,,municipal_code,HTML,public_html,,LA statute on blighted property abatement.
+MS Lawmakers Abandoned Properties HB 733/2023,https://mississippitoday.org/2025/02/18/mississippi-lawmakers-aim-to-tackle-abandoned-properties/,state,MS,,state_program,HTML,public_html,,Proposed $5M fund for blight cleanup loans/grants statewide.
+Gulfport MS Land Bank Authority,https://www.mpbonline.org/blogs/news/vacant-property-continues-to-plague-mississippi-coast/,city,MS,Gulfport,land_bank,HTML,public_html,,Gulfport land bank (similar to Jackson). MS coast blight coverage.
+NC Mecklenburg County (Charlotte) Records,https://www.guilfordcountync.gov/government/register-deeds,county,NC,Mecklenburg,land_records,HTML,public_html,,Charlotte/Mecklenburg property records via NCARD.
+NC Forsyth County (Winston-Salem),https://www.forsyth.cc/tax/propertylookup.aspx,county,NC,Forsyth,assessor,HTML,public_html,,Forsyth County (Winston-Salem) property lookup.
+NC State Property Office,https://www.doa.nc.gov/divisions/state-property,state,NC,,state_program,HTML,public_html,,NC State Property Office — surplus and tax-foreclosed state property.
+NCARD NC Register of Deeds Directory,https://www.ncard.us/find-your-register-of-deeds/,state,NC,,directory,HTML,public_html,,NC Association of Registers of Deeds — directory of all 100 county offices.
+Casper WY Blight Study & Urban Renewal,https://oilcity.news/community/city/2026/03/24/casper-plans-for-urban-renewal-authority-after-receiving-findings-of-blight-study/,city,WY,Casper,redevelopment,HTML,public_html,7,2026 blight study identified 7 blight areas — downtown / North Casper / CY Ave / Eastridge Mall / Paradise Valley / Ford Wyoming Center / Platte River Commons. North Casper meets 9/13 statutory conditions.
+Casper Code of Ordinances Buildings,https://library.municode.com/wy/casper/codes/code_of_ordinances?nodeId=TIT15BUCO_CH15.04INBUCO,city,WY,Casper,municipal_code,HTML,public_html,,Casper Ch 15.04 International Building Code.
+Cheyenne WY Abandoned Property Ordinance,https://www.wyomingnews.com/news/lack-of-laws-means-little-can-be-done-about-vacant-properties/article_3654863a-ddea-11e5-af38-effc0c43574e.html,city,WY,Cheyenne,registry,HTML,public_html,,Cheyenne abandoned property registration (limited enforcement). Definition requires 2+ of: utilities off / fixtures removed / vandalized / boarded.
+Fargo Parcels,https://fargoparcels.com/,city,ND,Fargo,parcel_gis,HTML,public_html,,Fargo parcel search — ownership + appraisal + assessments + building info.
+Bismarck ND Property Information,https://www.bismarcknd.gov/419/Property-Information,city,ND,Bismarck,assessor,HTML,public_html,,Bismarck/Burleigh County property data via Tyler Tech.
+ND Chapter 85-03-02 Abandoned Property,https://ndlegis.gov/information/acdata/pdf/85-03-02.pdf,state,ND,,municipal_code,PDF,public_html,,ND statute on reporting abandoned property.
+Sioux Falls Vacant Buildings,https://www.siouxfalls.gov/business-permits/permits-licenses-inspections/ordinances-codes/vacant-buildings,city,SD,Sioux Falls,registry,HTML,public_html,,Sioux Falls vacant building registration — 30-day vacancy trigger.
+Sioux Falls Abandoned Property Code,https://codelibrary.amlegal.com/codes/siouxfalls/latest/siouxfalls_sd/0-0-0-54370,city,SD,Sioux Falls,municipal_code,HTML,public_html,,§ 92.076 Abandoned Property ordinance.
+Abandoned South Dakota FB,https://www.facebook.com/abandonedSD/,state,SD,,community_blog,HTML,public_html,,Facebook community documenting SD abandoned homes/structures with photos.
+Indiana Inventory of Lost Farmland,https://www.in.gov/isda/divisions/policy-and-regulatory-affairs/inventory-of-lost-farmland/,state,IN,,agricultural,HTML,public_html,,ISDA Inventory of Lost Farmland — combines parcel data + USDA CDL to track statewide farmland loss. Model for other states.
+USDA Rural Development Resale Properties,https://catalog.data.gov/dataset/usda-rural-development-resale-properties-foreclosure,national,,,agricultural,catalog,public_html,,USDA RD foreclosure resale properties (rural housing) on Data.gov catalog.
+USDA NRCS Agricultural Land Easements,https://www.nrcs.usda.gov/programs-initiatives/ale-agricultural-land-easements,national,,,agricultural,HTML,public_html,,ALE program records easement-protected farms — useful to confirm NOT abandoned (active in program = preserved).
+USDA ERS Major Land Uses,https://ers.usda.gov/data-products/major-land-uses/documentation,national,,,agricultural,research,public_html,,USDA Economic Research Service 5-year land use estimates by state — tracks farmland reduction over time.
+USDA NASS Farm Real Estate Values by State,https://www.nass.usda.gov/Charts_and_Maps/Land_Values/farm_value_map.php,national,,,agricultural,interactive_map,public_html,,Statewide farmland values — sharp drops over time can indicate distress/abandonment.
