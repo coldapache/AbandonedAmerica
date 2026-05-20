@@ -444,6 +444,38 @@ body {
 .marker-cluster-large div { background: rgba(124,58,237,0.8); color: #fff; }
 .marker-cluster div { font-family: inherit; font-weight: 700; font-size: 12px; }
 
+/* ===== DASHBOARD ===== */
+#tab-dashboard { overflow-y: auto; }
+#dashboard { padding: 24px 28px 36px; max-width: 1400px; width: 100%; margin: 0 auto; }
+.dash-filter-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
+.dash-filter-label { font-size: 10px; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; }
+.dash-filter-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.dash-chip { padding: 4px 10px; border-radius: 999px; cursor: pointer; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid var(--border); background: var(--surface2); color: var(--text-dim); transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px; }
+.dash-chip:hover { border-color: var(--text-dim); color: var(--text); }
+.dash-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.dash-chip .chip-count { font-weight: 600; opacity: 0.85; }
+.dash-hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.hero-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+.hero-card-gov { border-left: 3px solid var(--accent); background: linear-gradient(135deg, var(--surface), var(--accent-bg)); }
+.hero-label { font-size: 10px; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+.hero-value { font-size: 28px; font-weight: 800; color: var(--text); font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace; line-height: 1; }
+.hero-sub { margin-top: 6px; font-size: 11px; color: var(--text-dim); font-weight: 500; }
+.dash-row { margin-top: 22px; }
+.dash-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 1100px) { .dash-row-2 { grid-template-columns: 1fr; } }
+.dash-section { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px 18px; }
+.dash-section h3 { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-mid); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border-light); }
+.bar-list { display: flex; flex-direction: column; gap: 6px; }
+.bar-row { display: grid; grid-template-columns: 130px 1fr 60px 110px; align-items: center; gap: 10px; font-size: 11px; }
+.bar-name { font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-track { height: 14px; background: var(--surface3); border-radius: 4px; overflow: hidden; position: relative; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #e05545); border-radius: 4px; transition: width 0.3s; }
+.bar-count { font-family: 'SF Mono', 'Cascadia Code', monospace; font-weight: 700; color: var(--text); text-align: right; }
+.bar-amount { font-family: 'SF Mono', 'Cascadia Code', monospace; font-size: 10px; color: var(--text-dim); text-align: right; }
+.bar-partial { font-size: 9px; opacity: 0.7; margin-left: 2px; }
+.bar-na { color: var(--text-dim); opacity: 0.5; }
+.bar-empty { color: var(--text-dim); font-size: 12px; padding: 10px 4px; }
+
 @media (max-width: 900px) {
   #app { grid-template-columns: 1fr; }
   #sidebar { display: none; }
@@ -478,8 +510,33 @@ body {
   <div id="main-panel">
     <div id="tab-bar">
       <div class="tab active" data-tab="map">Map Overview</div>
+      <div class="tab" data-tab="dashboard">Dashboard</div>
       <div class="tab" data-tab="table">Table View</div>
       <div class="tab disabled" data-tab="property" id="property-tab">Property View</div>
+    </div>
+
+    <div class="tab-content" id="tab-dashboard">
+      <div id="dashboard">
+        <div class="dash-filter-bar">
+          <span class="dash-filter-label">Filter by status:</span>
+          <div class="dash-filter-chips" id="dash-status-filters"></div>
+        </div>
+        <div class="dash-hero">
+          <div class="hero-card"><div class="hero-label">Properties</div><div class="hero-value" id="dash-total">—</div></div>
+          <div class="hero-card"><div class="hero-label">Assessed Value</div><div class="hero-value" id="dash-value">—</div><div class="hero-sub" id="dash-avg-value">—</div></div>
+          <div class="hero-card"><div class="hero-label">Cities</div><div class="hero-value" id="dash-cities">—</div></div>
+          <div class="hero-card"><div class="hero-label">States</div><div class="hero-value" id="dash-states">—</div></div>
+          <div class="hero-card"><div class="hero-label">Human Verified</div><div class="hero-value" id="dash-verified">—</div><div class="hero-sub" id="dash-verified-pct">—</div></div>
+          <div class="hero-card hero-card-gov"><div class="hero-label">Government Owned</div><div class="hero-value" id="dash-gov">—</div><div class="hero-sub" id="dash-gov-pct">—</div></div>
+        </div>
+        <div class="dash-row dash-row-2">
+          <div class="dash-section"><h3>Top Cities</h3><div class="bar-list" id="dash-by-city"></div></div>
+          <div class="dash-section"><h3>Top States</h3><div class="bar-list" id="dash-by-state"></div></div>
+        </div>
+        <div class="dash-row">
+          <div class="dash-section"><h3>Top Government Owners</h3><div class="bar-list" id="dash-by-gov"></div></div>
+        </div>
+      </div>
     </div>
 
     <div class="tab-content active" id="tab-map">
@@ -647,6 +704,7 @@ document.querySelectorAll('.tab').forEach(tab => {
     document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
     if (tab.dataset.tab === 'map') setTimeout(() => map.invalidateSize(), 50);
     if (tab.dataset.tab === 'table') renderTable();
+    if (tab.dataset.tab === 'dashboard') renderDashboard();
   });
 });
 
@@ -1070,6 +1128,139 @@ function confirmProperty(address) {
 window.confirmProperty = confirmProperty;
 
 function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// ===== DASHBOARD =====
+let dashStatusFilter = new Set();
+const GOV_OWNER_PATTERNS = [
+  /\bCITY OF\b/, /\bCOUNTY OF\b/, /\bSTATE OF\b/,
+  /\bBOROUGH OF\b/, /\bTOWN OF\b/, /\bTOWNSHIP OF\b/, /\bVILLAGE OF\b/,
+  /\bPARISH OF\b/, /\bCOMMONWEALTH OF\b/,
+  /\bREDEVELOPMENT\b/, /\bHOUSING AUTH/, /\bPORT AUTHORITY\b/,
+  /\bLAND BANK\b/, /\bLAND REUTILIZATION\b/, /\bURBAN RENEWAL\b/,
+  /\bMUNICIPAL\b/, /\bDEPARTMENT OF\b/, /\bGOVERNMENT\b/,
+  /\bBOARD OF EDUCATION\b/, /\bSCHOOL DISTRICT\b/, /\bPUBLIC SCHOOLS\b/,
+  /\bUNITED STATES\b/, /\bU\.?S\.?A\.?\b/, /\bFEDERAL\b/,
+  /\bWATER (DEPARTMENT|AUTHORITY|DISTRICT)\b/, /\bSEWER(AGE)? (AUTHORITY|DISTRICT)\b/,
+  /\bTRANSIT AUTHORITY\b/, /\bDEVELOPMENT AUTHORITY\b/, /\bPUBLIC HOUSING\b/,
+];
+function isGovernmentOwned(p) {
+  const o = (p.owner || '').toUpperCase();
+  if (!o) return false;
+  return GOV_OWNER_PATTERNS.some(re => re.test(o));
+}
+function parseAssessment(s) {
+  if (!s) return 0;
+  const n = parseFloat(String(s).replace(/[$,\s]/g, ''));
+  return isNaN(n) ? 0 : n;
+}
+function fmtMoney(n) {
+  if (n >= 1e9) return '$' + (n/1e9).toFixed(2) + 'B';
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
+  return '$' + Math.round(n).toLocaleString();
+}
+function fmtMoneyFull(n) { return '$' + Math.round(n).toLocaleString(); }
+
+function renderDashboard() {
+  if (!allProperties.length) return;
+  const filtered = dashStatusFilter.size
+    ? allProperties.filter(p => dashStatusFilter.has(p.status))
+    : allProperties;
+
+  const totalValue = filtered.reduce((s, p) => s + parseAssessment(p.assessment), 0);
+  const valued = filtered.filter(p => parseAssessment(p.assessment) > 0);
+  const avg = valued.length ? totalValue / valued.length : 0;
+  const verified = filtered.filter(p => p.human_confirmed === 'HUMAN CONFIRMED').length;
+  const verifiedPct = filtered.length ? (verified / filtered.length * 100) : 0;
+  const govOwned = filtered.filter(isGovernmentOwned);
+  const govPct = filtered.length ? (govOwned.length / filtered.length * 100) : 0;
+  const govValue = govOwned.reduce((s, p) => s + parseAssessment(p.assessment), 0);
+
+  document.getElementById('dash-total').textContent = filtered.length.toLocaleString();
+  document.getElementById('dash-value').textContent = fmtMoney(totalValue);
+  document.getElementById('dash-avg-value').textContent = avg ? 'avg ' + fmtMoney(avg) + ' (' + valued.length + '/' + filtered.length + ' valued)' : '';
+  document.getElementById('dash-cities').textContent = new Set(filtered.map(p => (p.city||'').trim()).filter(Boolean)).size;
+  document.getElementById('dash-states').textContent = new Set(filtered.map(p => p.state).filter(Boolean)).size;
+  document.getElementById('dash-verified').textContent = verified.toLocaleString();
+  document.getElementById('dash-verified-pct').textContent = filtered.length ? verifiedPct.toFixed(1) + '% of shown' : '';
+  document.getElementById('dash-gov').textContent = govOwned.length.toLocaleString();
+  document.getElementById('dash-gov-pct').textContent = filtered.length ? govPct.toFixed(1) + '% · ' + fmtMoney(govValue) + ' assessed' : '';
+
+  // Status filter chips (built from ALL properties so user can pivot)
+  const sc = document.getElementById('dash-status-filters');
+  const statusCounts = aggregate(allProperties, p => p.status);
+  sc.innerHTML = '';
+  const allChip = mkChip('All', null, allProperties.length, dashStatusFilter.size === 0);
+  allChip.onclick = () => { dashStatusFilter.clear(); renderDashboard(); };
+  sc.appendChild(allChip);
+  statusCounts.forEach(({ key, count }) => {
+    const chip = mkChip(key, key, count, dashStatusFilter.has(key));
+    chip.onclick = () => {
+      if (dashStatusFilter.has(key)) dashStatusFilter.delete(key);
+      else dashStatusFilter.add(key);
+      renderDashboard();
+    };
+    sc.appendChild(chip);
+  });
+
+  renderBars('dash-by-city', aggregateWithSum(filtered, p => `${(p.city||'').trim()}, ${p.state}`).slice(0, 20));
+  renderBars('dash-by-state', aggregateWithSum(filtered, p => p.state).slice(0, 20));
+  renderBars('dash-by-gov', aggregateWithSum(govOwned, p => p.owner).slice(0, 20));
+}
+
+function mkChip(label, key, count, active) {
+  const el = document.createElement('div');
+  el.className = 'dash-chip' + (active ? ' active' : '');
+  el.innerHTML = `${esc(label)} <span class="chip-count">${count.toLocaleString()}</span>`;
+  return el;
+}
+
+function aggregate(arr, keyFn) {
+  const map = new Map();
+  arr.forEach(p => {
+    const k = (keyFn(p) || '').trim();
+    if (!k) return;
+    map.set(k, (map.get(k) || 0) + 1);
+  });
+  return [...map.entries()].map(([key, count]) => ({ key, count })).sort((a,b) => b.count - a.count);
+}
+
+function aggregateWithSum(arr, keyFn) {
+  const map = new Map();
+  arr.forEach(p => {
+    const k = (keyFn(p) || '').trim();
+    if (!k) return;
+    const cur = map.get(k) || { count: 0, sum: 0, valued: 0 };
+    cur.count++;
+    const v = parseAssessment(p.assessment);
+    if (v > 0) { cur.sum += v; cur.valued++; }
+    map.set(k, cur);
+  });
+  return [...map.entries()].map(([key, v]) => ({ key, count: v.count, sum: v.sum, valued: v.valued })).sort((a,b) => b.count - a.count);
+}
+
+function renderBars(containerId, rows) {
+  const el = document.getElementById(containerId);
+  if (!rows.length) { el.innerHTML = '<div class="bar-empty">No data</div>'; return; }
+  const max = rows[0].count;
+  el.innerHTML = rows.map(r => {
+    const pct = (r.count / max * 100).toFixed(1);
+    let amt = '<span class="bar-na">—</span>';
+    if (r.valued > 0) {
+      amt = fmtMoney(r.sum);
+      if (r.valued < r.count) amt += ' <span class="bar-partial">(' + r.valued + '/' + r.count + ')</span>';
+    }
+    const titleAmt = r.valued > 0
+      ? ' — ' + fmtMoneyFull(r.sum) + ' assessed across ' + r.valued + ' of ' + r.count + ' properties'
+      : ' — no assessment data';
+    return `<div class="bar-row" title="${esc(r.key)} — ${r.count} properties${titleAmt}">
+      <div class="bar-name">${esc(r.key)}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+      <div class="bar-count">${r.count.toLocaleString()}</div>
+      <div class="bar-amount">${amt}</div>
+    </div>`;
+  }).join('');
+}
 </script>
 </body>
 </html>
