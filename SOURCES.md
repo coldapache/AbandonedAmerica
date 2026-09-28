@@ -117,6 +117,34 @@ These are examples of what you'll find when you follow the playbook above. Every
 |--------|-----|-------------|
 | **HRGEO** | https://www.hrgeo.org/ | Hampton Roads regional GIS data exchange. Parcel data for the region. |
 
+### City of Richmond
+
+The single best source in the state: Richmond publishes its full vacant-building
+inventory and the assessor publishes every parcel with owner and assessment.
+
+| Source | URL | What You Get |
+|--------|-----|-------------|
+| **Vacant Building List** | https://www.rva.gov/planning-development-review/vacant-building-information | Official city inventory of vacant buildings, published twice a year (Apr and Oct). ~620 addresses with owner names and mailing addresses. Extracted from code-enforcement inspectors' daily inspections. |
+| **Vacant Building Registry** | same page (registry PDFs) | The formal registry required by Code of Virginia §15.2-907.1: buildings continuously vacant **12+ months** and meeting the statutory "derelict" definition. ~607 addresses. Being on this list is durable evidence of chronic vacancy — use it to justify `CHRONICALLY VACANT`. |
+| **Assessor Public Data Set (Excel)** | https://rva.gov/assessor-real-estate/data-request | **Every parcel in the city** (~77k rows, updated monthly). Owner1/Owner2, mailing address, `PRIMARY_USE` code, `PROP_TYPE`, `YEAR_BUILT`, `CONDITION`, `PROP_SF`, zoning, and five years of land/improvement/total assessments. This is what makes it possible to fill owner + assessment on every row. |
+| **Assessor / actdatascout lookup** | https://www.actdatascout.com/RealProperty/Virginia/Richmond | Per-parcel detail and assessment history for individual lookups. |
+
+**Parsing notes (learned the hard way):**
+- The April 2026 Vacant Building List PDF is a **6-field repeating block** (address,
+  owner, mail address, mail city, mail state, mail zip). Owner and mailing-address
+  names wrap across **variable** numbers of lines, so a fixed-stride parser silently
+  loses roughly **half** the records. Parse the address lines instead — each ends in
+  `, <zip5>` — and count them. A 12-page list yields ~620 records / ~3,148 fields.
+- The October 2025 registry PDF wraps every field, including street names, and
+  occasionally corrupts glyph pairs into `>`, `=`, `A`, `G` (e.g. `Pa>erson Ave`
+  is Patterson Ave, `Carna=on St` is Carnation St). Repair those before geocoding.
+- The assessor's `ASSSESS_IMP_VALUE_1 = 0` with a blank `YEAR_BUILT` means **no
+  structure on the parcel** — exclude those rather than listing a vacant lot.
+- Match vacant-list addresses to parcels by an **exact normalised** house-number +
+  street key. Do not fuzzy-match: `111 W Grace St` and `111 E Grace St` are
+  different properties, and a loose matcher will silently attach the wrong owner
+  and assessment.
+
 ### City of Hampton
 
 | Source | URL | What You Get |

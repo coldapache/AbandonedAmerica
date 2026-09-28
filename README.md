@@ -95,7 +95,7 @@ The entire database is a single CSV file. Every row is one property. The columns
 - **No duplicate properties.** Before adding a property, search the CSV for the address.
 - **All coordinates must be verified.** Use Google Maps to confirm lat/lon matches the address.
 - **All properties must have a Google Maps link.** Street View links are strongly preferred.
-- **Street View must show the actual property.** When you click "Open in Google Maps" or view the Street View embed, the building described in the record must be visible. If the Street View shows a different building, a residential street when the property is industrial, or a location blocks away from the address, the link/coordinates are wrong and must be fixed. This is the #1 data quality issue — coordinates from geocoders often land on the street or a neighboring parcel, not on the actual building.
+- **Street View must show the actual property.** When you click "Open in Google Maps" or view the Street View embed, the building described in the record must be visible. If the Street View shows a different building, a residential street when the property is industrial, or a location blocks away from the address, the link/coordinates are wrong and must be fixed. This is the #1 data quality issue — coordinates from geocoders often land on the street or a neighboring parcel, not on the actual building. **Measured on Richmond, this is systemic, not occasional:** aimed at Census-geocoded points, only **4 of 174** Street View captures showed a confirmed-derelict building and **56% were unjudgeable**, because the point sat on the roadway. The coordinate, not the camera, is the defect — fix it with a parcel-polygon centroid (see Tooling) before spending Street View quota, and aim the panorama at the bearing from camera to property.
 - **Status must be from the enum.** Do not invent new statuses.
 - **Type must be from the enum.** If a property doesn't fit, use the closest match.
 - **Assessments from official tax records only.** Do not estimate.
@@ -256,7 +256,11 @@ The `.claude/commands/` directory contains markdown files that define autonomous
 - **Browser automation** (Playwright, Puppeteer, Selenium, or similar) to scrape data and visit Google Maps
 - **Screenshot analysis** to visually confirm property condition
 - **CSV read/write** to update the database
-- **US Census Geocoder** (https://geocoding.geo.census.gov/geocoder/) for address-to-coordinate lookup — free, no API key needed
+- **US Census Geocoder** (https://geocoding.geo.census.gov/geocoder/) for *finding* a street — but **do not ship its point as the property coordinate.** It is street-interpolated: measured against the parcel centroid on 674 Richmond properties it lands a **median 43 m away (max 224 m)**, i.e. on the roadway or a neighbouring parcel. That is precisely the "#1 data quality issue" described above. Use it to locate the block, then take the coordinate from the **parcel polygon centroid** (see below).
+- **VGIN statewide parcel polygons** (Virginia only) for rooftop-precision coordinates — free, keyless ArcGIS REST:
+  `https://vginmaps.vdem.virginia.gov/arcgis/rest/services/VA_Base_Layers/VA_Parcels/FeatureServer/0/query`
+  Query by the assessor **PIN** as `PTM_ID` with `returnCentroid=true&outSR=4326`. Validated against OpenStreetMap on 12 randomly sampled Richmond addresses, the parcel centroid won **12/12**, sitting a median **5.6 m** from the address versus the Census point's 37 m. Always keep a sanity gate: reject any centroid beyond ~250 m from the address (a corrupt parcel join will otherwise hand you a point kilometres away).
+- **Parcel polygons in other states** — look for the county/city ArcGIS `FeatureServer/0` on the parcel layer and query by the assessor's parcel-ID field. Where none exists, right-click the building in Google Maps and confirm roof-level placement; never accept a geocoder's street point.
 
 **If a slash command doesn't work:** Read the corresponding `.claude/commands/*.md` file and execute each step manually. The instructions are self-contained — no special tooling is required beyond what's described above.
 
